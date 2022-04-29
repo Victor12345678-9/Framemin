@@ -1,36 +1,39 @@
-<?php  
+<!doctype html>
+<html lang="en">
 
-require_once ('C:/xampp/htdocs/mvc2/controller/usersController.php');
+<?php
+include_once "../../../Config/constant/rutes.php";
+require_once (CONTROLLERS_PATH."usersController.php");
 $obj= new UsersController();
 $usuarios=$obj->showUser($_GET['id']);
-include "../Config/constant/rutes.php";
-include (LAYOUT_PATH."head.php");
-  include (LAYOUT_PATH."header.php");
 
 
+
+include_once (LAYOUT_PATH."head2.php");
 
 ?>
-            
-                <!DOCTYPE html>
-      <html lang="en">
-      <head>
-          <meta charset="UTF-8">
-          <meta http-equiv="X-UA-Compatible" content="IE=edge">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Document</title>
-      </head>
 
-     
-      <body>
-          
-      <div class="main-content">
+    <body>
+        
+
+    <?php  include_once (LAYOUT_PATH."header2.php");?>
+
+
+
+                
+    <div class="main-content">
 
 <div class="page-content">
     <div class="container-fluid">
 
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box  align-items-center justify-content-start">
+                    <h4 class="mb-sm-0 font-size-18">   Usuarios</h4>
 
-      <div class="row">
-                            <div class="col-lg-12">
+                    <div class="row">
+            
+                    <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header">
                                         <h4 class="card-title">Editar Usuarios</h4>
@@ -82,7 +85,7 @@ include (LAYOUT_PATH."head.php");
                                                            
                                                         </div>
                                                 </div>
-                                                <a type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal" href="usuariosView.php">Regresar</a>
+                                                <a type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal" href="usersView.php">Regresar</a>
                                                 <button class="btn btn-primary" type="submit"  data-bs-dismiss="modal" >Guardar</button>
                                                 </form>
                                             </div>
@@ -90,7 +93,19 @@ include (LAYOUT_PATH."head.php");
                             </div>
       </div>
     </div>
+                   
 
-      
- </body>
-      </html>
+    
+
+
+
+
+    
+    <?php   include_once (LAYOUT_PATH."footer2.php")  ?>
+
+
+
+    </body>
+
+
+</html>

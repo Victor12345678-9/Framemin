@@ -1,6 +1,7 @@
 <?php
 
-	require_once('../../controller/usersController.php');
+include_once "../../../Config/constant/rutes.php";
+ require_once (CONTROLLERS_PATH."usersController.php");
 	$obj= new UsersController();
 	
 	$obj->insertUser($_POST['nombre'],$_POST['apellido'],$_POST['nomina'],$_POST['correo']);
