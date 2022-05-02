@@ -1,13 +1,16 @@
 <?php
 
+require_once "../../../Config/constant/rutes.php";
+
 
 class UsersController{
+    
 
     private $MODEL;
 
     public function __construct(){
 
-        require_once ('C:/xampp/htdocs/minia/App/models/usersModel.php');
+        require_once (MODELS_PATH."usersModel.php");
         $this->MODEL = new UsersModel();
 
     }

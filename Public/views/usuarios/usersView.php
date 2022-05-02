@@ -2,8 +2,9 @@
 <html lang="en">
 
 <?php
+
 include_once "../../../Config/constant/rutes.php";
- require_once (CONTROLLERS_PATH."usersController.php");
+require_once (CONTROLLERS_PATH."usersController.php");
 $obj= new UsersController();
 $usuarios=$obj->show();
 
@@ -38,69 +39,16 @@ include_once (LAYOUT_PATH."head2.php");
 
                     <div class="card-body">
                         <div>
-                            <button type="button"  class="btn btn-success waves-effect  waves-light" class="text-center"" data-bs-toggle="modal" data-bs-target="#myModal">Agregar Usuario</button>
+                            <a type="button"  class="btn btn-success waves-effect waves-light" href="addUser.php" class="text-center">Agregar Usuario</a>
 
                             <!-- sample modal content -->
-                            <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="myModalLabel">Agregar Usuario</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
+          
                                            
 
 
 
 
-                            <form class="needs-validation" autocomplete="off" id="nuevo" method="POST" action="insertUser.php">
-
-
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="mb-3 position-relative">
-                                        <label class="form-label" for="nombre">Nombre</label>
-                                        <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
-                                       
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="mb-3 position-relative">
-                                        <label class="form-label" for="apellido">Apellido</label>
-                                        <input type="text" class="form-control" name="apellido" placeholder="apellido" required>
-                                        
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-5">
-                                    <div class="mb-3 position-relative">
-                                        <label class="form-label" for="nomina">Nomina</label>
-                                        <input type="number" class="form-control" name="nomina" placeholder="nomina"  required  min="1">
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="col-md-5">
-                                    <div class="mb-3 position-relative">
-                                        <label class="form-label" for="correo">Correo</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
-                                            <input type="email" class="form-control" name="correo" placeholder="correo"  required>
-                                           
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                              
-                            </div>
-                           
-                            <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger waves-effect" data-bs-dismiss="modal">Cerrar</button>
-                                            <button class="btn btn-primary" type="submit"  >Guardar</button>
-                                        </div>
-                        </form>
+                            
                                           
                                         </div>
                                        

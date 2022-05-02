@@ -1,12 +1,13 @@
 <?php
 
-    
+require_once "../../../Config/constant/rutes.php";    
+
     class UsersModel{
         private $PDO;
       
         public function __construct(){
         
-            require_once ('C:/xampp/htdocs/minia/Config/conexion/conexion.php');
+            require_once (CONEXION_PATH."conexion.php");
             $con = new db();
             $this->PDO=$con->conexion();
         }
