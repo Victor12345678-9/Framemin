@@ -47,12 +47,7 @@ class UsersController{
 
     }
 
-
-
-}
-
     
-
-
+}
 
 ?>

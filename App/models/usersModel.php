@@ -2,6 +2,7 @@
 
 require_once "../../../Config/constant/rutes.php";    
 
+
     class UsersModel{
         private $PDO;
       
@@ -11,6 +12,7 @@ require_once "../../../Config/constant/rutes.php";
             $con = new db();
             $this->PDO=$con->conexion();
         }
+
         
       
         public function showAll(){
@@ -61,7 +63,9 @@ require_once "../../../Config/constant/rutes.php";
             return true;
         }
 
-
+   
+       
+       
   
     }
 
