@@ -20,10 +20,9 @@ class UsersController{
         return $this->MODEL->showAll(); 
 
     }
-
-    public function insertUser($nombre, $apellido, $nomina, $correo){
-        $id=$this->MODEL->insert($nombre, $apellido, $nomina, $correo);
-        
+   
+    public function insertUser($nombre, $apellido,$fechaNacimiento,$lugarNacimiento,$edad,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nss,$nomina,$departamento,$puesto,$fechaContratacion){
+        $id=$this->MODEL->insert($nombre, $apellido,$fechaNacimiento,$lugarNacimiento,$edad,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nss,$nomina,$departamento,$puesto,$fechaContratacion);
         return header('Location:usersView.php');
     }
 
@@ -34,9 +33,9 @@ class UsersController{
     }
 
   
-    public function updateUser($id,$nombre, $apellido, $nomina, $correo){
+    public function updateUser($id,$nombre, $apellido,$fechaNacimiento,$lugarNacimiento,$edad,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nomina,$nss,$departamento,$puesto,$fechaContratacion){
 
-       $id=$this->MODEL->update($id,$nombre, $apellido, $nomina, $correo);
+       $id=$this->MODEL->update($id,$nombre, $apellido,$fechaNacimiento,$lugarNacimiento,$edad,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nomina,$nss,$departamento,$puesto,$fechaContratacion);
          return header('Location:usersView.php');
 
     }

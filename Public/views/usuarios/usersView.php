@@ -115,10 +115,18 @@ include_once (LAYOUT_PATH."head2.php");
                         <table class="table table-bordered dt-responsive  nowrap w-100" >
                                         <thead>
                                             <tr>
-                                            <th> Nomina</th>     
+                                            <th> Nomina</th> 
                                             <th> Nombre</th> 
-                                            <th> Apellido</th> 
-                                            <th WIDTH="30%"> Correo</th>
+                                           
+
+                                            <th> Edad</th> 
+                                            <th> Genero</th> 
+                                            <th> Puesto</th> 
+                                          
+                                            <th> RFC</th>
+                                       
+                                           
+                                            
                                             <th WIDTH="10%" > Acciones</th>
 
                                             </tr>
@@ -129,13 +137,16 @@ include_once (LAYOUT_PATH."head2.php");
 
                                             <?php if($users):?>
                                             
+                                                
                                                 <?php foreach ($users as $usuario ) { 
                                                     ?>
                                                 <tr>
                                                     <td><?php echo $usuario->nomina ?></td>
                                                     <td><?php echo $usuario->nombre ?></td>
-                                                    <td><?php echo $usuario->apellido ?></td>
-                                                    <td><?php echo $usuario->correo ?></td>
+                                                    <td><?php echo $usuario->edad ?></td>
+                                                    <td><?php echo $usuario->genero ?></td>
+                                                    <td><?php echo $usuario->puesto ?></td>
+                                                    <td><?php echo $usuario->rfc ?></td>
                                                     <td>
                                                   <center>
                                                  <a href = "deleteUser.php?id=<?php echo $usuario->id?>"><i class="bx bx-trash"></i></a>    
@@ -146,8 +157,10 @@ include_once (LAYOUT_PATH."head2.php");
                                             <?php } ?>
 
                                             <?php else:?>
+
                                          
-                                              <tr><td colspan="5" style="color:salmon " >No Hay Registros Actuales</td></tr>
+                                         
+                                              <tr><td colspan="7" style="color:salmon " >No Hay Registros Actuales</td></tr>
                                             <?php endif;?>
 
 

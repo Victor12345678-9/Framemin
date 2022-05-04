@@ -61,13 +61,7 @@
                 
             </div>
         </div>
-        <div class="col-md-5">
-            <div class="mb-3 position-relative">
-                <label class="form-label" for="apellido">Apellido</label>
-                <input type="text" class="form-control" name="apellido" placeholder="apellido" value = "<?= $usuarios['apellido'] ?>"  required>
-                
-            </div>
-        </div>
+       
     
     
         <div class="col-md-5">
