@@ -11,6 +11,7 @@ require_once (CONTROLLERS_PATH."usersController.php");
 
 $obj= new UsersController();
 $usuarios=$obj->show();
+$departamentos=$obj->innerDep();
 
 
 
@@ -40,13 +41,13 @@ include_once (LAYOUT_PATH."head2.php");
         # El offset es saltar X resultados que viene dado por multiplicar la página - 1 * los resultados por página
         $offset = ($pagina - 1) * $resultadosPorPagina;
         # Necesitamos el conteo para saber cuántas páginas vamos a mostrar
-        $sentencia = $con->query("SELECT count(*) AS conteo FROM usuarios");
+        $sentencia = $con->query("SELECT count(*) AS conteo FROM usuarios WHERE status=1");
         $conteo = $sentencia->fetchObject()->conteo;
         # Para obtener las páginas dividimos el conteo entre los resultados por página, y redondeamos hacia arriba
         $paginas = ceil($conteo / $resultadosPorPagina);
 
         # Ahora obtenemos los resultados usando ya el OFFSET y el LIMIT
-        $sentencia = $con->prepare("SELECT * FROM usuarios LIMIT $offset,$limit");
+        $sentencia = $con->prepare("SELECT * FROM usuarios WHERE status=1 LIMIT $offset,$limit ");
         $sentencia->execute();
         $users = $sentencia->fetchAll(PDO::FETCH_OBJ);
         # Y más abajo los dibujamos...
@@ -57,7 +58,13 @@ include_once (LAYOUT_PATH."head2.php");
 
 
     <body>
-        
+        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-basic">Click me</button>
+                                                   
+
+                                               
+<button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-title">Click me</button>
+                                                      
+ <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-success">Click me</button>
 
     <?php  include_once (LAYOUT_PATH."header2.php");?>
 
@@ -72,11 +79,11 @@ include_once (LAYOUT_PATH."head2.php");
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box  align-items-center justify-content-start">
-                    <h4 class="mb-sm-0 font-size-18">   Usuarios</h4>
-                 
-                    
-                       
-                   
+                    <h4 class="mb-sm-0 font-size-18">   Usuarios    </h4>
+        
+
+                     
+               
 
                     <div class="row">
             <div class="col-lg-6">
@@ -90,7 +97,7 @@ include_once (LAYOUT_PATH."head2.php");
                             <!-- sample modal content -->
           
                                            
-
+        
 
 
 
@@ -117,13 +124,11 @@ include_once (LAYOUT_PATH."head2.php");
                                             <tr>
                                             <th> Nomina</th> 
                                             <th> Nombre</th> 
-                                           
-
-                                            <th> Edad</th> 
                                             <th> Genero</th> 
+                                            <th> Departamento</th> 
                                             <th> Puesto</th> 
-                                          
                                             <th> RFC</th>
+                                            <th> Status</th>
                                        
                                            
                                             
@@ -137,19 +142,27 @@ include_once (LAYOUT_PATH."head2.php");
 
                                             <?php if($users):?>
                                             
-                                                
+                                               
                                                 <?php foreach ($users as $usuario ) { 
+                                                  
                                                     ?>
+                                                    
                                                 <tr>
                                                     <td><?php echo $usuario->nomina ?></td>
-                                                    <td><?php echo $usuario->nombre ?></td>
-                                                    <td><?php echo $usuario->edad ?></td>
+                                                    <td><?php echo $usuario->nombre." ".$usuario->apellido ?></td>
                                                     <td><?php echo $usuario->genero ?></td>
+                                                    <td><?php echo ($departamentos[$usuario->departamento-1]['nombreDepartamento'])?></td>
                                                     <td><?php echo $usuario->puesto ?></td>
                                                     <td><?php echo $usuario->rfc ?></td>
+
+                                                    <?php if($usuario->status==1){ ?>
+                                                    <td><?php echo 'Activo' ?></td> <?php }?>
+                                         
                                                     <td>
                                                   <center>
-                                                 <a href = "deleteUser.php?id=<?php echo $usuario->id?>"><i class="bx bx-trash"></i></a>    
+                                                      
+                                               
+                                                    <a  href = "deleteUser.php?id=<?php echo $usuario->id?>" onclick="confirmation()"><i class="bx bx-trash"></i></a>    
                                                 <a style ="float:left" href = "editUser.php?id=<?php echo $usuario->id?>"><i class="bx bx-pencil"></i></a></center> 
                                                 
                                                   </td>
@@ -234,7 +247,20 @@ include_once (LAYOUT_PATH."head2.php");
 
     
 
-
+<script type="text/javascript">
+     function confirmation() 
+     {
+        if(confirm("Desea seguir?"))
+	{
+       
+	   return true;
+	}
+	else
+	{
+	   return false;
+	}
+     }
+    </script>
 
 
     

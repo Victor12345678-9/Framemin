@@ -21,8 +21,11 @@ require_once "../../../Config/constant/rutes.php";
             return $ver->fetchAll();
         }
 
-        public function insert($nombre, $apellido,$fechaNacimiento,$lugarNacimiento,$edad,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nss,$nomina,$departamento,$puesto,$fechaContratacion){
-		      $insertar = $this->PDO->prepare("INSERT INTO usuarios VALUES(null,:nombre,:apellido,:fechaNacimiento,:lugarNacimiento,:edad,:genero,:nacionalidad,:estadoCivil,:rfc,:curp,:numeroCartilla,:numeroTelefonico,:correo,:direccion,:municipio,:codigoPostal,:empresa,:nss,:nomina,:departamento,:puesto,:fechaContratacion)");
+
+        
+        public function insert($nombre,$apellido,$fechaNacimiento,$lugarNacimiento,$edad,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nss,$nomina,$departamento,$puesto,$fechaContratacion){
+
+		      $insertar = $this->PDO->prepare("INSERT INTO usuarios VALUES(null,:nombre,:apellido,:fechaNacimiento,:lugarNacimiento,:edad,:genero,:nacionalidad,:estadoCivil,:rfc,:curp,:numeroCartilla,:numeroTelefonico,:correo,:direccion,:municipio,:codigoPostal,:empresa,:nss,:nomina,:departamento,:puesto,:fechaContratacion,1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)");
               $insertar->bindParam(':nombre',$nombre);
               $insertar->bindParam(':apellido',$apellido);
               $insertar->bindParam(':fechaNacimiento',$fechaNacimiento);
@@ -50,6 +53,8 @@ require_once "../../../Config/constant/rutes.php";
               return $this->PDO->lastInsertId();
 		}
 
+        
+
 
          public function show($id){
 
@@ -61,12 +66,30 @@ require_once "../../../Config/constant/rutes.php";
 
         public function update ($id,$nombre, $apellido, $nomina, $correo){
 
-            $update=$this->PDO->prepare("UPDATE usuarios SET nombre=:nombre, apellido=:apellido, nomina=:nomina, correo=:correo WHERE id = :id");
+            $update=$this->PDO->prepare("UPDATE usuarios SET nombre= :nombre,apellido=:apellido,fechaNacimiento=:fechaNacimiento,lugarNacimiento=:lugarNacimiento,edad=:edad,genero=:genero,nacionalidad=:nacionalidad,estadoCivil=:estadoCivil,rfc=:rfc,curp=:curp,numeroCartilla=:numeroCartilla,numeroTelefonico=:numeroTelefonico,correo=:correo,direccion=:direccion,municipio=:municipio,codigoPostal=:codigoPostal,empresa=:empresa,nss=:nss,nomina=:nomina,departamento=:departamento,puesto=:puesto,fechaContratacion=:fechaContratacion,1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP WHERE id=:id");
             $update->bindParam(':id',$id);
             $update->bindParam(':nombre',$nombre);
             $update->bindParam(':apellido',$apellido);
-            $update->bindParam(':nomina',$nomina);
+            $update->bindParam(':fechaNacimiento',$fechaNacimiento);
+            $update->bindParam(':lugarNacimiento',$lugarNacimiento);
+            $update->bindParam(':edad',$edad);
+            $update->bindParam(':genero',$genero);
+            $update->bindParam(':nacionalidad',$nacionalidad);
+            $update->bindParam(':estadoCivil',$estadoCivil);
+            $update->bindParam(':rfc',$rfc);
+            $update->bindParam(':curp',$curp);
+            $update->bindParam(':numeroCartilla',$numeroCartilla);
+            $update->bindParam(':numeroTelefonico',$numeroTelefonico);
             $update->bindParam(':correo',$correo);
+            $update->bindParam(':direccion',$direccion);
+            $update->bindParam(':municipio',$municipio);
+            $update->bindParam(':codigoPostal',$codigoPostal);
+            $update->bindParam(':empresa',$empresa);
+            $update->bindParam(':nss',$nss);
+            $update->bindParam(':nomina',$nomina);
+            $update->bindParam(':departamento',$departamento);
+            $update->bindParam(':puesto',$puesto);
+            $update->bindParam(':fechaContratacion',$fechaContratacion);
             $update->execute();
             return $id; 
             
@@ -76,14 +99,30 @@ require_once "../../../Config/constant/rutes.php";
 
         
         public function delete($id){
-            $delete = $this->PDO->prepare ("DELETE FROM usuarios WHERE id = :id LIMIT 1");
+            $delete = $this->PDO->prepare ("UPDATE usuarios SET status=:status  WHERE id = :id LIMIT 1");
             $delete->bindParam(':id',$id);
+            $status=0;
+            $delete->bindParam(':status',$status);
             $delete->execute();
             return true;
         }
 
    
-       
+       public function verDepartamentos (){
+
+            $departamentos=$this->PDO->prepare('SELECT * FROM departamentos');
+            $departamentos->execute();
+            return $departamentos->fetchAll();
+
+       }
+
+       public function joinDepartamento(){
+        $innner=$this->PDO->prepare("SELECT usuarios.departamento,departamentos.nombreDepartamento  FROM usuarios ,departamentos WHERE usuarios.departamento = departamentos.idDepartamento;");
+        $innner->execute();
+
+        return $innner->fetchAll();
+
+       }
        
   
     }

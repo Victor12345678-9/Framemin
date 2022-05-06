@@ -11,7 +11,7 @@
                         <img src="../../../Storage/images/logo-sm.svg" alt="" height="24">
                     </span>
                     <span class="logo-lg">
-                        <img src="../../../Storage/logo-sm.svg" alt="" height="24"> <span class="logo-txt">Minia</span>
+                        <img src="../../../Storage/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">Minia</span>
                     </span>
                 </a>
 
@@ -221,7 +221,7 @@
                         <a href="#!" class="text-reset notification-item">
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
-                                    <img src="../Storage/images/users/avatar-6.jpg" class="rounded-circle avatar-sm" alt="user-pic">
+                                    <img src="../../../Storage/images/users/avatar-6.jpg" class="rounded-circle avatar-sm" alt="user-pic">
                                 </div>
                                 <div class="flex-grow-1">
                                     <h6 class="mb-1">Salena Layfield</h6>

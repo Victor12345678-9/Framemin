@@ -4,7 +4,11 @@
 <?php
 
 include "../../../Config/constant/rutes.php";
+require_once (CONTROLLERS_PATH."usersController.php");
 
+$obj= new UsersController();
+
+$departamentos=$obj->showDepartamentos();
 
 require_once (LAYOUT_PATH."head2.php");
 
@@ -25,6 +29,7 @@ require_once (LAYOUT_PATH."head2.php");
                                 <div class="card">
                                     <div class="card-header">
                                     <h4 class="card-title">Usuarios</h4>
+                            
                                         <p class="card-title-desc">Rellene Los campos para registrar un nuevo usuario.</p>
                                     </div><!-- end card header -->
 
@@ -41,6 +46,7 @@ require_once (LAYOUT_PATH."head2.php");
                                             <div class="col-md-9">
                                                 <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
                                                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+
                                                     <form class="needs-validation" autocomplete="off" id="nuevo" method="POST" action="insertUser.php">
 
 
@@ -87,9 +93,9 @@ require_once (LAYOUT_PATH."head2.php");
                                 <div class="col-md-3">
                                         <div class="mb-3 position-relative">
                                         <label class="form-label" for="genero">Genero</label>
-                                        <select type="text" class="form-select" name="genero" >
+                                        <select type="text" class="form-select" name="genero" required >
 
-                                        <option  style="color:grey" selected disabled>Seleccione Un Genero</option>
+                                        <option  style="color:grey" value="" selected disabled>Seleccione Un Genero</option>
                                         <option>Masculino</option>
                                         <option > Femenino</option>
                                         </select>
@@ -106,7 +112,13 @@ require_once (LAYOUT_PATH."head2.php");
                                 <div class="col-md-3">
                                         <div class="mb-3 position-relative">
                                         <label class="form-label" for="estadoCivil">Estado Civil</label>
-                                        <input type="text" class="form-control" name="estadoCivil" placeholder="Estado civil" >
+                                        <select type="text" class="form-select" name="estadoCivil" required >
+
+                                        <option  style="color:grey" value="" selected disabled>Seleccione una opcion</option>
+                                        <option>Casad@</option>
+                                        <option > Divorciad@</option>
+                                        <option > Solter@</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -230,7 +242,7 @@ require_once (LAYOUT_PATH."head2.php");
                                     <div class="col-md-3">
                                     <div class="mb-3 position-relative">
                                         <label class="form-label" for="nomina">Nomina</label>
-                                        <input type="text" class="form-control" name="nomina" placeholder="Nomina" required min=1>
+                                        <input type="text"  class="form-control" name="nomina" placeholder="Nomina"  required min=1>
                                     
                                     </div>
                                 </div>
@@ -238,12 +250,21 @@ require_once (LAYOUT_PATH."head2.php");
 
 
 
-                                    <div class="col-md-4">
-                                    <div class="mb-3 position-relative">
+                                <div class="col-md-3">
+                                        <div class="mb-3 position-relative">
                                         <label class="form-label" for="departamento">Departamento</label>
-                                            <input type="text" class="form-control" name="departamento" placeholder="Departamento" >
-                                        </div>
+                                        <select type="text" class="form-select" name="departamento" required>
+
+                                        <option  style="color:grey" value="" selected disabled>Seleccione Un Departamento</option>
+                                        <?php foreach ($departamentos as $depas):
+
+                                        echo '<option value="'.$depas["idDepartamento"].'">'.$depas["nombreDepartamento"].'</option>';
+
+                                           endforeach?>
+                                        </select>
                                     </div>
+                                </div>
+
 
 
                                         <div class="col-md-3">

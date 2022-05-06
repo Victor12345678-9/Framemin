@@ -12,9 +12,11 @@
         <!-- plugin css -->
         <link href="../../../Resources/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
      
+        <link href="../../../Resources/vendor/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
         <!-- preloader css -->
-        <link rel="stylesheet" href="./css/preloader.min.css" type="text/css" />
+        <link rel="stylesheet" href="../../css/preloader.min.css" type="text/css" />
+        
 
 <!-- Bootstrap Css -->
         <!-- <link href="../Resources/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" /> -->
