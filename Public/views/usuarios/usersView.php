@@ -10,6 +10,7 @@ include_once "../../../Config/constant/rutes.php";
 require_once (CONTROLLERS_PATH."usersController.php");
 
 $obj= new UsersController();
+
 $usuarios=$obj->show();
 $departamentos=$obj->innerDep();
 
@@ -58,13 +59,16 @@ include_once (LAYOUT_PATH."head2.php");
 
 
     <body>
-        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-basic">Click me</button>
+
+
+        <!-- <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-basic">Click me</button>
                                                    
 
                                                
 <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-title">Click me</button>
                                                       
- <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-success">Click me</button>
+ <button type="button" class="btn btn-primary b
+ tn-sm waves-effect waves-light" id="sa-success">Click me</button> -->
 
     <?php  include_once (LAYOUT_PATH."header2.php");?>
 
@@ -79,7 +83,7 @@ include_once (LAYOUT_PATH."head2.php");
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box  align-items-center justify-content-start">
-                    <h4 class="mb-sm-0 font-size-18">   Usuarios    </h4>
+                    <h4 class="mb-sm-0 font-size-18">   Usuarios    </h4> 
         
 
                      
@@ -159,11 +163,12 @@ include_once (LAYOUT_PATH."head2.php");
                                                     <td><?php echo 'Activo' ?></td> <?php }?>
                                          
                                                     <td>
-                                                  <center>
-                                                      
-                                               
-                                                    <a  href = "deleteUser.php?id=<?php echo $usuario->id?>" onclick="confirmation()"><i class="bx bx-trash"></i></a>    
-                                                <a style ="float:left" href = "editUser.php?id=<?php echo $usuario->id?>"><i class="bx bx-pencil"></i></a></center> 
+                                                  
+                                                   
+                   
+                                                <a style="margin:5px" href = "showUser.php?id=<?php echo $usuario->id?>"  ><i  class="bx bx-show"></i></a>
+                                                <a style="margin:5px" href = "editUser.php?id=<?php echo $usuario->id?>"><i class="bx bx-pencil"></i></a>
+                                                <a style="margin:5px" href = "deleteUser.php?id=<?php echo $usuario->id?>" onclick="confirmation()"><i class="bx bx-trash"></i></a>    
                                                 
                                                   </td>
                                                 </tr>
@@ -208,16 +213,26 @@ include_once (LAYOUT_PATH."head2.php");
                     </li>
                 <?php } ?>
 
+
+                
+
                 <!-- Mostramos enlaces para ir a todas las páginas. Es un simple ciclo for-->
                 <?php for ($x = 1; $x <= $paginas; $x++) { ?>
                     <li class="<?php if ($x == $pagina) echo "active" ?>">
                       
                         
-                        <a  type="button" style="margin: 1px" class="btn btn-soft-dark waves-effect waves-light"  href="./usersView.php?pagina=<?php echo $x ?>">
-                        <span></span>
-                            <?php echo $x ?></a>
-                    </li>
+                      <a  type="button" style="margin: 1px" class="btn btn-soft-dark waves-effect waves-light"  href="./usersView.php?pagina=<?php echo $x ?>">
+                      <span></span>
+                          <?php echo $x ?></a>
+                  </li>
+
+              
+               
+
+             
                 <?php } ?>
+
+                
                 <!-- Si la página actual es menor al total de páginas, mostramos un botón para ir una página adelante -->
                 <?php if ($pagina < $paginas) { ?>
                     <li>
@@ -230,7 +245,38 @@ include_once (LAYOUT_PATH."head2.php");
         </nav>
     </div>
                                        
-                                       
+    <div class="card-body">
+                                        <div>
+                                           
+                                            <!-- sample modal content -->
+                                            <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="myModalLabel">Default Modal Heading</h5>
+
+
+
+
+                                                          
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                          
+                                                           
+                                                           
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+                                        </div> <!-- end preview-->
+
+                                    </div><!-- end card-body -->
+                                </div><!-- end card -->
                                                             
 
 
@@ -244,6 +290,10 @@ include_once (LAYOUT_PATH."head2.php");
     </div> <!-- container-fluid -->
 </div>
 <!-- End Page-content -->
+
+
+
+
 
     
 

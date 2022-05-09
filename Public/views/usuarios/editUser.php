@@ -48,20 +48,21 @@
     
                                                         <form class="needs-validation" autocomplete="off" id="nuevo" method="POST" action="updateUser.php">
     
-                                            <input type="hidden" id="id" name="id" value="<?php echo $data["id"]; ?>" />
+                                               
+                                                        <input type="hidden" id="id" name="id" value="<?= $usuarios['id']; ?>" />
                                                         
                                         <div class="row">
                                     <div class="col-md-3">
                                         <div class="mb-3 position-relative">
                                             <label class="form-label" for="nombre">Nombre</label>
-                                            <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="<?= $usuarios['nombre'] ?>" >
+                                            <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="<?= $usuarios['nombre'] ?>" required >
                                         
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="mb-3 position-relative">
                                             <label class="form-label" for="apellido">Apellido</label>
-                                            <input type="text" class="form-control" name="apellido" placeholder="Apellido" value="<?= $usuarios['apellido']?>" >
+                                            <input type="text" class="form-control" name="apellido" placeholder="Apellido" value="<?= $usuarios['apellido']?>" required >
                                             
                                         </div>
                                     </div>
@@ -92,7 +93,7 @@
                                     <div class="col-md-3">
                                         <div class="mb-3 position-relative">
                                         <label class="form-label" for="genero">Genero</label>
-                                        <select type="text" class="form-select"  name="genero" >
+                                        <select type="text" class="form-select"  name="genero" required >
 
                                        
                                                 <option>Masculino</option>
@@ -115,7 +116,7 @@
                                     <div class="col-md-3">
                                             <div class="mb-3 position-relative">
                                             <label class="form-label" for="estadoCivil">Estado Civil</label>
-                                            <select type="text" class="form-select" name="estadoCivil"   >
+                                            <select type="text" class="form-select" name="estadoCivil"  required >
     
                                                 
                                             <option  selected>Casado@</option>
@@ -137,7 +138,7 @@
                                     <div class="col-md-3">
                                             <div class="mb-3 position-relative">
                                             <label class="form-label" for="rfc">RFC</label>
-                                            <input type="text" class="form-control" name="rfc" placeholder="RFC" required value="<?= $usuarios['rfc']?>">
+                                            <input type="text" class="form-control" name="rfc" placeholder="RFC" required value="<?= $usuarios['rfc']?>" required>
                                         </div>
                                     </div>
     
@@ -257,19 +258,19 @@
     
                                                 
                                     <div class="col-md-3">
-                                            <div class="mb-3 position-relative">
-                                            <label class="form-label" for="departamento" >Departamento</label>
-                                            <select type="text" class="form-select" name="departamento"  required>
+                                        <div class="mb-3 position-relative">
+                                        <label class="form-label" for="departamento">Departamento</label>  
+                                        <select type="number" class="form-select" name="departamento" value="<?php $usuarios['departamento'] ?>" required>
+                                     
+                                        <option  style="color:grey"  selected disabled>Seleccione Un Departamento</option>
+                                        <?php foreach ($departamentos as $depas): 
+                                     
+                                        echo '<option value="'.$depas["idDepartamento"].'">'.$depas["nombreDepartamento"].'</option>';
 
-                                            <option  style="color:grey"  selected disabled>Seleccione Un Departamento </option>
-                                            
-                                            <?php foreach ($departamentos as $depas):
-                                           echo '<option value="'.$depas["idDepartamento"].'">'.$depas["nombreDepartamento"].'</option>';
-    
-                                               endforeach?>
-                                            </select>
-                                        </div>
+                                           endforeach?>
+                                        </select>
                                     </div>
+                                </div>
     
     
     

@@ -253,7 +253,7 @@ require_once (LAYOUT_PATH."head2.php");
                                 <div class="col-md-3">
                                         <div class="mb-3 position-relative">
                                         <label class="form-label" for="departamento">Departamento</label>
-                                        <select type="text" class="form-select" name="departamento" required>
+                                        <select type="number" class="form-select" name="departamento" required>
 
                                         <option  style="color:grey" value="" selected disabled>Seleccione Un Departamento</option>
                                         <?php foreach ($departamentos as $depas):

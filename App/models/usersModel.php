@@ -61,12 +61,13 @@ require_once "../../../Config/constant/rutes.php";
            $mostrar=$this->PDO->prepare("SELECT * FROM usuarios WHERE id=:id LIMIT 1");
            $mostrar->bindParam(':id',$id);
           $mostrar->execute();
-           return $mostrar->fetch();
-         }
+        
+         return $mostrar->fetch();
+          }
 
-        public function update ($id,$nombre, $apellido, $nomina, $correo){
+        public function update ($id,$nombre,$apellido,$fechaNacimiento,$lugarNacimiento,$edad,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nss,$nomina,$departamento,$puesto,$fechaContratacion){
 
-            $update=$this->PDO->prepare("UPDATE usuarios SET nombre= :nombre,apellido=:apellido,fechaNacimiento=:fechaNacimiento,lugarNacimiento=:lugarNacimiento,edad=:edad,genero=:genero,nacionalidad=:nacionalidad,estadoCivil=:estadoCivil,rfc=:rfc,curp=:curp,numeroCartilla=:numeroCartilla,numeroTelefonico=:numeroTelefonico,correo=:correo,direccion=:direccion,municipio=:municipio,codigoPostal=:codigoPostal,empresa=:empresa,nss=:nss,nomina=:nomina,departamento=:departamento,puesto=:puesto,fechaContratacion=:fechaContratacion,1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP WHERE id=:id");
+            $update=$this->PDO->prepare("UPDATE usuarios SET nombre= :nombre,apellido=:apellido,fechaNacimiento=:fechaNacimiento,lugarNacimiento=:lugarNacimiento,edad=:edad,genero=:genero,nacionalidad=:nacionalidad,estadoCivil=:estadoCivil,rfc=:rfc,curp=:curp,numeroCartilla=:numeroCartilla,numeroTelefonico=:numeroTelefonico,correo=:correo,direccion=:direccion,municipio=:municipio,codigoPostal=:codigoPostal,empresa=:empresa,nss=:nss,nomina=:nomina,departamento=:departamento,puesto=:puesto,fechaContratacion=:fechaContratacion WHERE id=:id");
             $update->bindParam(':id',$id);
             $update->bindParam(':nombre',$nombre);
             $update->bindParam(':apellido',$apellido);
