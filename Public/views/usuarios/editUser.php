@@ -1,17 +1,16 @@
 <!doctype html>
     <html lang="en">
 
-    <?php
+<?php
     include_once "../../../Config/constant/rutes.php";
     require_once (CONTROLLERS_PATH."usersController.php");
     $obj= new UsersController();
     $usuarios=$obj->showUser($_GET['id']);
     $departamentos=$obj->showDepartamentos();
 
-
     require_once (LAYOUT_PATH."head2.php");
 
-    ?>
+?>
     
         <body>
            
@@ -27,7 +26,7 @@
                                 <div class="col-xl-12">
                                     <div class="card">
                                         <div class="card-header">
-                                        <h4 class="card-title">Usuarios</h4>
+                                        <h4 class="card-title">Usuarios</h4> 
                                     
                                             <p class="card-title-desc">Rellene Los campos para registrar un nuevo usuario.</p>
                                         </div><!-- end card header -->
@@ -71,33 +70,54 @@
                                     <div class="col-md-3">
                                         <div class="mb-3 position-relative">
                                             <label class="form-label" for="fechaNacimiento">Fecha De Nacimiento</label>
-                                            <input type="date" class="form-control" name="fechaNacimiento"  value="<?= $usuarios['fechaNacimiento']?>" >
+                                            <input type="date" class="form-control" name="fechaNacimiento" id="fechaNacimiento" value="<?= $usuarios['fechaNacimiento']?>" >
                                         </div>
                                     </div>
     
                                     <div class="col-md-3">
                                         <div class="mb-3 position-relative">
                                             <label class="form-label" for="lugarNacimiento">Lugar De Nacimiento</label>
-                                                <input type="text" class="form-control" name="lugarNacimiento" value="<?= $usuarios['lugarNacimiento']?>" placeholder="Lugar de Nacimiento"  >
+                                                <input type="text" class="form-control" name="lugarNacimiento" value="<?= $usuarios ['lugarNacimiento']?>" placeholder="Lugar de Nacimiento"  >
                                             </div>
                                         </div>
     
                                             <div class="col-md-2">
                                             <div class="mb-3 position-relative">
-                                            <label class="form-label" for="edad">Edad</label>
-                                            <input type="number" class="form-control" name="edad" placeholder="Edad"   min=18 value="<?= $usuarios['edad']?>" >
+                                            <label class="form-label" for="edad">Edad</label> 
+                                            <input type="number" class="form-control" name="edad" placeholder="Edad" id="edad" maxlength="2" min="18" max="99" value="<?= $usuarios['edad']?>" >
+                                           
                                         </div>
                                     </div>
-    
+                           
                                         
                                     <div class="col-md-3">
                                         <div class="mb-3 position-relative">
-                                        <label class="form-label" for="genero">Genero</label>
+                                        <label class="form-label" for="genero">Genero</label> 
                                         <select type="text" class="form-select"  name="genero" required >
 
-                                       
-                                                <option>Masculino</option>
-                                                <option>Femenino</option>
+                                        <?php
+
+                                         $select='';
+                                        
+                                        if($usuarios['genero']=='Masculino'){
+                                           $select='selected';  
+                                           echo '<option value="'.$usuarios['genero'].'" '.$select.'>'.$usuarios['genero'].'</option>';
+                                           echo '<option value="Femenino" >Femenino</option>';
+                                          
+                                          } ?>
+                                            
+
+                                            <?php
+
+                                         $select='';
+                                        
+                                        if($usuarios['genero']=='Femenino'){
+                                           $select='selected';  
+                                           echo '<option value="'.$usuarios['genero'].'" '.$select.'>'.$usuarios['genero'].'</option>';
+                                           echo '<option value="Masculino" >Masculino</option>';
+                                          
+                                          } ?>
+                                            
                                                 
                                         
                                
@@ -158,7 +178,7 @@
                                     <div class="col-md-3">
                                             <div class="mb-3 position-relative">
                                             <label class="form-label" for="numeroCartilla">Numero de Cartilla</label>
-                                            <input type="number" class="form-control" name="numeroCartilla" placeholder="Numero de cartilla" value="<?= $usuarios['numeroCartilla']?>" min=1>
+                                            <input type="number" class="form-control" name="numeroCartilla" placeholder="Numero de cartilla" value="<?= $usuarios['numeroCartilla']?>" min=0>
                                         </div>
                                     </div>
     
@@ -262,12 +282,17 @@
                                         <label class="form-label" for="departamento">Departamento</label>  
                                         <select type="number" class="form-select" name="departamento" value="<?php $usuarios['departamento'] ?>" required>
                                      
-                                        <option  style="color:grey"  selected disabled>Seleccione Un Departamento</option>
-                                        <?php foreach ($departamentos as $depas): 
-                                     
-                                        echo '<option value="'.$depas["idDepartamento"].'">'.$depas["nombreDepartamento"].'</option>';
-
-                                           endforeach?>
+                                        <option  style="color:grey" disabled>Seleccione Un Departamento</option>
+                                        <?php foreach ($departamentos as $depas)
+                                        {
+                                            $select = '';
+                                            if($usuarios['departamento'] == $depas['idDepartamento'])
+                                            {
+                                                $select = 'selected';
+                                            }
+                                           echo '<option value="'.$depas['idDepartamento'].'" '.$select.'>'.$depas['nombreDepartamento'].'</option>';
+                                        }
+                                        ?>
                                         </select>
                                     </div>
                                 </div>

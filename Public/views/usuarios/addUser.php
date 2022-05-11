@@ -10,6 +10,7 @@ $obj= new UsersController();
 
 $departamentos=$obj->showDepartamentos();
 
+
 require_once (LAYOUT_PATH."head2.php");
 
 ?>
@@ -28,7 +29,7 @@ require_once (LAYOUT_PATH."head2.php");
                             <div class="col-xl-12">
                                 <div class="card">
                                     <div class="card-header">
-                                    <h4 class="card-title">Usuarios</h4>
+                                    <h4 class="card-title">Usuarios</h4> 
                             
                                         <p class="card-title-desc">Rellene Los campos para registrar un nuevo usuario.</p>
                                     </div><!-- end card header -->
@@ -71,10 +72,11 @@ require_once (LAYOUT_PATH."head2.php");
                                 <div class="col-md-3">
                                     <div class="mb-3 position-relative">
                                         <label class="form-label" for="fechaNacimiento">Fecha De Nacimiento</label>
-                                        <input type="date" class="form-control" name="fechaNacimiento"    >
+                                       
+                                        <input type="date" id="fechaNacimiento"  onblur="calcular_edad(this.value)" name="fechaNacimiento" class="form-control">
                                     </div>
                                 </div>
-
+                            
                                 <div class="col-md-3">
                                     <div class="mb-3 position-relative">
                                         <label class="form-label" for="lugarNacimiento">Lugar De Nacimiento</label>
@@ -82,12 +84,14 @@ require_once (LAYOUT_PATH."head2.php");
                                         </div>
                                     </div>
 
-                                        <div class="col-md-2">
-                                        <div class="mb-3 position-relative">
-                                        <label class="form-label" for="edad">Edad</label>
-                                        <input type="number" class="form-control" name="edad" placeholder="Edad"   min=18 requierd >
-                                    </div>
-                                </div>
+                                        
+
+                                   
+                                       
+                                        <input type="hidden" class="form-control" name="edad" placeholder="Edad"  id="edad" min=18 requierd >
+                                  
+                                        
+                                  
 
                                     
                                 <div class="col-md-3">
@@ -256,11 +260,16 @@ require_once (LAYOUT_PATH."head2.php");
                                         <select type="number" class="form-select" name="departamento" required>
 
                                         <option  style="color:grey" value="" selected disabled>Seleccione Un Departamento</option>
-                                        <?php foreach ($departamentos as $depas):
+                                        
+                                        <?php 
+                                        
+
+                                        foreach ($departamentos as $depas):
 
                                         echo '<option value="'.$depas["idDepartamento"].'">'.$depas["nombreDepartamento"].'</option>';
 
-                                           endforeach?>
+                                           endforeach
+                                           ?>
                                         </select>
                                     </div>
                                 </div>
@@ -322,6 +331,7 @@ require_once (LAYOUT_PATH."head2.php");
 
 
     </body>
+    <script src="../../../App/middlewares/calcularEdad.js"></script>
 
 
 </html>

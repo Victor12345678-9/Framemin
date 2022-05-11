@@ -118,12 +118,109 @@ require_once "../../../Config/constant/rutes.php";
        }
 
        public function joinDepartamento(){
-        $innner=$this->PDO->prepare("SELECT usuarios.departamento,departamentos.nombreDepartamento  FROM usuarios ,departamentos WHERE usuarios.departamento = departamentos.idDepartamento;");
+        $innner=$this->PDO->prepare("SELECT usuarios.departamento,departamentos.nombreDepartamento  FROM usuarios, departamentos WHERE usuarios.departamento = departamentos.idDepartamento;");
         $innner->execute();
 
         return $innner->fetchAll();
 
        }
+
+   ////// 
+       public function DataDepartamento()
+       {
+        $innner=$this->PDO->prepare("SELECT idDepartamento,nombreDepartamento  FROM departamentos;");
+        $innner->execute();
+
+        return $innner->fetchAll();
+
+       }
+
+       public function page_nav($pagina, $table, $resultadosPorPagina,$View)
+       {
+                if(is_numeric($pagina))
+                {
+                    $data = array();
+                    # El límite es el número de resultados por página
+                    $limit = $resultadosPorPagina;
+                    # El offset es saltar X resultados que viene dado por multiplicar la página - 1 * los resultados por página
+                    $offset = ($pagina - 1) * $resultadosPorPagina;
+                    # Necesitamos el conteo para saber cuántas páginas vamos a mostrar
+                    
+                    $sentencia = $this->PDO->query("SELECT count(*) AS conteo FROM $table WHERE status=1");
+                    $conteo = $sentencia->fetchObject()->conteo;
+                    # Para obtener las páginas dividimos el conteo entre los resultados por página, y redondeamos hacia arriba
+                    $paginas = ceil($conteo / $resultadosPorPagina);
+                   
+                  
+                    # Ahora obtenemos los resultados usando ya el OFFSET y el LIMIT
+                    $sentencia = $this->PDO->prepare("SELECT * FROM $table WHERE status=1 LIMIT $offset,$limit ");
+                    $sentencia->execute();
+                    $users = $sentencia->fetchAll(PDO::FETCH_OBJ);
+                    # Y más abajo los dibujamos...
+                    
+                    $data['conteo'] = $conteo;
+                    $data['paginas'] = $paginas;
+                    $data['users'] = $users;   
+                    
+                    $tabla = '';
+
+                    
+                    if ($pagina > 1) { 
+                    
+                    $tabla .= '
+                    <li>
+                    <a href="./'.$View.'.php?pagina='.($pagina - 1).'">
+                    <span aria-hidden="true"><button type="button" style="margin: 1px" class="btn btn-soft-dark waves-effect waves-light"><</button></span>
+                    </a>
+                    </li>';
+                    }
+        
+                    $tabla .= '
+                    <ul class="nav nav-pills">
+                    <!-- Mostramos enlaces para ir a todas las páginas. Es un simple ciclo for-->
+                    ';
+
+                    for ($x = 1; $x <= $paginas; $x++) 
+                    { 
+                        $active = '';
+                        if($x == $pagina)
+                        {
+                            $active = "nav-link active";
+                        }
+        
+                        $tabla .= '
+                        <li class="nav-item">
+                        <a style="margin:1px;" class="'.$active.' btn btn-soft-dark waves-effect waves-light"  href="./'.$View.'.php?pagina='.$x.'">
+                        <span></span>
+                        '.$x.'</a>
+                        </li>';
+                    } 
+              
+                    $tabla .= '</ul>';
+        
+                    $tabla .= '
+                    <!-- Si la página actual es menor al total de páginas, mostramos un botón para ir una página adelante -->
+                    ';
+                    
+                    if ($pagina < $paginas) 
+                    {
+                    $tabla .= '
+                    <li>
+                    <a href="./'.$View.'.php?pagina='.($pagina + 1).'">
+                    <span aria-hidden="true"><button type="button" style="margin: 1px" class="btn btn-soft-dark waves-effect waves-light">></button></span>
+                    </a>
+                    </li>';
+                    }
+
+                    $data['tabla'] = $tabla;
+
+                }
+    
+                return $data;
+               // return $page;
+       }
+   /////// 
+
        
   
     }

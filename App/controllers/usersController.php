@@ -59,7 +59,19 @@ class UsersController{
         return $this->MODEL->joinDepartamento();
     }
 
-  
+//////
+    public function depas()
+    {
+
+        return $this->MODEL->DataDepartamento();
+    }
+
+    public function ver_paginas($pagina, $table, $resultadosPorPagina,$View)
+    {
+        return $this->MODEL->page_nav($pagina, $table, $resultadosPorPagina,$View);
+    }
+ ///// 
+
 
     
 }

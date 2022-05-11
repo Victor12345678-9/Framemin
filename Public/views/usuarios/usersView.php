@@ -10,12 +10,16 @@ include_once "../../../Config/constant/rutes.php";
 require_once (CONTROLLERS_PATH."usersController.php");
 
 $obj= new UsersController();
+$depas = $obj->depas();
 
-$usuarios=$obj->show();
-$departamentos=$obj->innerDep();
-
-
-
+////
+$array = array();
+$array[0] = '';
+foreach($depas as $index => $value)
+{
+    $array[] = $value[1]; 
+}
+////
 
 
 
@@ -27,53 +31,27 @@ include_once (LAYOUT_PATH."head2.php");
 
 <?php
 
-        include_once (CONEXION_PATH."conexion.php");
-        $obj2 = new db();
-        $con = $obj2 ->conexion();
+        
         # Cuántos resultados mostrar por página
-        $resultadosPorPagina = 5;
+        $resultadosPorPagina = 2;
         // Por defecto es la página 1; pero si está presente en la URL, tomamos esa
         $pagina = 1;
-        if (isset($_GET["pagina"])) {
+        if (isset($_GET["pagina"]) && is_numeric($_GET['pagina'])) {
             $pagina = $_GET["pagina"];
         }
-        # El límite es el número de resultados por página
-        $limit = $resultadosPorPagina;
-        # El offset es saltar X resultados que viene dado por multiplicar la página - 1 * los resultados por página
-        $offset = ($pagina - 1) * $resultadosPorPagina;
-        # Necesitamos el conteo para saber cuántas páginas vamos a mostrar
-        $sentencia = $con->query("SELECT count(*) AS conteo FROM usuarios WHERE status=1");
-        $conteo = $sentencia->fetchObject()->conteo;
-        # Para obtener las páginas dividimos el conteo entre los resultados por página, y redondeamos hacia arriba
-        $paginas = ceil($conteo / $resultadosPorPagina);
 
-        # Ahora obtenemos los resultados usando ya el OFFSET y el LIMIT
-        $sentencia = $con->prepare("SELECT * FROM usuarios WHERE status=1 LIMIT $offset,$limit ");
-        $sentencia->execute();
-        $users = $sentencia->fetchAll(PDO::FETCH_OBJ);
-        # Y más abajo los dibujamos...
+
+        $data = $obj->ver_paginas($pagina,'usuarios',$resultadosPorPagina,'usersView');
+
+        $conteo = $data['conteo'];
+        $paginas =  $data['paginas'];
+        $users = $data['users'];  
+        $tabla = $data['tabla'];
  ?>
-
-
-
-
 
     <body>
 
-
-        <!-- <button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-basic">Click me</button>
-                                                   
-
-                                               
-<button type="button" class="btn btn-primary btn-sm waves-effect waves-light" id="sa-title">Click me</button>
-                                                      
- <button type="button" class="btn btn-primary b
- tn-sm waves-effect waves-light" id="sa-success">Click me</button> -->
-
     <?php  include_once (LAYOUT_PATH."header2.php");?>
-
-
-
                 
     <div class="main-content">
 
@@ -83,11 +61,9 @@ include_once (LAYOUT_PATH."head2.php");
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box  align-items-center justify-content-start">
-                    <h4 class="mb-sm-0 font-size-18">   Usuarios    </h4> 
-        
-
-                     
-               
+                    <h4 class="mb-sm-0 font-size-18">   Usuarios    </h4>  
+                    
+                  
 
                     <div class="row">
             <div class="col-lg-6">
@@ -100,12 +76,6 @@ include_once (LAYOUT_PATH."head2.php");
 
                             <!-- sample modal content -->
           
-                                           
-        
-
-
-
-                            
                                           
                                         </div>
                                        
@@ -144,6 +114,7 @@ include_once (LAYOUT_PATH."head2.php");
 
                                             <tbody> 
 
+                      
                                             <?php if($users):?>
                                             
                                                
@@ -154,8 +125,8 @@ include_once (LAYOUT_PATH."head2.php");
                                                 <tr>
                                                     <td><?php echo $usuario->nomina ?></td>
                                                     <td><?php echo $usuario->nombre." ".$usuario->apellido ?></td>
-                                                    <td><?php echo $usuario->genero ?></td>
-                                                    <td><?php echo ($departamentos[$usuario->departamento-1]['nombreDepartamento'])?></td>
+                                                    <td><?php echo $usuario->genero ?></td>        
+                                                    <td><?php if(isset($array[$usuario->departamento])){echo $array[$usuario->departamento];}else{echo '-';} ?></td> 
                                                     <td><?php echo $usuario->puesto ?></td>
                                                     <td><?php echo $usuario->rfc ?></td>
 
@@ -189,93 +160,29 @@ include_once (LAYOUT_PATH."head2.php");
                                         
                                         </table>
 
+            <div class="row">
+            <div class="col-xs-12 col-sm-6">
+            <?php if ($conteo>0){?>
 
-                                        <div class="row">
-                <div class="col-xs-12 col-sm-6">
-                 <?php if ($conteo>0){?>
-                    
-                    <p style="color:red">Mostrando  1 a <?php echo $resultadosPorPagina ?> de <?php echo $conteo ?> registros</p> <?php }?>
-                    </div>
-                <div class="col-xs-12 col-sm-6" style="color:green">
-                    <?php if ($paginas>0){?>
-
-                    <p>Página <?php echo $pagina ?> de <?php echo $paginas ?> </p> <?php }?>
-                    
-                </div>
+            <p style="color:red">Mostrando  1 a <?php echo $resultadosPorPagina ?> de <?php echo $conteo ?> registros</p> <?php }?>
             </div>
-            <ul class="pagination">
-                <!-- Si la página actual es mayor a uno, mostramos el botón para ir una página atrás -->
-                <?php if ($pagina > 1) { ?>
-                    <li>
-                    <a href="./usersView.php?pagina=<?php echo $pagina - 1 ?>">
-                        <span aria-hidden="true"><button type="button" style="margin: 1px" class="btn btn-soft-dark waves-effect waves-light"><</button></span>
-                        </a>
-                    </li>
-                <?php } ?>
+            <div class="col-xs-12 col-sm-6" style="color:green">
+            <?php if ($paginas>0){?>
+
+            <p>Página <?php echo $pagina ?> de <?php echo $paginas ?> </p> <?php }?>
+
+            </div>
+            </div>
+<ul class="pagination">
+ <?php echo $tabla; ?>
+</ul>
 
 
-                
 
-                <!-- Mostramos enlaces para ir a todas las páginas. Es un simple ciclo for-->
-                <?php for ($x = 1; $x <= $paginas; $x++) { ?>
-                    <li class="<?php if ($x == $pagina) echo "active" ?>">
-                      
-                        
-                      <a  type="button" style="margin: 1px" class="btn btn-soft-dark waves-effect waves-light"  href="./usersView.php?pagina=<?php echo $x ?>">
-                      <span></span>
-                          <?php echo $x ?></a>
-                  </li>
 
-              
-               
-
-             
-                <?php } ?>
-
-                
-                <!-- Si la página actual es menor al total de páginas, mostramos un botón para ir una página adelante -->
-                <?php if ($pagina < $paginas) { ?>
-                    <li>
-                        <a href="./usersView.php?pagina=<?php echo $pagina + 1 ?>">
-                        <span aria-hidden="true"><button type="button" style="margin: 1px" class="btn btn-soft-dark waves-effect waves-light">></button></span>
-                        </a>
-                    </li>
-                <?php } ?>
-            </ul>
-        </nav>
-    </div>
+</div>
                                        
-    <div class="card-body">
-                                        <div>
-                                           
-                                            <!-- sample modal content -->
-                                            <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="myModalLabel">Default Modal Heading</h5>
-
-
-
-
-                                                          
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                          
-                                                           
-                                                           
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
-                                                        </div>
-                                                    </div><!-- /.modal-content -->
-                                                </div><!-- /.modal-dialog -->
-                                            </div><!-- /.modal -->
-                                        </div> <!-- end preview-->
-
-                                    </div><!-- end card-body -->
+ 
                                 </div><!-- end card -->
                                                             
 
