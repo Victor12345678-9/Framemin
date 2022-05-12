@@ -1,13 +1,11 @@
 <!doctype html>
-<html lang="en">
+    <html lang="en">
 
-
-
-
-<?php
+    <?php
 
 include_once "../../../Config/constant/rutes.php";
 require_once (CONTROLLERS_PATH."usersController.php");
+include_once (LAYOUT_PATH."head2.php");
 
 $obj= new UsersController();
 
@@ -24,15 +22,7 @@ foreach($depas as $index => $value)
 }
 
 
-
-
-
-
-include_once (LAYOUT_PATH."head2.php");
-
 ?>
-
-
 
 
 
@@ -94,7 +84,7 @@ include_once (LAYOUT_PATH."head2.php");
                             </div>
                           
                         </div>
-
+    
                         <ul class="nav nav-tabs-custom card-header-tabs border-top mt-4" id="pills-tab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link px-3 active" data-bs-toggle="tab" href="#overview" role="tab">Personales</a>
@@ -539,17 +529,22 @@ include_once (LAYOUT_PATH."head2.php");
                     
                 </div>
                 <!-- End Page-content -->
-
-
-
-                <?php   include_once (LAYOUT_PATH."footer2.php")  ?>
-     
+                </div><!-- end col -->
+                                    
+</div>
+</div>
+                                    
+                                </div><!-- end col -->
+        
     
-
-
-
-
-    </body>
-
-
-</html>
+    
+    
+        
+        <?php   include_once (LAYOUT_PATH."footer2.php")  ?>
+    
+    
+    
+        </body>
+    
+    
+    </html>

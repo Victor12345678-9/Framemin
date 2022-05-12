@@ -331,7 +331,7 @@ require_once (LAYOUT_PATH."head2.php");
 
 
     </body>
-    <script src="../../../App/middlewares/calcularEdad.js"></script>
+    <script src="../../../Resources/helpers/calcularEdad.js"></script>
 
 
 </html>

@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
 require_once "../../../Config/constant/rutes.php";
 
@@ -76,4 +76,4 @@ class UsersController{
     
 }
 
-?>
+?> -->

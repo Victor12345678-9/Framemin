@@ -57,7 +57,7 @@ CREATE TABLE `departamentos` (
   `created_dp` timestamp NOT NULL DEFAULT current_timestamp(),
   `update_dp` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`idDepartamento`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `departamentos` (
 
 LOCK TABLES `departamentos` WRITE;
 /*!40000 ALTER TABLE `departamentos` DISABLE KEYS */;
-INSERT INTO `departamentos` VALUES (1,'01S','Sistemas','Departamento Sistemas Atizapan','2022-05-06 13:52:51','2022-05-06 13:52:51'),(2,'02A','Almacen','Departamento Almacen Atizapan','2022-05-06 13:53:17','2022-05-06 13:53:17'),(3,'03J','Juridico','Departamento Juridico Almacen','2022-05-06 15:04:22','2022-05-06 15:04:22');
+INSERT INTO `departamentos` VALUES (1,'01S','Sistemas','Departamento Sistemas Atizapan','2022-05-06 18:52:51','2022-05-06 18:52:51'),(2,'02A','Almacen','Departamento Almacen Atizapan','2022-05-06 18:53:17','2022-05-06 18:53:17'),(3,'03J','Juridico','Departamento Juridico Almacen','2022-05-06 20:04:22','2022-05-06 20:04:22');
 /*!40000 ALTER TABLE `departamentos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +98,7 @@ CREATE TABLE `usuarios` (
   `empresa` varchar(40) NOT NULL,
   `nss` int(20) NOT NULL,
   `nomina` varchar(10) NOT NULL,
-  `departamento` varchar(30) NOT NULL,
+  `departamento` int(3) NOT NULL,
   `puesto` varchar(30) NOT NULL,
   `fechaContratacion` date NOT NULL,
   `status` tinyint(1) DEFAULT 1,
@@ -106,7 +106,7 @@ CREATE TABLE `usuarios` (
   `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `nomina` (`nomina`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,7 +115,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'temporibus laborum consectetur','ad sint quaerat','2022-05-06','est ad deserunt',98702,'omnis','quia eum aut','quo voluptate aperiam','consequatur','accusamus',35035,'alias modi iusto','Ollie.Klocko@hotmail.com','autem ea reiciendis','itaque corrupti ut',9437,'laudantium corporis autem',57031,'10702','1','est quia cum','2022-05-06',1,'2022-05-06 00:51:23','2022-05-05 23:57:57'),(2,'veritatis fugit qui','sit dolores similique','2022-05-05','eveniet architecto molestias',68277,'unde','natus aliquid ullam','est est sit','ea','esse',79863,'commodi omnis aperiam','Josue.Hilpert35@gmail.com','velit et doloribus','aut at eius',53142,'assumenda minus provident',23446,'5611','1','ut aut nihil','2022-05-06',1,'2022-05-06 06:21:41','2022-05-06 00:42:54');
+INSERT INTO `usuarios` VALUES (1,'Victor Manuela','Vilchis Nando','2002-02-03','Tlalnepantla',20,'Femenino','Mexicana','Casado@','rfc','CURP',120,'557386433','Vic@vic','Chopo 30','Nicolas romero',54460,'Corrubox',2323,'1212',3,'Becario Programacion','2022-05-11',1,'2022-05-11 14:53:55','2022-05-12 17:54:53'),(2,'323','323','2002-02-23','',20,'Masculino','','Casado@','rfc','',110,'','','','',0,'',0,'1221',3,'rer','0000-00-00',0,'2022-05-11 17:58:18','2022-05-11 18:13:21'),(25,'Jorge ','Ramirez','1988-12-02','CDMX',33,'Masculino','MEXICANA','Casado@','rfc','',110,'','','','',0,'',0,'001',2,'Becario','0000-00-00',1,'2022-05-11 18:14:24','2022-05-12 18:52:38'),(27,'Marco','Gilberto','1998-09-01','',23,'Femenino','EstadoUnidense','Casado@','rrfcaaa','r',0,'','','','',0,'',0,'0002',2,'Sistemas','0000-00-00',0,'2022-05-11 18:16:06','2022-05-12 18:44:31'),(28,'Jairo','Gravioto','1986-01-14','Naucalpan de Juarez',36,'Masculino','','Casado@','RFC','CURP',1,'55565434','jairo@jairo','Atizapan','Atizapan',54438,'corrubox',2323,'00054',1,'Jefe','2022-05-11',1,'2022-05-11 18:35:43','2022-05-12 18:52:47');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -128,4 +128,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-06 13:55:25
+-- Dump completed on 2022-05-12 13:55:28
