@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>jairo productos <?php echo ($id);
+    <h1>Victor productos <?php echo ($id);
     
     
     print_r ($productos);?></h1>
