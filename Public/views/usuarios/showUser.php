@@ -1,9 +1,9 @@
 <!doctype html>
-    <html lang="en">
+<html lang="en">
 
-    <?php
+<?php
 
-include_once "../../../Config/constant/rutes.php";
+include_once "./Config/constant/rutes.php";
 require_once (CONTROLLERS_PATH."usersController.php");
 include_once (LAYOUT_PATH."head2.php");
 

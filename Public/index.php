@@ -3,16 +3,16 @@
 
 <?php
 
-include "../Config/constant/rutes.php";
+include "./Config/constant/rutes.php";
 
-require_once (LAYOUT_PATH."head.php");
+require_once (LAYOUT_PATH."head2.php");
 
 ?>
 
     <body>
        
 
-    <?php  require_once(LAYOUT_PATH."header.php");?>
+    <?php  require_once(LAYOUT_PATH."header2.php");?>
 
 
 
@@ -26,7 +26,7 @@ require_once (LAYOUT_PATH."head.php");
 
 
     
-    <?php   include_once (LAYOUT_PATH."footer.php")  ?>
+    <?php   include_once (LAYOUT_PATH."footer2.php")  ?>
 
 
 

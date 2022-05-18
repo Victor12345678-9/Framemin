@@ -1,1 +1,13 @@
-Options All -Indexes
+RewriteEngine On
+RewriteRule ^/.*$ index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# si existe un directorio o un archivo, utilícelo directamente
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_URI} !-l
+RewriteCond %{REQUEST_FILENAME} !\.(ico|css|png|jpg|gif|js)$ [NC]
+# de lo contrario reedirigir a index
+RewriteRule . index.php

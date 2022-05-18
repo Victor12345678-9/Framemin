@@ -2,7 +2,7 @@
     <html lang="en">
 
 <?php
-    include_once "../../../Config/constant/rutes.php";
+    include_once "./Config/constant/rutes.php";
     require_once (CONTROLLERS_PATH."usersController.php");
     $obj= new UsersController();
     $usuarios=$obj->showUser($_GET['id']);
@@ -45,7 +45,7 @@
                                                     <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
                                                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
     
-                                                        <form class="needs-validation" autocomplete="off" id="nuevo" method="POST" action="updateUser.php">
+                                                        <form class="needs-validation" autocomplete="off" id="nuevo" method="POST" action="../updateUser">
     
                                                
                                                         <input type="hidden" id="id" name="id" value="<?= $usuarios['id']; ?>" />
@@ -335,7 +335,7 @@
                                         </div><!-- end card-body -->
                                         
                                     </div><!-- end card -->
-                                    <a type="button" class="btn btn-danger waves-effect" href="usersView.php">Cancelar</a>
+                                    <a type="button" class="btn btn-danger waves-effect" href="../usersView">Cancelar</a>
                                     <button class="btn btn-primary" type="submit">Guardar</button>
                                 </div><!-- end col -->
                                     

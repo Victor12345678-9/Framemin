@@ -1,13 +1,9 @@
 <!doctype html>
 <html lang="en">
-
-
-
-
 <?php
 
-include_once "../../../Config/constant/rutes.php";
-require_once (CONTROLLERS_PATH."usersController.php");
+include_once "./Config/constant/rutes.php";
+require_once ("./App/controllers/usersController.php");
 
 $obj= new UsersController();
 $depas = $obj->depas();
@@ -72,7 +68,7 @@ include_once (LAYOUT_PATH."head2.php");
 
                     <div class="card-body">
                         <div>
-                            <a type="button"  class="btn btn-success waves-effect waves-light" href="addUser.php" class="text-center">Agregar Usuario</a>
+                            <a type="button"  class="btn btn-success waves-effect waves-light" href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/addUser" class="text-center">Agregar Usuario</a>
 
                             <!-- sample modal content -->
           
@@ -99,7 +95,7 @@ include_once (LAYOUT_PATH."head2.php");
                                             <th> Nomina</th> 
                                             <th> Nombre</th> 
                                             <th> Genero</th> 
-                                            <th> Departament</th> 
+                                            <th> Departamento</th> 
                                             <th> Puesto</th> 
                                             <th> RFC</th>
                                             <th> Status</th>
@@ -137,9 +133,9 @@ include_once (LAYOUT_PATH."head2.php");
                                                   
                                                    
                    
-                                                <a style="margin:5px" href = "showUser.php?id=<?php echo $usuario->id?>"  ><i  class="bx bx-show"></i></a>
-                                                <a style="margin:5px" href = "editUser.php?id=<?php echo $usuario->id?>"><i class="bx bx-pencil"></i></a>
-                                                <a style="margin:5px" href = "deleteUser.php?id=<?php echo $usuario->id?>" onclick="confirmation()"><i class="bx bx-trash"></i></a>    
+                                                <a style="margin:5px" href = "<?php echo HTTP_.ROOT_PATH_CORE; ?>/showUser/<?php echo $usuario->id?>"  ><i  class="bx bx-show"></i></a>
+                                                <a style="margin:5px" href = "<?php echo HTTP_.ROOT_PATH_CORE; ?>/editUser/<?php echo $usuario->id?>"><i class="bx bx-pencil"></i></a>
+                                                <a style="margin:5px" href = "<?php echo HTTP_.ROOT_PATH_CORE; ?>/deleteUser/<?php echo $usuario->id?>" onclick="confirmation()"><i class="bx bx-trash"></i></a>    
                                                 
                                                   </td>
                                                 </tr>

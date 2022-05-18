@@ -1,6 +1,6 @@
 <?php
   
-  require_once "../../../Config/constant/rutes.php";
+  require_once "./Config/constant/rutes.php";
   require_once (CONFIG_PATH."config/config.php");
 
     class db{

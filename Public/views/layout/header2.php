@@ -8,19 +8,19 @@
             <div class="navbar-brand-box">
                 <a href="../index.html" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="../../../Storage/images/logo-sm.svg" alt="" height="24">
+                        <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/logo-sm.svg" alt="" height="24">
                     </span>
                     <span class="logo-lg">
-                        <img src="../../../Storage/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">Minia</span>
+                        <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">Minia</span>
                     </span>
                 </a>
 
                 <a href="index.html" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="../../../Storage/images/logo-sm.svg" alt="" height="24">
+                        <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/logo-sm.svg" alt="" height="24">
                     </span>
                     <span class="logo-lg">
-                        <img src="../../../Storage/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">Minia</span>
+                        <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">Minia</span>
                     </span>
                 </a>
             </div>
@@ -63,32 +63,32 @@
             <div class="dropdown d-none d-sm-inline-block">
                 <button type="button" class="btn header-item"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img id="header-lang-img" src="../../../Storage/images/flags/us.jpg" alt="Header Language" height="16">
+                    <img id="header-lang-img" src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/flags/us.jpg" alt="Header Language" height="16">
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="en">
-                        <img src="../../../Storage/images/flags/us.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
+                        <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/flags/us.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
                     </a>
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp">
-                        <img src="../../../Storage/images/flags/spain.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
+                        <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/flags/spain.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="gr">
-                        <img src="../../../Storage/images/flags/germany.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">German</span>
+                        <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/flags/germany.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">German</span>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="it">
-                        <img src="../../../Storage/images/flags/italy.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Italian</span>
+                        <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/flags/italy.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Italian</span>
                     </a>
 
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="ru">
-                        <img src="../../../Storage/images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
+                        <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
                     </a>
                 </div>
             </div>
@@ -110,19 +110,19 @@
                         <div class="row g-0">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="../../../Storage/images/brands/github.png" alt="Github">
+                                    <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/brands/github.png" alt="Github">
                                     <span>GitHub</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="../../../Storage/images/brands/bitbucket.png" alt="bitbucket">
+                                    <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/brands/bitbucket.png" alt="bitbucket">
                                     <span>Bitbucket</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="../../../Storage/images/brands/dribbble.png" alt="dribbble">
+                                    <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/brands/dribbble.png" alt="dribbble">
                                     <span>Dribbble</span>
                                 </a>
                             </div>
@@ -131,19 +131,19 @@
                         <div class="row g-0">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="../../../Storage/images/brands/dropbox.png" alt="dropbox">
+                                    <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/brands/dropbox.png" alt="dropbox">
                                     <span>Dropbox</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="../../../Storage/images/brands/mail_chimp.png" alt="mail_chimp">
+                                    <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/brands/mail_chimp.png" alt="mail_chimp">
                                     <span>Mail Chimp</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="../../../Storage/images/brands/slack.png" alt="slack">
+                                    <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/brands/slack.png" alt="slack">
                                     <span>Slack</span>
                                 </a>
                             </div>
@@ -174,7 +174,7 @@
                         <a href="#!" class="text-reset notification-item">
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
-                                    <img src="../../../Storage/images/users/avatar-3.jpg" class="rounded-circle avatar-sm" alt="user-pic">
+                                    <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/users/avatar-3.jpg" class="rounded-circle avatar-sm" alt="user-pic">
                                 </div>
                                 <div class="flex-grow-1">
                                     <h6 class="mb-1">James Lemire</h6>
@@ -221,7 +221,7 @@
                         <a href="#!" class="text-reset notification-item">
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
-                                    <img src="../../../Storage/images/users/avatar-6.jpg" class="rounded-circle avatar-sm" alt="user-pic">
+                                    <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/users/avatar-6.jpg" class="rounded-circle avatar-sm" alt="user-pic">
                                 </div>
                                 <div class="flex-grow-1">
                                     <h6 class="mb-1">Salena Layfield</h6>
@@ -250,7 +250,7 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item bg-soft-light border-start border-end" id="page-header-user-dropdown"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="../../../Storage/images/users/avatar-1.jpg"
+                    <img class="rounded-circle header-profile-user" src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/users/avatar-1.jpg"
                         alt="Header Avatar">
                     <span class="d-none d-xl-inline-block ms-1 fw-medium">Shawn L.</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
@@ -281,7 +281,7 @@
                 <li class="menu-title" data-key="t-menu">Menu</li>
 
                 <li>
-                    <a href="../../index.php">
+                    <a href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/">
                         <i data-feather="home"></i>
                         <span data-key="t-dashboard">Dashboard</span>
                     </a>
@@ -295,7 +295,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li>
                    
-                            <a href="../../views/usuarios/usersView.php">
+                            <a href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/usersView">
                                 <span data-key="t-calendar">Usuarios</span>
                             </a>
                         </li>

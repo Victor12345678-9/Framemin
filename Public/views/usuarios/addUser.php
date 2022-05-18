@@ -3,7 +3,7 @@
 
 <?php
 
-include "../../../Config/constant/rutes.php";
+include "./Config/constant/rutes.php";
 require_once (CONTROLLERS_PATH."usersController.php");
 
 $obj= new UsersController();
@@ -26,6 +26,7 @@ require_once (LAYOUT_PATH."head2.php");
     <div class="container-fluid">
 
     <div class="row">
+        <div id="mensajes"></div>
                             <div class="col-xl-12">
                                 <div class="card">
                                     <div class="card-header">
@@ -48,7 +49,7 @@ require_once (LAYOUT_PATH."head2.php");
                                                 <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
                                                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 
-                                                    <form class="needs-validation" autocomplete="off" id="nuevo" method="POST" action="insertUser.php">
+                                                    <form class="needs-validation" autocomplete="off" id="nuevo" method="POST" >
 
 
                                                     
@@ -312,7 +313,7 @@ require_once (LAYOUT_PATH."head2.php");
                                     </div><!-- end card-body -->
                                     
                                 </div><!-- end card -->
-                                <a type="button" class="btn btn-danger waves-effect" href="usersView.php">Cancelar</a>
+                                <a type="button" class="btn btn-danger waves-effect" href="./usersView">Cancelar</a>
                                 <button class="btn btn-primary" type="submit">Guardar</button>
                             </div><!-- end col -->
                                 
@@ -331,7 +332,8 @@ require_once (LAYOUT_PATH."head2.php");
 
 
     </body>
-    <script src="../../../Resources/helpers/calcularEdad.js"></script>
+    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/helpers/calcularEdad.js"></script>
+    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/helpers/app.js"></script>
 
 
 </html>
