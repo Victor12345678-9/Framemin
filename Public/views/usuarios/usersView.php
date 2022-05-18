@@ -99,7 +99,7 @@ include_once (LAYOUT_PATH."head2.php");
                                             <th> Nomina</th> 
                                             <th> Nombre</th> 
                                             <th> Genero</th> 
-                                            <th> Departamento</th> 
+                                            <th> Departament</th> 
                                             <th> Puesto</th> 
                                             <th> RFC</th>
                                             <th> Status</th>
