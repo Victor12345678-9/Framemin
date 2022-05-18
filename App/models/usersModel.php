@@ -169,7 +169,7 @@ require_once "./Config/constant/rutes.php";
                     
                     $tabla .= '
                     <li>
-                    <a href="../'.$View.'/'.($pagina - 1).'">
+                    <a href="'.HTTP_.ROOT_PATH_CORE.'/'.$View.'/'.($pagina - 1).'">
                     <span aria-hidden="true"><button type="button" style="margin: 1px" class="btn btn-soft-dark waves-effect waves-light"><</button></span>
                     </a>
                     </li>';
@@ -190,7 +190,7 @@ require_once "./Config/constant/rutes.php";
         
                         $tabla .= '
                         <li class="nav-item">
-                        <a style="margin:1px;" class="'.$active.' btn btn-soft-dark waves-effect waves-light"  href="../'.$View.'/'.$x.'">
+                        <a style="margin:1px;" class="'.$active.' btn btn-soft-dark waves-effect waves-light"  href="'.HTTP_.ROOT_PATH_CORE.'/'.$View.'/'.$x.'">
                         <span></span>
                         '.$x.'</a>
                         </li>';
@@ -206,7 +206,7 @@ require_once "./Config/constant/rutes.php";
                     {
                     $tabla .= '
                     <li>
-                    <a href="../'.$View.'/'.($pagina + 1).'">
+                    <a href="'.HTTP_.ROOT_PATH_CORE.'/'.$View.'/'.($pagina + 1).'">
                     <span aria-hidden="true"><button type="button" style="margin: 1px" class="btn btn-soft-dark waves-effect waves-light">></button></span>
                     </a>
                     </li>';

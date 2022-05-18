@@ -6,7 +6,7 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/indexP" class="logo logo-dark">
+                <a href="../index.html" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/logo-sm.svg" alt="" height="24">
                     </span>
@@ -281,7 +281,7 @@
                 <li class="menu-title" data-key="t-menu">Menu</li>
 
                 <li>
-                    <a href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/indexP">
+                    <a href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/">
                         <i data-feather="home"></i>
                         <span data-key="t-dashboard">Dashboard</span>
                     </a>

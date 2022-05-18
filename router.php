@@ -1,58 +1,33 @@
 <?php
 
-$rutas = [];
-
-function ruta($accion, $retorno) 
+function datos()
 {
-    global $rutas;
-  
-    $accion = trim($accion, '/'); 
-
-    //sustituimos cadenas o carecteres con expresiones regulares
-
-    $accion = preg_replace('/{[^}]+}/', '(.+)',$accion);
-    
-
-    $rutas[$accion] = $retorno;
+    $datos = array();
+    $ex = explode("/", $_SERVER['REQUEST_URI']);
    
-}
+    unset($ex[0]);
+    unset($ex[1]);
 
-function envio($accion)
-{
-  
-  global $rutas;
-  
-  $accion = trim($accion, '/');
-  
-  $retorno = null;
-  $parametros = [];
-  
-  foreach($rutas as $ruta => $controlador) 
-  {
-    if(preg_match("%^{$ruta}$%", $accion, $encontrados) === 1) 
-    { 
-      $retorno = $controlador; 
-      unset($encontrados[0]);
-      $parametros = $encontrados; 
-      break;
-
+    foreach($ex as $index => $parametro)
+    {
+        if($parametro != "")
+        {
+        $datos[] = $parametro;
+        }
     }
-  }
 
-  if(!$retorno || !is_callable($retorno))
-  {
-    http_response_code(404); 
-    echo "404 - Not found"; 
-    exit;
-  }
+    if(!isset($datos[0]))
+    {
+      $datos[0] = false;
+    }
 
-  echo call_user_func($retorno, ...$parametros);
+    return $datos;
 }
-
 
 function error_page()
 {
   http_response_code(404); 
-  echo "404 - Not found"; 
+  echo "404 - Not fou|"; 
   exit;
 }
+

@@ -29,7 +29,7 @@ include_once (LAYOUT_PATH."head2.php");
 
         
         # Cuántos resultados mostrar por página
-        $resultadosPorPagina = 5 ;
+        $resultadosPorPagina = 2;
         // Por defecto es la página 1; pero si está presente en la URL, tomamos esa
         $pagina = 1;
         if (isset($_GET["pagina"]) && is_numeric($_GET['pagina'])) {
@@ -57,7 +57,7 @@ include_once (LAYOUT_PATH."head2.php");
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box  align-items-center justify-content-start">
-                    <h4 class="mb-sm-0 font-size-18">   Usuarios    </h4> 
+                    <h4 class="mb-sm-0 font-size-18">   Usuarios    </h4>  
                     
                   
 
@@ -68,7 +68,7 @@ include_once (LAYOUT_PATH."head2.php");
 
                     <div class="card-body">
                         <div>
-                            <a type="button"  class="btn btn-success waves-effect waves-light" href="/addUser" class="text-center">Agregar Usuario</a>
+                            <a type="button"  class="btn btn-success waves-effect waves-light" href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/addUser" class="text-center">Agregar Usuario</a>
 
                             <!-- sample modal content -->
           

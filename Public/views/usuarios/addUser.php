@@ -26,8 +26,7 @@ require_once (LAYOUT_PATH."head2.php");
     <div class="container-fluid">
 
     <div class="row">
-        <div id="resultado"></div>
- 
+        <div id="mensajes"></div>
                             <div class="col-xl-12">
                                 <div class="card">
                                     <div class="card-header">
@@ -50,11 +49,11 @@ require_once (LAYOUT_PATH."head2.php");
                                                 <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
                                                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 
-                                                    <form class="needs-validation" autocomplete="off" id="nuevo" method="POST">
+                                                    <form class="needs-validation" autocomplete="off" id="nuevo" method="POST" >
 
 
                                                     
-                                                    <div class="row">
+                                    <div class="row">
                                 <div class="col-md-3">
                                     <div class="mb-3 position-relative">
                                         <label class="form-label" for="nombre">Nombre</label>
@@ -74,10 +73,11 @@ require_once (LAYOUT_PATH."head2.php");
                                 <div class="col-md-3">
                                     <div class="mb-3 position-relative">
                                         <label class="form-label" for="fechaNacimiento">Fecha De Nacimiento</label>
-                                        <input type="date" class="form-control" name="fechaNacimiento"    >
+                                       
+                                        <input type="date" id="fechaNacimiento"  onblur="calcular_edad(this.value)" name="fechaNacimiento" class="form-control">
                                     </div>
                                 </div>
-
+                            
                                 <div class="col-md-3">
                                     <div class="mb-3 position-relative">
                                         <label class="form-label" for="lugarNacimiento">Lugar De Nacimiento</label>
@@ -85,12 +85,14 @@ require_once (LAYOUT_PATH."head2.php");
                                         </div>
                                     </div>
 
-                                        <div class="col-md-2">
-                                        <div class="mb-3 position-relative">
-                                        <label class="form-label" for="edad">Edad</label>
-                                        <input type="number" class="form-control" name="edad" placeholder="Edad"   min=18 requierd >
-                                    </div>
-                                </div>
+                                        
+
+                                   
+                                       
+                                        <input type="hidden" class="form-control" name="edad" placeholder="Edad"  id="edad" min=18 requierd >
+                                  
+                                        
+                                  
 
                                     
                                 <div class="col-md-3">
@@ -295,7 +297,6 @@ require_once (LAYOUT_PATH."head2.php");
 
 
 
-
                                                     <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                                                     <div class="form-check mb-3">
                                                         <input class="form-check-input" type="checkbox" id="checkActivado" checked>
@@ -312,8 +313,8 @@ require_once (LAYOUT_PATH."head2.php");
                                     </div><!-- end card-body -->
                                     
                                 </div><!-- end card -->
-                                <a type="button" class="btn btn-danger waves-effect" href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/usersView">Regresar</a>
-                                <button class="btn btn-primary" id="btnGuardar" type="submit">Guardar</button>
+                                <a type="button" class="btn btn-danger waves-effect" href="./usersView">Cancelar</a>
+                                <button class="btn btn-primary" type="submit">Guardar</button>
                             </div><!-- end col -->
                                 
                                 
@@ -328,11 +329,11 @@ require_once (LAYOUT_PATH."head2.php");
     
     <?php   include_once (LAYOUT_PATH."footer2.php")  ?>
 
-                
+
 
     </body>
-    <script src="<?php echo HTTP_.ROOT_PATH_CORE;?>/Resources/helpers/ajax.js"></script>
-    <script src="../../../Resources/helpers/calcularEdad.js"></script>
+    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/helpers/calcularEdad.js"></script>
+    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/helpers/app.js"></script>
 
 
 </html>

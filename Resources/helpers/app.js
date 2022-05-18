@@ -1,9 +1,5 @@
 
 
-
-
-
-
 $(document).ready(function(){
      $('#nuevo').submit(function(){
          var datos=$('#nuevo').serialize();
@@ -15,12 +11,12 @@ $(document).ready(function(){
 
                 
                setTimeout(function() {
-                 document.getElementById("resultado").innerHTML='<div class="alert alert-success alert-dismissible fade show" role="alert"> Datos Guardados! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-                 $("resultado");
+                 document.getElementById("mensajes").innerHTML='<div class="alert alert-success alert-dismissible fade show" role="alert"> Datos Guardados! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                 $("mensajes");
              },100);
          
              setTimeout(function() {
-               document.getElementById("resultado").innerHTML='';
+               document.getElementById("mensajes").innerHTML='';
              },4000);
                    
             
@@ -34,6 +30,3 @@ $(document).ready(function(){
          return false;
      });
  });
-
-
- 

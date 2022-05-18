@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 
 require_once "./Config/constant/rutes.php";
 
@@ -25,7 +25,7 @@ class UsersController{
         
         $id=$this->MODEL->insert($nombre,$apellido,$fechaNacimiento,$lugarNacimiento,$edad,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nss,$nomina,$departamento,$puesto,$fechaContratacion);
        
-        return header('Location:../usersView');
+        return header('Location: '.HTTP_.ROOT_PATH_CORE.'/usersView');
     }
 
 
@@ -38,14 +38,14 @@ class UsersController{
     public function updateUser($id,$nombre,$apellido,$fechaNacimiento,$lugarNacimiento,$edad,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nss,$nomina,$departamento,$puesto,$fechaContratacion){
 
        $id=$this->MODEL->update($id,$nombre,$apellido,$fechaNacimiento,$lugarNacimiento,$edad,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nss,$nomina,$departamento,$puesto,$fechaContratacion);
-       return header('Location:../usersView');
        
+       return header('Location: '.HTTP_.ROOT_PATH_CORE.'/usersView');
     }
 
     public function destroyUser($id){
         $this->MODEL->delete($id);
-        return header('Location:../usersView');
 
+        return header('Location: '.HTTP_.ROOT_PATH_CORE.'/usersView');
     }
 
     public function showDepartamentos(){
@@ -76,4 +76,4 @@ class UsersController{
     
 }
 
-?> -->
+?>

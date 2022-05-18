@@ -2,9 +2,90 @@
 
 require_once "router.php";
 
-include_once "rutes.php";
+$datos = datos();
+$vista = $datos[0];
 
 
-$accion = $_SERVER['REQUEST_URI'];
+switch($vista)
+{
+///
+    case "usersView":
+            if(!(isset($datos[1]) == NULL)){
+                if(is_numeric($datos[1]))
+                {
+                $_GET['pagina'] = $datos[1];
+                }
+                else
+                {
+                    error_page();
+                }
+            }
+        
+            include ("./Public/views/usuarios/usersView.php");
+    break;
+///
+    case "showUser":
+            if(!(isset($datos[1]) == NULL)){
+                if(is_numeric($datos[1]))
+                {
+                $_GET['id'] = $datos[1];
+                }
+                else
+                {
+                    error_page();
+                }
+            }
+        
+            include ("./Public/views/usuarios/showUser.php");
+    break;
+///
+    case "editUser":
+            if(!(isset($datos[1]) == NULL)){
+                if(is_numeric($datos[1]))
+                {
+                $_GET['id'] = $datos[1];
+                }
+                else
+                {
+                    error_page();
+                }
+            }
+            
+            include ("./Public/views/usuarios/editUser.php");
+    break;
+///
+    case "deleteUser":
+        if(!(isset($datos[1]) == NULL)){
+            if(is_numeric($datos[1]))
+            {
+            $_GET['id'] = $datos[1];
+            }
+            else
+            {
+                error_page();
+            }
+        }
+        
+        include ("./Public/views/usuarios/deleteUser.php");
+    break; 
+///
+    case "updateUser":
+            include ("./Public/views/usuarios/updateUser.php");
+    break;
+///
+    case "addUser":
+            include ("./Public/views/usuarios/addUser.php");
+    break;
+///
+    case "insertUser":
+        include ("./Public/views/usuarios/insertUser.php");
+    break;
 
-envio($accion);
+    
+///
+
+///
+    default:
+         include ("./Public/index.php");
+///
+}

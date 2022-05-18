@@ -8,10 +8,9 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/favicon.ico">
       
-       
+
         <!-- plugin css -->
         <link href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/jquery/jquery.min.js" rel="stylesheet" type="text/css" />
      
         <link href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 

@@ -50,7 +50,7 @@ foreach($depas as $index => $value)
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/usersView"">Usuarios</a></li>
+                            <li class="breadcrumb-item"><a href="./usersView.php">Usuarios</a></li>
                             <li class="breadcrumb-item active">Perfil</li>
                         </ol>
                     </div>
@@ -541,7 +541,6 @@ foreach($depas as $index => $value)
     
         
         <?php   include_once (LAYOUT_PATH."footer2.php")  ?>
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE;?>/Resources/helpers/ajax.js"></script>
     
     
     

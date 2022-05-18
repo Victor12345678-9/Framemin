@@ -335,7 +335,7 @@
                                         </div><!-- end card-body -->
                                         
                                     </div><!-- end card -->
-                                    <a type="button" class="btn btn-danger waves-effect" href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/usersView">Regresar</a>
+                                    <a type="button" class="btn btn-danger waves-effect" href="../usersView">Cancelar</a>
                                     <button class="btn btn-primary" type="submit">Guardar</button>
                                 </div><!-- end col -->
                                     
@@ -348,7 +348,7 @@
     
     
     
-                                        
+        
         <?php   include_once (LAYOUT_PATH."footer2.php")  ?>
     
     
