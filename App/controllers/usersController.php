@@ -24,8 +24,11 @@ class UsersController{
     public function insertUser($nombre,$apellido,$fechaNacimiento,$lugarNacimiento,$edad,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nss,$nomina,$departamento,$puesto,$fechaContratacion){
         
         $id=$this->MODEL->insert($nombre,$apellido,$fechaNacimiento,$lugarNacimiento,$edad,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nss,$nomina,$departamento,$puesto,$fechaContratacion);
-       
-        return header('Location: '.HTTP_.ROOT_PATH_CORE.'/usersView');
+        
+
+      
+
+    //  return header('Location: '.HTTP_.ROOT_PATH_CORE.'/usersView');
     }
 
 
@@ -39,7 +42,7 @@ class UsersController{
 
        $id=$this->MODEL->update($id,$nombre,$apellido,$fechaNacimiento,$lugarNacimiento,$edad,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nss,$nomina,$departamento,$puesto,$fechaContratacion);
        
-       return header('Location: '.HTTP_.ROOT_PATH_CORE.'/usersView');
+       return header('Location: '.HTTP_.ROOT_PATH_CORE.'/usersView/_');
     }
 
     public function destroyUser($id){

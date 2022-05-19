@@ -3,39 +3,14 @@
 
 <?php
 
-include_once "./Config/constant/rutes.php";
-require_once (CONTROLLERS_PATH."usersController.php");
-include_once (LAYOUT_PATH."head2.php");
 
-$obj= new UsersController();
 
-$departamentos=$obj->innerDep();
-$user=$obj-> showUser($_GET['id']);
-$depas = $obj->depas();
-
-////
-$array = array();
-$array[0] = '';
-foreach($depas as $index => $value)
-{
-    $array[] = $value[1]; 
-}
-
+require_once (LAYOUT_PATH."head2.php");
+require_once(LAYOUT_PATH."header2.php");
 
 ?>
 
-
-
-
-
-
-
     <body>
-
-
-
-
-<?php include_once (LAYOUT_PATH."header2.php")?>
 
     <div class="main-content">
 
@@ -544,7 +519,27 @@ foreach($depas as $index => $value)
     
     
     
-        </body>
+
+       
+
+
+
     
+                
     
-    </html>
+
+
+    
+
+
+
+
+    
+    <?php   include_once (LAYOUT_PATH."footer2.php")  ?>
+
+
+
+    </body>
+
+
+</html>

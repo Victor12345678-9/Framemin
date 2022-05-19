@@ -8,6 +8,7 @@ define('ROOT_PATH_CORE', $_SERVER["HTTP_HOST"].'/'.$exp[0]);
 
 define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'].'/');
 define('ASSETS_PATH', './Resources/');
+define('HELPERS_PATH', './Resources/helpers/');
 define('PUBLIC_PATH', './Public/');
 define('LAYOUT_PATH', './Public/views/layout/');
 

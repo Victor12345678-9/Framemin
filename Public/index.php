@@ -15,7 +15,7 @@ require_once (LAYOUT_PATH."head2.php");
     <?php  require_once(LAYOUT_PATH."header2.php");?>
 
 
-
+    
                 
     
 
