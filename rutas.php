@@ -171,6 +171,7 @@ switch($vista)
             include ("./Public/views/usuarios/updateUser.php");
     break;
 
+    
 
 
 
@@ -195,12 +196,15 @@ switch($vista)
     case "insertUser":
         include ("./Public/views/usuarios/insertUser.php");
     break;
+    case "login":
+        include ("./login.php");
+    break;
 
 
     
 
     default:
-         include ("./Public/index.php");
+         include ("./Public/dashboard.php");
 
 }
  ?>

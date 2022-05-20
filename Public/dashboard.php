@@ -3,9 +3,9 @@
 
 <?php
 
-include "./Config/constant/rutes.php";
+include "../Config/constant/rutes.php";
 
-require_once (LAYOUT_PATH."head2.php");
+require_once ("./views/layout/head2.php");
 
 ?>
 

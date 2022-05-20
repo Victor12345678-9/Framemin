@@ -13,7 +13,9 @@
 <body>
 
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/views/usuarios/peticion.js"></script> 
+<script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/css/estilos.css"></script> 
 
 
     <div class="main-content">
@@ -54,32 +56,30 @@
                 </div><!-- end col -->
                 <!-- <div class="card-body"> -->
                 <div class="d-flex flex-row-reverse">
-                        <!-- <div class="d-flex"> -->
-                        <form class="app-search d-none d-lg-block">
-                            <div class="position-relative ">
-                                <input type="text" class="form-control" name="buscar" onkeyup="buscar_ajax(this.value);" placeholder="Busqueda de registro" id="buscar" size="32" >
-                                <button class="btn btn-primary" type="button"><i
-                                        class="bx bx-search-alt align-middle"></i></button>
-                            </div>
-                        </form>
-                        <div id="mostrar">
-                        
-                    </div>
-                    </div>
-                    <br>
-                <div class="table-responsive">
-                   
+                    <!-- <div class="d-flex"> -->
+                    <form class="app-search d-none d-lg-block">
+                        <div class="position-relative ">
+						<input type="text"  class="form-control" name="busqueda" id="busqueda" placeholder="Buscar..." size="32">
+                            <button class="btn btn-primary" type="button"><i
+                                    class="bx bx-search-alt align-middle"></i></button>
+                        </div>
+                    </form>
+                  
+                </div>
+                <br>
+                <div class="table" id="tabla_resultado" >
 
 
-                    <table class="table table-bordered dt-responsive  nowrap w-100">
+
+                    <table class="table table-bordered dt-responsive  nowrap w-100" >
                         <thead>
                             <tr>
-                                <th> Nomina</th>
+                                <th > Nomina</th>
                                 <th> Nombre</th>
                                 <th> Genero</th>
                                 <th> Departamento</th>
                                 <th> Puesto</th>
-                                <th> RFC</th>
+
                                 <th> Status</th>
 
 
@@ -107,14 +107,12 @@
                                 <td><?php if(isset($array[$usuario->departamento])){echo $array[$usuario->departamento];}else{echo '-';} ?>
                                 </td>
                                 <td><?php echo $usuario->puesto ?></td>
-                                <td><?php echo $usuario->rfc ?></td>
+
 
                                 <?php if($usuario->status==1){ ?>
                                 <td><?php echo 'Activo' ?></td> <?php }?>
 
                                 <td>
-
-
 
                                     <a style="margin:5px"
                                         href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/showUser/<?php echo $usuario->id?>"><i
@@ -131,22 +129,22 @@
 
                             <?php else:?>
 
-
-
                             <tr>
                                 <td colspan="7" style="color:salmon ">No Hay Registros Actuales</td>
                             </tr>
                             <?php endif;?>
 
-
-
-
                         </tbody>
-
 
                     </table>
 
-                    <div class="row">
+                    
+
+
+
+
+                </div>
+				<div class="row">
                         <div class="col-xs-12 col-sm-6">
                             <?php if ($conteo>0){?>
 
@@ -163,12 +161,6 @@
                     <ul class="pagination">
                         <?php echo $tabla; ?>
                     </ul>
-
-
-
-
-                </div>
-
 
             </div><!-- end card -->
 
@@ -190,54 +182,17 @@
 
 
 
-</body>
-<script>
-<?php
-if($success == "_")
-{
-echo    "
-        Swal.fire({
-        position: 'top-between',
-        icon: 'success',
-        title: 'Tus cambios han sido guardados',
-        showConfirmButton: false,
-        timer: 1500
-        })
-        ";
-}
-?>
-
-$(document).on('click', '#delete_user', function(e) {
-    var UserId = $(this).data('id');
-    SwalDelete(UserId);
-    e.preventDefault();
-});
-
-function SwalDelete(UserId) {
-    Swal.fire({
-        title: '¿Realmente Desea Eliminar?',
-        text: "¡No podrás revertir esto!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'Cancelar ',
-        confirmButtonText: 'Confirmar',
-    }).then((result) => {
-
-        if (result.isConfirmed) {
-            window.location = "<?php echo HTTP_.ROOT_PATH_CORE; ?>/deleteUser/" + UserId
-        }
-
-    })
-}
-</script>
-
-<?php   include_once (LAYOUT_PATH."footer2.php")  ?>
+        
 
 
+        <?php   include_once (LAYOUT_PATH."footer2.php")  ?>
 
-</body>
+        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/js/alert.js"></script>
+        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/helpers/alert.js"></script>
+        
+        
 
+
+        </body>
 
 </html>

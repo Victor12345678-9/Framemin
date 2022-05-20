@@ -28,12 +28,6 @@ formulario.addEventListener("submit", function(e) {
                 }, 4000);
 
 
-
-
-
-
-
-
             } else {
                 setTimeout(function() {
                     mensajes.innerHTML =

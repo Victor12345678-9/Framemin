@@ -25,7 +25,7 @@ require_once(LAYOUT_PATH."header2.php");
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="./usersView.php">Usuarios</a></li>
+                            <li class="breadcrumb-item"><a href="../usersView">Usuarios</a></li>
                             <li class="breadcrumb-item active">Perfil</li>
                         </ol>
                     </div>

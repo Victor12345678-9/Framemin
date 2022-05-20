@@ -398,7 +398,7 @@
                             </div><!-- end card-body -->
 
                         </div><!-- end card -->
-                        <a type="button" class="btn btn-danger waves-effect" href="../usersView">Cancelar</a>
+                        <a type="button" class="btn btn-danger waves-effect" href="../usersView">Regresar</a>
                         <button class="btn btn-primary" type="submit">Guardar</button>
                     </div><!-- end col -->
 
