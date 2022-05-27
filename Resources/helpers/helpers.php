@@ -1,6 +1,7 @@
+
+
 <?php 
 
-//////CALCULAR EDAD DE USUARIOS////
 function calculaedad($fechanacimiento){
     list($ano,$mes,$dia) = explode("-",$fechanacimiento);
     $ano_diferencia  = date("Y") - $ano;
@@ -10,16 +11,5 @@ function calculaedad($fechanacimiento){
       $ano_diferencia--;
     return $ano_diferencia;
 }
-
-
-
-
-//////
-
-
-
-
-
-
 
 ?>

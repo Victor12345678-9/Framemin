@@ -379,7 +379,7 @@ require_once(LAYOUT_PATH."header.php");
 
 
 </body>
-<script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/helpers/calcularEdad.js"></script>
+
 <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/views/usuarios/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 

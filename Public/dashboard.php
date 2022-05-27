@@ -3,50 +3,84 @@
 
 <?php
 
-include "../Config/constant/rutes.php";
+include "./Config/constant/rutes.php";
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 require_once (LAYOUT_PATH."head.php");
-=======
-require_once ("./views/layout/head2.php");
->>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
-=======
-require_once ("./views/layout/head2.php");
->>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
 
 ?>
 
-    <body>
-       
+<body>
 
-<<<<<<< HEAD
+
     <?php  require_once(LAYOUT_PATH."header.php");?>
-=======
-    <?php  require_once(LAYOUT_PATH."header2.php");?>
->>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
 
 
-    
-                
-    
+    <div class="main-content">
 
+        <div class="page-content">
+            <div class="container-fluid">
 
-    
-
-
-
-
-    
-<<<<<<< HEAD
-    <?php   include_once (LAYOUT_PATH."footer.php")  ?>
-=======
-    <?php   include_once (LAYOUT_PATH."footer2.php")  ?>
->>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
+                <div class="row">
+                    <div class="col-12">
+                        <div class=" align-items-center justify-content-start">
+                            <h4 class="mb-sm-0 font-size-18"> Dashboard </h4>
 
 
 
-    </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+                <?php   include_once (LAYOUT_PATH."footer.php")  ?>
+
+
+
+</body>
 
 
 </html>

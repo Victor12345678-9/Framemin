@@ -1,4 +1,6 @@
-/////////////////sweet alert eliminar usuarios////////////
+//////////////SWEET ALERT USUARIOS////////////
+
+
 
 var a = window.location.pathname;
 var ex = trim(a, "/");
@@ -49,5 +51,4 @@ function trim(s, c) {
     ), "");
 }
 
-
-/////////////////////////////
+//////////////SWEET ALERT USUARIOS////////////

@@ -510,10 +510,9 @@ require_once(LAYOUT_PATH."header.php");
 </div>
                                     
                                 </div><!-- end col -->
+        
+        <?php   include_once (LAYOUT_PATH."footer.php")  ?>
     
-    
-    <?php   include_once (LAYOUT_PATH."footer.php")  ?>
-
 
 
     </body>

@@ -1,8 +1,11 @@
+
 <?php 
 
 $datos = datos();
 $vista = $datos[0];
-require_once ("./Resources/helpers/helpers.php");
+
+include_once ("./Resources/helpers/helpers.php");
+
 
 switch($vista)
 {
@@ -46,16 +49,20 @@ switch($vista)
         include ("./Public/views/usuarios/usersView.php");
             
     break;
+    
 ///
     case "api_tabla":
         require_once ("./App/controllers/usersController.php");
             
         $obj = new UsersController();        
 
-        $tabla_consulta = $obj->tabla_consulta('usuarios',$_POST['usuarios'],$_POST['page']);
+        $tabla_consulta = $obj->tabla_consulta_usuarios($_POST['usuarios'],$_POST['page']);
 
         echo $tabla_consulta;
     break;
+
+
+
 
     case "showUser":
             if(!(isset($datos[1]) == NULL)){
@@ -75,6 +82,7 @@ switch($vista)
 
                 $obj= new UsersController();
 
+                $departamentos=$obj->showDepartamentos();
                 $user=$obj-> showUser($_GET['id']);
                 $depas = $obj->depas();
 
@@ -92,6 +100,25 @@ switch($vista)
             include ("./Public/views/usuarios/showUser.php");
     break;
 ///
+
+
+
+
+// //
+// case "json_tabla":
+//     require_once ("./App/controllers/usersController.php");
+        
+//     $obj = new UsersController();        
+
+//     $json_tabla = $obj->json_tabla();
+
+//     echo $json_tabla;
+// break;
+// //
+
+
+
+
 
 
     case "editUser":
@@ -123,6 +150,11 @@ switch($vista)
 
 
 
+
+
+
+
+
     case "deleteUser":
         if(!(isset($datos[1]) == NULL)){
             if(is_numeric($datos[1]))
@@ -144,6 +176,11 @@ switch($vista)
 
     break; 
 ///
+
+
+
+
+
 
 
 
@@ -178,15 +215,25 @@ switch($vista)
     case "insertUser":
         include ("./Public/views/usuarios/insertUser.php");
     break;
+
     case "login":
-        include ("./login.php");
+        include ("./Public/views/login/login.php");
+    break;
+
+
+    case "salir":
+        include ("./Public/views/login/Salir.php");
+break;
+
+
+    case "dataLogin":
+        include ("./Public/views/login/dataLogin.php");
     break;
 
 
     
 
-    default:
-         include ("./Public/dashboard.php");
+  
 
 }
  ?>

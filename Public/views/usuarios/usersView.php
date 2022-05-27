@@ -8,20 +8,11 @@ require_once(LAYOUT_PATH."header.php");
 
 <body>
 
-<<<<<<< HEAD
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/views/usuarios/peticion.js"></script> 
-<script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/css/estilos.css"></script> 
-=======
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/views/usuarios/peticion.js"></script>
+    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/css/estilos.css"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/views/usuarios/peticion.js"></script> 
-<script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/css/estilos.css"></script> 
-
-<<<<<<< HEAD
->>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
-=======
->>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <div class="main-content">
 
@@ -62,133 +53,49 @@ require_once(LAYOUT_PATH."header.php");
                 <!-- <div class="card-body"> -->
                 <div class="d-flex flex-row-reverse">
                     <!-- <div class="d-flex"> -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <form class="app-search d-none d-lg-block"  >
-                        <div class="position-relative ">
-						<input type="text"  class="form-control" name="busqueda" id="busqueda" placeholder="Buscar..." size="32">
-                            <button class="btn btn-primary" type="button"><i class="bx bx-search-alt align-middle"></i></button>
-                        </div>
-                    </form>
-                  
-                </div>
-                <br>
-
-<!-- Table -->
-<div id="tabla_resultado"></div>
-<!-- Table -->
-
-=======
-=======
->>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
                     <form class="app-search d-none d-lg-block">
                         <div class="position-relative ">
-						<input type="text"  class="form-control" name="busqueda" id="busqueda" placeholder="Buscar..." size="32">
+                            <input type="text" class="form-control" name="busqueda"
+                                onKeyPress="if(event.keyCode == 13) event.returnValue = false;" id="busqueda"
+                                placeholder="Buscar..." size="32">
                             <button class="btn btn-primary" type="button"><i
                                     class="bx bx-search-alt align-middle"></i></button>
                         </div>
                     </form>
-                  
+
                 </div>
                 <br>
-                <div class="table" id="tabla_resultado" >
+
+                <!-- Table -->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr >
+                            <th> Nomina</th>
+                            <th> Nombre</th>
+                            <th> Genero</th>
+                            <th> Departamento</th>
+                            <th> Puesto</th>
+                            <th> Status</th>
+                            <th WIDTH="10%"> Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="tabla_resultado">
 
 
 
-                    <table class="table table-bordered dt-responsive  nowrap w-100" >
-                        <thead>
-                            <tr>
-                                <th > Nomina</th>
-                                <th> Nombre</th>
-                                <th> Genero</th>
-                                <th> Departamento</th>
-                                <th> Puesto</th>
-
-                                <th> Status</th>
 
 
-
-                                <th WIDTH="10%"> Acciones</th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-
-
-                            <?php if($users):?>
-
-
-                            <?php foreach ($users as $usuario ) { 
-                                                  
-                                                    ?>
-
-                            <tr>
-                                <td><?php echo $usuario->nomina ?></td>
-                                <td><?php echo $usuario->nombre." ".$usuario->apellido ?></td>
-                                <td><?php echo $usuario->genero ?></td>
-                                <td><?php if(isset($array[$usuario->departamento])){echo $array[$usuario->departamento];}else{echo '-';} ?>
-                                </td>
-                                <td><?php echo $usuario->puesto ?></td>
-
-
-                                <?php if($usuario->status==1){ ?>
-                                <td><?php echo 'Activo' ?></td> <?php }?>
-
-                                <td>
-
-                                    <a style="margin:5px"
-                                        href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/showUser/<?php echo $usuario->id?>"><i
-                                            class="bx bx-show"></i></a>
-                                    <a style="margin:5px"
-                                        href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/editUser/<?php echo $usuario->id?>"><i
-                                            class="bx bx-pencil"></i></a>
-                                    <a style="margin:5px" href="#" id="delete_user"
-                                        data-id="<?php echo $usuario->id?>"><i class="bx bx-trash"></i></a>
-
-                                </td>
-                            </tr>
-                            <?php } ?>
-
-                            <?php else:?>
-
-                            <tr>
-                                <td colspan="7" style="color:salmon ">No Hay Registros Actuales</td>
-                            </tr>
-                            <?php endif;?>
-
-                        </tbody>
-
-                    </table>
-
+                        </tr>
+                    </tbody>
+                       
+                        
                     
 
 
 
+                    <!-- Table -->
 
-                </div>
-				<div class="row">
-                        <div class="col-xs-12 col-sm-6">
-                            <?php if ($conteo>0){?>
-
-                            <p style="color:red">Mostrando 1 a <?php echo $resultadosPorPagina ?> de
-                                <?php echo $conteo ?> registros</p> <?php }?>
-                        </div>
-                        <div class="col-xs-12 col-sm-6" style="color:green">
-                            <?php if ($paginas>0){?>
-
-                            <p>Página <?php echo $pagina ?> de <?php echo $paginas ?> </p> <?php }?>
-
-                        </div>
-                    </div>
-                    <ul class="pagination">
-                        <?php echo $tabla; ?>
-                    </ul>
-<<<<<<< HEAD
->>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
-=======
->>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
 
             </div><!-- end card -->
 
@@ -207,27 +114,8 @@ require_once(LAYOUT_PATH."header.php");
 
     <?php   include_once (LAYOUT_PATH."footer.php")  ?>
 
-
-<<<<<<< HEAD
     <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/helpers/helpers.js"></script>
-    
-    </body>
-=======
 
-        
-
-
-        <?php   include_once (LAYOUT_PATH."footer2.php")  ?>
-
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/js/alert.js"></script>
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/helpers/alert.js"></script>
-        
-        
-
->>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
-
-        </body>
-
-        </body>
+</body>
 
 </html>

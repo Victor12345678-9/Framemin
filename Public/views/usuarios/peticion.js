@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 var a = window.location.pathname;
 var ex = trim(a, "/");
 var d = ex.split("/");
@@ -13,23 +11,6 @@ function trim(s, c) {
         "^[" + c + "]+|[" + c + "]+$", "g"
     ), "");
 }
-
-
-
-
-
-
-$(document).on('keyup', '#busqueda', function() {
-    var valorBusqueda = $(this).val();
-    if (valorBusqueda != "") {
-        obtener_registros(1, valorBusqueda);
-    } else {
-        obtener_registros(1, '');
-    }
-});
-
-
-
 
 $(obtener_registros(1, ''));
 
@@ -45,34 +26,12 @@ function obtener_registros(page, usuarios = '') {
             $("#tabla_resultado").html(contenido);
         })
 }
-=======
-=======
->>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
-$(obtener_registros());
-
-function obtener_registros(usuarios) {
-    $.ajax({
-        url: 'http://localhost/framemin-main/Public/views/usuarios/consulta.php',
-        type: 'POST',
-
-        data: { usuarios: usuarios },
-    })
-
-    .done(function(resultado) {
-        $("#tabla_resultado").html(resultado);
-    })
-}
 
 $(document).on('keyup', '#busqueda', function() {
     var valorBusqueda = $(this).val();
     if (valorBusqueda != "") {
-        obtener_registros(valorBusqueda);
+        obtener_registros(1, valorBusqueda);
     } else {
-        obtener_registros();
+        obtener_registros(1, '');
     }
-<<<<<<< HEAD
 });
->>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
-=======
-});
->>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69

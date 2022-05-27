@@ -2,7 +2,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-6">
-                                <script></script> © Minia. 
+                                <script>document.write(new Date().getFullYear())</script> © Minia.aaaaaaaaaaaaa >
                             </div>
                             <div class="col-sm-6">
                                 <div class="text-sm-end d-none d-sm-block">
@@ -167,7 +167,7 @@
         <!-- pace js -->
         <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/pace-js/pace.min.js"></script>
 
-        <!-- apexcharts onKeypress="if(event.keyCode == 13) event.returnValue = false;" -->
+        <!-- apexcharts -->
         <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/apexcharts/apexcharts.min.js"></script>
 
         <!-- Plugins js-->
