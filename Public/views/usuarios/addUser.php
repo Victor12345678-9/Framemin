@@ -5,8 +5,8 @@
 
 
 
-require_once (LAYOUT_PATH."head2.php");
-require_once(LAYOUT_PATH."header2.php");
+require_once (LAYOUT_PATH."head.php");
+require_once(LAYOUT_PATH."header.php");
 
 ?>
 
@@ -374,7 +374,7 @@ require_once(LAYOUT_PATH."header2.php");
 
 
 
-                <?php   include_once (LAYOUT_PATH."footer2.php")  ?>
+                <?php   include_once (LAYOUT_PATH."footer.php")  ?>
 
 
 

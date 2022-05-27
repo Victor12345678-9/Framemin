@@ -2,7 +2,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-6">
-                                <script>document.write(new Date().getFullYear())</script> © Minia.aaaaaaaaaaaaa >
+                                <script></script> © Minia. 
                             </div>
                             <div class="col-sm-6">
                                 <div class="text-sm-end d-none d-sm-block">
@@ -167,13 +167,13 @@
         <!-- pace js -->
         <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/pace-js/pace.min.js"></script>
 
-        <!-- apexcharts -->
+        <!-- apexcharts onKeypress="if(event.keyCode == 13) event.returnValue = false;" -->
         <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/apexcharts/apexcharts.min.js"></script>
 
         <!-- Plugins js-->
         <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/sweetalert2/sweetalert2.min.js"></script>
 
-<!-- Sweet alert init js-->
+        <!-- Sweet alert init js-->
         <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/js/pages/sweetalert.init.js"></script>
         <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
         <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
@@ -183,3 +183,5 @@
 
         <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/js/app.js"></script>
    
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> 

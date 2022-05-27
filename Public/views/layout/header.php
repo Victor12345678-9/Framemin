@@ -147,7 +147,7 @@
                         <img class="rounded-circle header-profile-user"
                             src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Storage/images/users/avatar-1.jpg"
                             alt="Header Avatar">
-                        <span class="d-none d-xl-inline-block ms-1 fw-medium">Shawn L.</span>
+                        <span class="d-none d-xl-inline-block ms-1 fw-medium">Victor Vilchis</span>
                         <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">

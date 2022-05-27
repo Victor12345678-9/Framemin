@@ -28,7 +28,8 @@
         <!-- App Css-->
         <!-- <link href="../Resources/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" /> -->
         <link href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        
         <!-- <link rel="stylesheet" href="../../css/2.css"> -->
          <!-- <link rel="stylesheet" href="../../css/estilo.css">      -->
 
-    </head>
+</head>

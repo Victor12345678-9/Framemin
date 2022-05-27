@@ -1,9 +1,8 @@
-
 <?php 
 
 $datos = datos();
 $vista = $datos[0];
-
+require_once ("./Resources/helpers/helpers.php");
 
 switch($vista)
 {
@@ -44,20 +43,19 @@ switch($vista)
                 $array[] = $value[1]; 
             }
             
-            include ("./Resources/helpers/paginacion.php");
-
-            include ("./Public/views/usuarios/usersView.php");
+        include ("./Public/views/usuarios/usersView.php");
+            
     break;
 ///
+    case "api_tabla":
+        require_once ("./App/controllers/usersController.php");
+            
+        $obj = new UsersController();        
 
+        $tabla_consulta = $obj->tabla_consulta('usuarios',$_POST['usuarios'],$_POST['page']);
 
-
-
-
-
-
-
-
+        echo $tabla_consulta;
+    break;
 
     case "showUser":
             if(!(isset($datos[1]) == NULL)){
@@ -77,7 +75,6 @@ switch($vista)
 
                 $obj= new UsersController();
 
-                $departamentos=$obj->innerDep();
                 $user=$obj-> showUser($_GET['id']);
                 $depas = $obj->depas();
 
@@ -89,19 +86,12 @@ switch($vista)
                     $array[] = $value[1]; 
                 }
 
+                $edad = calculaedad($user['fechaNacimiento']);
+
 
             include ("./Public/views/usuarios/showUser.php");
     break;
 ///
-
-
-
-
-
-
-
-
-
 
 
     case "editUser":
@@ -120,16 +110,13 @@ switch($vista)
             $obj= new UsersController();
             $usuarios=$obj->showUser($_GET['id']);
             $departamentos=$obj->showDepartamentos();
+
+            $edad = calculaedad($usuarios['fechaNacimiento']);
         
  
             include ("./Public/views/usuarios/editUser.php");
     break;
 ///
-
-
-
-
-
 
 
 
@@ -157,11 +144,6 @@ switch($vista)
 
     break; 
 ///
-
-
-
-
-
 
 
 

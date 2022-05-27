@@ -13,7 +13,6 @@ $obj= new UsersController();
    $apellido = $_POST['apellido'];
    $fechaNacimiento = $_POST['fechaNacimiento'];
    $lugarNacimiento = $_POST['lugarNacimiento'];
-   $edad = $_POST['edad'];
    $genero = $_POST['genero'];
    $nacionalidad = $_POST['nacionalidad'];
    $estadoCivil = $_POST['estadoCivil'];
@@ -37,7 +36,7 @@ $obj= new UsersController();
 
        echo json_encode('error');
    }else{
-    $obj->insertUser($_POST['nombre'],$_POST['apellido'],$_POST['fechaNacimiento'],$_POST['lugarNacimiento'],$_POST['edad'],$_POST['genero'],$_POST['nacionalidad'],$_POST['estadoCivil'],$_POST['rfc'],$_POST['curp'],$_POST['numeroCartilla'],$_POST['numeroTelefonico'],$_POST['correo'],$_POST['direccion'],$_POST['municipio'],$_POST['codigoPostal'],$_POST['empresa'],$_POST['nss'],$_POST['nomina'],$_POST['departamento'],$_POST['puesto'],$_POST['fechaContratacion']);
+    $obj->insertUser($_POST['nombre'],$_POST['apellido'],$_POST['fechaNacimiento'],$_POST['lugarNacimiento'],$_POST['genero'],$_POST['nacionalidad'],$_POST['estadoCivil'],$_POST['rfc'],$_POST['curp'],$_POST['numeroCartilla'],$_POST['numeroTelefonico'],$_POST['correo'],$_POST['direccion'],$_POST['municipio'],$_POST['codigoPostal'],$_POST['empresa'],$_POST['nss'],$_POST['nomina'],$_POST['departamento'],$_POST['puesto'],$_POST['fechaContratacion']);
 
  	echo json_encode('Correcto:');
 

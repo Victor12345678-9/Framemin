@@ -2,21 +2,26 @@
 <html lang="en">
 
 <?php
-
-
-
-  require_once (LAYOUT_PATH."head2.php");
-  require_once(LAYOUT_PATH."header2.php");
-
+require_once (LAYOUT_PATH."head.php");
+require_once(LAYOUT_PATH."header.php");
 ?>
 
 <body>
 
+<<<<<<< HEAD
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/views/usuarios/peticion.js"></script> 
+<script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/css/estilos.css"></script> 
+=======
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/views/usuarios/peticion.js"></script> 
 <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/css/estilos.css"></script> 
 
+<<<<<<< HEAD
+>>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
+=======
+>>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
 
     <div class="main-content">
 
@@ -57,6 +62,25 @@
                 <!-- <div class="card-body"> -->
                 <div class="d-flex flex-row-reverse">
                     <!-- <div class="d-flex"> -->
+<<<<<<< HEAD
+<<<<<<< HEAD
+                    <form class="app-search d-none d-lg-block"  >
+                        <div class="position-relative ">
+						<input type="text"  class="form-control" name="busqueda" id="busqueda" placeholder="Buscar..." size="32">
+                            <button class="btn btn-primary" type="button"><i class="bx bx-search-alt align-middle"></i></button>
+                        </div>
+                    </form>
+                  
+                </div>
+                <br>
+
+<!-- Table -->
+<div id="tabla_resultado"></div>
+<!-- Table -->
+
+=======
+=======
+>>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
                     <form class="app-search d-none d-lg-block">
                         <div class="position-relative ">
 						<input type="text"  class="form-control" name="busqueda" id="busqueda" placeholder="Buscar..." size="32">
@@ -161,6 +185,10 @@
                     <ul class="pagination">
                         <?php echo $tabla; ?>
                     </ul>
+<<<<<<< HEAD
+>>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
+=======
+>>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
 
             </div><!-- end card -->
 
@@ -177,10 +205,14 @@
     </div>
     <!-- End Page-content -->
 
+    <?php   include_once (LAYOUT_PATH."footer.php")  ?>
 
-    <?php   include_once (LAYOUT_PATH."footer2.php")  ?>
 
-
+<<<<<<< HEAD
+    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/helpers/helpers.js"></script>
+    
+    </body>
+=======
 
         
 
@@ -192,6 +224,9 @@
         
         
 
+>>>>>>> b7956149660fad2c189017c27aa1cd5cac8d0f69
+
+        </body>
 
         </body>
 

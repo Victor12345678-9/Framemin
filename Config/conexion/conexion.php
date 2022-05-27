@@ -16,10 +16,6 @@
                
                 $con=new PDO('mysql:host='.$this->host.';dbname='.$this->database, $this->user, $this->password);     
                 return $con;
-
-
-
-
             }
             catch(PDOException $e) {
 

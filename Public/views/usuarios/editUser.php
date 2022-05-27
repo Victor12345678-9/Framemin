@@ -2,8 +2,8 @@
 <html lang="en">
 
 <?php           
-            require_once (LAYOUT_PATH."head2.php");
-            require_once(LAYOUT_PATH."header2.php");
+            require_once (LAYOUT_PATH."head.php");
+            require_once(LAYOUT_PATH."header.php");
             ?>
 
 <body>
@@ -92,7 +92,7 @@
                                                                     Nacimiento</label>
                                                                 <input type="text" class="form-control"
                                                                     name="lugarNacimiento"
-                                                                    value="<?= $usuarios ['lugarNacimiento']?>"
+                                                                    value="<?= $usuarios['lugarNacimiento']?>"
                                                                     placeholder="Lugar de Nacimiento">
                                                             </div>
                                                         </div>
@@ -102,7 +102,7 @@
                                                                 <label class="form-label" for="edad">Edad</label>
                                                                 <input type="number" class="form-control" name="edad"
                                                                     placeholder="Edad" id="edad" maxlength="2" min="18"
-                                                                    max="99" value="<?= $usuarios['edad']?>">
+                                                                    max="99" value="<?= $edad ?>" disabled>
 
                                                             </div>
                                                         </div>
@@ -412,7 +412,7 @@
 
 
 
-                <?php   include_once (LAYOUT_PATH."footer2.php")  ?>
+                <?php   include_once (LAYOUT_PATH."footer.php")  ?>
 
 
 
