@@ -28,6 +28,9 @@ require_once (LAYOUT_PATH."head.php");
                                                 alt="" height="24"> <span class="logo-txt">Minia</span>
                                         </a>
                                     </div>
+
+                                    <div id="respuesta" id="respuesta"></div>
+
                                     <div class="auth-content my-auto">
                                         <div class="text-center">
                                             <h5 class="mb-0">Bienvenido !</h5>
@@ -36,13 +39,13 @@ require_once (LAYOUT_PATH."head.php");
 
 
 
+                                     
 
-
-                                        <form class="mt-4 pt-2" action="dataLogin" method="POST">
+                                        <form class="mt-4 pt-2" action="dataLogin" method="POST" name="loginForm" id="loginForm">
                                             <div class="mb-3">
                                                 <label class="form-label">Usuario </label>
                                                 <input type="text" class="form-control" name="username"
-                                                    placeholder="Ingresa nombre de usuario ">
+                                                    placeholder="Ingresa nombre de usuario " required>
                                             </div>
                                             <div class="mb-3">
                                                 <div class="d-flex align-items-start">
@@ -55,7 +58,7 @@ require_once (LAYOUT_PATH."head.php");
                                                 <div class="input-group auth-pass-inputgroup">
                                                     <input type="password" class="form-control"
                                                         placeholder="Ingresa Contraseña" name="password"aria-label="Password"
-                                                        aria-describedby="password-addon"
+                                                        aria-describedby="password-addon" required
                                                         >
                                                     <button class="btn btn-light shadow-none ms-0" type="button"
                                                         id="password-addon"><i class="mdi mdi-eye-outline"></i></button>

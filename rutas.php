@@ -51,7 +51,7 @@ switch($vista)
     break;
     
 ///
-    case "api_tabla":
+    case "apiUsuarios":
         require_once ("./App/controllers/usersController.php");
             
         $obj = new UsersController();        
@@ -60,6 +60,18 @@ switch($vista)
 
         echo $tabla_consulta;
     break;
+
+
+    case "apiProductos":
+        require_once ("./App/controllers/productsController.php");
+            
+        $obj = new ProductsController();        
+
+        $tabla_consulta = $obj->index($_POST['productos'],$_POST['page']);
+
+        echo $tabla_consulta;
+    break;
+
 
 
 
@@ -78,6 +90,7 @@ switch($vista)
 
                 include_once "./Config/constant/rutes.php";
                 require_once (CONTROLLERS_PATH."usersController.php");
+                require_once (CONTROLLERS_PATH."loginController.php");
               
 
                 $obj= new UsersController();
@@ -96,7 +109,8 @@ switch($vista)
 
                 $edad = calculaedad($user['fechaNacimiento']);
 
-
+                $obj2= new LoginController();
+             
             include ("./Public/views/usuarios/showUser.php");
     break;
 ///
@@ -146,7 +160,12 @@ switch($vista)
 ///
 
 
-
+    case "productos":
+        include_once "./Config/constant/rutes.php";
+        require_once ("./Public/views/productos/productsView.php");
+            
+        
+    break;
 
 
 
@@ -168,7 +187,7 @@ switch($vista)
         }
         include_once "./Config/constant/rutes.php";
         require_once (CONTROLLERS_PATH."usersController.php");
-        $obj= new UsersController();
+         $obj= new UsersController();
          $obj-> destroyUser($_GET['id']);
 
         
@@ -181,6 +200,9 @@ switch($vista)
 
 
 
+case "header":
+    include ("./Public/views/layout/header.php");
+break;
 
 
 
@@ -208,6 +230,9 @@ switch($vista)
     break;
 
 
+    
+
+
 
 
 
@@ -224,13 +249,18 @@ switch($vista)
     case "salir":
         include ("./Public/views/login/Salir.php");
 break;
-
+    
+    case "dashboard":
+         include ("./Public/dashboard.php");
+        break;
 
     case "dataLogin":
         include ("./Public/views/login/dataLogin.php");
     break;
 
-
+    // default:
+    // include ("./Public/dashboard.php");
+    // break;
     
 
   

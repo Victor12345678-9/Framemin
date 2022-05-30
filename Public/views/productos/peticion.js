@@ -14,17 +14,16 @@ function trim(s, c) {
 
 $(obtener_registros(1, ''));
 
-function obtener_registros(page, usuarios = '') {
-    var datos = { "page": page, usuarios: usuarios };
+function obtener_registros(page, productos = '') {
+    var datos = { "page": page, productos: productos };
     $.ajax({
-            url: ROOT_PATH_CORE + '/apiUsuarios',
+            url: ROOT_PATH_CORE + '/apiProductos',
             type: 'POST',
             data: datos,
         })
         .done(function(resultado) {
             var contenido = JSON.parse(resultado);
             $("#tabla_resultado").html(contenido.tabla);
-
             $("#paginacion").html(contenido.paginacion);
 
 

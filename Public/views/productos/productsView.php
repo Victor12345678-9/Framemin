@@ -9,7 +9,7 @@ require_once(LAYOUT_PATH."header.php");
 <body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/views/usuarios/peticion.js"></script>
+    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/views/productos/peticion.js"></script>
     <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/css/estilos.css"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -22,7 +22,7 @@ require_once(LAYOUT_PATH."header.php");
                 <div class="row">
                     <div class="col-12">
                         <div class=" align-items-center justify-content-start">
-                            <h4 class="mb-sm-0 font-size-18"> Usuarios </h4>  
+                            <h4 class="mb-sm-0 font-size-18"> Productos </h4>  
 
 
 
@@ -35,7 +35,7 @@ require_once(LAYOUT_PATH."header.php");
                                         <div>
                                             <a type="button" class="btn btn-success waves-effect waves-light"
                                                 href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/addUser"
-                                                class="text-center">Agregar Usuario</a>
+                                                class="text-center">Agregar Producto</a>
 
                                             <!-- sample modal content -->
 
@@ -70,11 +70,11 @@ require_once(LAYOUT_PATH."header.php");
             <table class="table table-bordered">
             <thead>
             <tr>
-            <th> Nomina</th>
-            <th> Nombre</th>
-            <th> Genero</th>
-            <th> Departamento</th>
-            <th> Puesto</th>
+            <th> Codigo </th>
+            <th> Nombre </th>
+            <th> Descripcion </th>
+            <th> Precio</th>
+            <th> Stock</th>
             <th> Status</th>
             <th WIDTH="10%"> Acciones</th>
             </tr>

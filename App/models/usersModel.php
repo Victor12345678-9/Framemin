@@ -14,12 +14,7 @@ require_once "./Config/constant/rutes.php";
 
         
       
-        // public function showAll(){
-        //     $ver=$this->PDO->prepare('SELECT * FROM usuarios');
-        //     $ver->execute();
-        //     return $ver->fetchAll();
-        // }
-
+    
 
         
         public function insert($nombre,$apellido,$fechaNacimiento,$lugarNacimiento,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nss,$nomina,$departamento,$puesto,$fechaContratacion){
@@ -104,6 +99,7 @@ require_once "./Config/constant/rutes.php";
             $query = array();
             $query['query'] = $this->PDO->query($sql);
             $query['total_paginas'] = $total_pages;
+           
             $query['depas'] = $this->array_depa();
 
             return $query;

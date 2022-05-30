@@ -1,29 +1,42 @@
- <?php 
-    include_once "./Config/constant/rutes.php";
-   
-   
+<?php
+
+require_once "./Config/constant/rutes.php";
 
 
 
-    session_start();
-    if (isset($_SESSION["usu"]) && isset($_SESSION["pass"])) {
-        
-        require (MODELS_PATH."loginModel.php");
-        $validar = new Validar();
-        $validar->validarDatos();
-
-        include_once ("./Public/dashboard.php");
-        
-    } else {
-
-        if (isset($_SESSION["error"])) {
-        
-            echo "<p>Usuario y/o contraseña incorrecto</p>";
-            unset($_SESSION["error"]);
+class LoginController{
     
+
+    private $MODEL;
+
+    public function __construct(){
+
+        require_once (MODELS_PATH."loginModel.php");
+        $this->MODEL = new loginModel();
+
+    }
+    
+    public function validarDatos($username,$password){
+
+        $resultado=$this->MODEL->validarDatos($username,$password);
+
+        session_start();
+
+        if($resultado==1){ 
+            
+           $username_session= $_SESSION["username"] = $username;
+            return $username_session;
+            
+
+        }
+        else{
+            $_SESSION["error"] = "ERROR";
+            echo ("No Registrado");
+            
         }
 
-       
-        include_once("./Public/views/login/login.php");
     }
-?> 
+
+
+}
+?>

@@ -2,7 +2,7 @@
 
 require_once "./Config/constant/rutes.php";    
 
-    class Login {
+    class LoginModel{
 
 
 
@@ -22,27 +22,15 @@ require_once "./Config/constant/rutes.php";
         public function validarDatos($username, $password) {
 
           
+                 $sql = "SELECT * FROM administradores WHERE username = :username AND password = :password";
+
+                 $resultado =  $this->PDO->prepare($sql);
+                 $resultado->execute(array(":username"=>$username, ":password"=>$password));
             
-
-                $sql = "SELECT * FROM administradores WHERE username = :username AND password = :password";
-
-                $resultado =  $this->PDO->prepare($sql);
-                $resultado->execute(array(":username"=>$username, ":password"=>$password));
-                $cantidad_resultado = $resultado->rowCount();
-                session_start();
-
-                if ($cantidad_resultado == 1) {
-                    $_SESSION["username"] = $username;
-                    $_SESSION["password"] = $password;  
-
-                } else {
-                    $_SESSION["error"] = "ERROR";
-
-                }
-
+                 $cantidad_resultado = $resultado->rowCount();
+                 
                 
-
-
+                 return $cantidad_resultado;
 
         }
 

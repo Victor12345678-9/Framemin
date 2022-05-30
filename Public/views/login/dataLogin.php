@@ -2,20 +2,30 @@
    
 
 require_once "./Config/constant/rutes.php";   
+require_once(CONTROLLERS_PATH.'loginController.php');
 
 
 
-    if (isset($_POST["username"]) && isset($_POST["password"])) {
+   if (!empty($_POST["username"]) && !empty($_POST["password"])) {
+    	
+    $username= ($_POST['username']);
+    $password= ($_POST['password']);
 
-       
-        require_once (MODELS_PATH."loginModel.php");
-      
+    $obj= new LoginController();
+   $resultado= $obj->validarDatos($username,$password);
+    
+    if (!empty($resultado)){
 
-        $validar = new Login();
-        $validar->validarDatos($_POST["username"], $_POST["password"]);
+        header('Location: '.HTTP_.ROOT_PATH_CORE.'/usersView');
 
-    } else {
-      
-        header("location:../../dashboard.php");
+    }else{
+        echo "hola";
+        header('Location: '.HTTP_.ROOT_PATH_CORE.'/login');
+    
     }
-?>
+ 
+
+    
+    
+ }
+ ?>

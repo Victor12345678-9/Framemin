@@ -97,15 +97,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-md-2">
-                                                            <div class="mb-3 position-relative">
-                                                                <label class="form-label" for="edad">Edad</label>
-                                                                <input type="number" class="form-control" name="edad"
-                                                                    placeholder="Edad" id="edad" maxlength="2" min="18"
-                                                                    max="99" value="<?= $edad ?>" disabled>
-
-                                                            </div>
-                                                        </div>
+                                                       
 
 
                                                         <div class="col-md-3">
