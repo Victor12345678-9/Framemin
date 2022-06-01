@@ -1,7 +1,6 @@
 <?php
 
 require_once "./Config/constant/rutes.php";
-require_once "./App/controllers/paginacion.php";
 
 
 class UsersController{
@@ -14,32 +13,28 @@ class UsersController{
         require_once (MODELS_PATH."usersModel.php");
         $this->MODEL = new UsersModel();
 
-        
-      
-       
-
     }
 
    
-    
+   
 ////////////////////////////////////////////////////////////////////////
-public function tabla_consulta_usuarios($buscar,$page)
+public function consultaUsuarios($buscar,$page)
 {
     $resultadosPorPagina = 5;
     if($buscar)
     {
-        $query  = $this->MODEL->tabla_consulta_usuarios_sql_con_buscar($buscar,$page,$resultadosPorPagina);
+        $query  = $this->MODEL->filtros($buscar,$page,$resultadosPorPagina);
     }
     else
     {
-        $query  = $this->MODEL->tabla_consulta_usuarios_sql_sin_buscar($page,$resultadosPorPagina);
+        $query  = $this->MODEL->index($page,$resultadosPorPagina);
     }
 
-    $tabla = '';
-       
+    
     if ($query['total_paginas'] > 0)
     {
-        
+        $tabla = '';
+        $tabla .= '';
 
         while($row = $query['query']->fetch())
         {
@@ -60,29 +55,38 @@ public function tabla_consulta_usuarios($buscar,$page)
             </td>
             </tr>';
         }
-        $obj = new Paginacion();
-        $paginacion = $obj->paginacion($page, $query['total_paginas'], $buscar);
         
-    }
-    else{
       
-        $tabla.='
-        <tr>
-            <td> No existen coincidencias con sus parametros de busqueda.</td>
-        
-        </tr>
-        ';
+ 
     }
+    else 
+    {
+    $tabla ='<tr>
+    <td colspan=7>
     
-
+    No se encontraron coincidencias con sus criterios de búsqueda.
+    </td>
+    
+    
+    </tr>
+  ';
+    }
+    $obj2 = new Helpers();
+    $paginacion = $obj2->paginacion($page, $query['total_paginas'], $buscar);
     $dato = array();
-    $dato['tabla'] = $tabla;
+    $dato['tabla'][] = $tabla;
     $dato['paginacion'][] = $paginacion; 
 
     return json_encode($dato);
 }
 
-    
+    // public function json_tabla()
+    // {
+
+    //     $json_tabla = $this->MODEL->json_tabla(); 
+
+    //     return json_encode($json_tabla);
+    // }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    
     public function insertUser($nombre,$apellido,$fechaNacimiento,$lugarNacimiento,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nss,$nomina,$departamento,$puesto,$fechaContratacion){
@@ -128,13 +132,7 @@ public function tabla_consulta_usuarios($buscar,$page)
 
         return $this->MODEL->DataDepartamento();
     }
-// public function json_tabla()
-    // {
 
-    //     $json_tabla = $this->MODEL->json_tabla(); 
-
-    //     return json_encode($json_tabla);
-    // }
 
     
 }

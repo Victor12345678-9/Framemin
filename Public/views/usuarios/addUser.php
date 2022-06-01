@@ -3,10 +3,8 @@
 
 <?php
 
-
-
-require_once (LAYOUT_PATH."head.php");
-require_once(LAYOUT_PATH."header.php");
+require_once LAYOUT_PATH . "head.php";
+require_once LAYOUT_PATH . "header.php";
 
 ?>
 
@@ -307,15 +305,14 @@ require_once(LAYOUT_PATH."header.php");
                                                                 <option style="color:grey" value="" selected disabled>
                                                                     Seleccione Un Departamento</option>
 
-                                                                <?php 
-                                        
+                                                                <?php
 
-                                        foreach ($departamentos as $depas):
+                                            foreach ($departamentos as $depas):
 
-                                        echo '<option value="'.$depas["idDepartamento"].'">'.$depas["nombreDepartamento"].'</option>';
+                                                echo '<option value="' . $depas["idDepartamento"] . '">' . $depas["nombreDepartamento"] . '</option>';
 
-                                           endforeach
-                                           ?>
+                                            endforeach
+                                            ?>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -374,13 +371,13 @@ require_once(LAYOUT_PATH."header.php");
 
 
 
-                <?php   include_once (LAYOUT_PATH."footer.php")  ?>
+                <?php include_once LAYOUT_PATH . "footer.php"?>
 
 
 
 </body>
 
-<script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/views/usuarios/app.js"></script>
+<script src="<?php echo HTTP_ . ROOT_PATH_CORE; ?>/Public/views/usuarios/fetch.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 

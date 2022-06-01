@@ -25,8 +25,6 @@ function obtener_registros(page, productos = '') {
             var contenido = JSON.parse(resultado);
             $("#tabla_resultado").html(contenido.tabla);
             $("#paginacion").html(contenido.paginacion);
-
-
         })
 }
 

@@ -27,6 +27,7 @@
                         <a href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/usersView">
                             <span data-key="t-calendar">Usuarios</span>
                         </a>
+
                         <a href="<?php echo HTTP_.ROOT_PATH_CORE; ?>/productos">
                             <span data-key="t-calendar">Productos</span>
                         </a>

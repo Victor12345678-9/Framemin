@@ -14,7 +14,12 @@ require_once "./Config/constant/rutes.php";
 
         
       
-    
+        // public function showAll(){
+        //     $ver=$this->PDO->prepare('SELECT * FROM usuarios');
+        //     $ver->execute();
+        //     return $ver->fetchAll();
+        // }
+
 
         
         public function insert($nombre,$apellido,$fechaNacimiento,$lugarNacimiento,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nss,$nomina,$departamento,$puesto,$fechaContratacion){
@@ -51,12 +56,12 @@ require_once "./Config/constant/rutes.php";
    
 
 ////////////////////////////////////
-        public function tabla_consulta_usuarios_sql_sin_buscar($page,$resultadosPorPagina)
+        public function index($page,$resultadosPorPagina)
         { 
             $offset = ($page - 1) * $resultadosPorPagina;
 
-            $sql = "SELECT * FROM usuarios WHERE status = '1' ORDER BY nomina LIMIT $offset,$resultadosPorPagina";
-            $sql_conteo = "SELECT * FROM usuarios WHERE status = '1' ORDER BY nomina";
+            $sql = "SELECT * FROM usuarios WHERE status = '1' LIMIT $offset,$resultadosPorPagina";
+            $sql_conteo = "SELECT * FROM usuarios WHERE status = '1' ";
         
             $conteo = $this->PDO->query($sql_conteo);
             $conteo_end = $conteo->rowCount();
@@ -70,27 +75,19 @@ require_once "./Config/constant/rutes.php";
             return $query;
         }
 
-        public function tabla_consulta_usuarios_sql_con_buscar($buscar,$page,$resultadosPorPagina)
+
+
+        public function filtros($buscar,$page,$resultadosPorPagina)
         {
             $offset = ($page - 1) * $resultadosPorPagina;
 
             $q = $buscar;
 
             $sql = "
-            SELECT * FROM usuarios WHERE
-            (nomina LIKE '%".$q."%' OR
-            nombre LIKE '%".$q."%' OR
-            apellido LIKE '%".$q."%' OR
-            departamento LIKE '%".$q."%' OR
-            puesto LIKE '%".$q."%') AND status = '1' ORDER BY nomina LIMIT $offset,$resultadosPorPagina";
+            SELECT * FROM productos WHERE status='1' LIMIT 1,10";
 
-            $sql_conteo = "
-            SELECT * FROM usuarios WHERE 
-            (nomina LIKE '%".$q."%' OR
-            nombre LIKE '%".$q."%' OR
-            apellido LIKE '%".$q."%' OR
-            departamento LIKE '%".$q."%' OR
-            puesto LIKE '%".$q."%') AND status = '1' ORDER BY nomina";
+            $sql_conteo = " 
+            SELECT * FROM productos WHERE status='1' LIMIT 1,10";
 
             $conteo = $this->PDO->query($sql_conteo);
             $conteo_end = $conteo->rowCount();
@@ -99,7 +96,6 @@ require_once "./Config/constant/rutes.php";
             $query = array();
             $query['query'] = $this->PDO->query($sql);
             $query['total_paginas'] = $total_pages;
-           
             $query['depas'] = $this->array_depa();
 
             return $query;
@@ -212,6 +208,7 @@ require_once "./Config/constant/rutes.php";
   
     }
 
+   
     
 
 ?>

@@ -3,7 +3,6 @@
 
 <?php
 
-include "./Config/constant/rutes.php";
 
 require_once (LAYOUT_PATH."head.php");
 
@@ -23,7 +22,7 @@ require_once (LAYOUT_PATH."head.php");
                 <div class="row">
                     <div class="col-12">
                         <div class=" align-items-center justify-content-start">
-                            <h4 class="mb-sm-0 font-size-18"> Dashboard </h4>
+                            <h4 class="mb-sm-0 font-size-18"> Principal </h4>
 
 
 

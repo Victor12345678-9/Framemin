@@ -1,84 +1,135 @@
 <?php
 
-include_once ("./Config/constant/rutes.php");
-require_once "./App/controllers/paginacion.php";
+require_once "./Config/constant/rutes.php";
+
 
 class ProductsController{
+    
+    private $MODEL;
 
-private $MODEL;
+    public function __construct(){
 
+        require_once (MODELS_PATH."productsModel.php");
+        $this->MODEL = new ProductsModel();
 
-
-
-public function __construct(){
-
-    require_once (MODELS_PATH."productsModel.php");
-
-    $this->MODEL = new ProductsModel();
-
-
-}
-
-
-
-public function index($buscar,$page){
-
-$resultadosPorPagina= 5;
-
-if($buscar){
-
-
-    $query = $this->MODEL->index($buscar,$page,$resultadosPorPagina);
-
-
-}
-
-$tabla = '';
-
-if($query['total_paginas'] > 0){
-
-
-
-    while ($row = $query['query']->fetch()){
-
-
-        $tabla.= ' <tr>
-        
-        <td>'.$row['codigo'].'</td>
-        <td>'.$row['nombre'].'</td>
-        <td>'.$row['descripcion'].'</td>
-        <td>'.$row['precio'].'</td>
-        <td>'.$row['stock'].'</td>
-        <td>Activo</td>
-        <td>
-        <a style="margin:5px" href="'.HTTP_.ROOT_PATH_CORE.'/showProduct/'.$row['id'].'"><i class="bx bx-show"></i></a>
-        <a style="margin:5px" href="'.HTTP_.ROOT_PATH_CORE.'/editProduct/'.$row['id'].'"><i class="bx bx-pencil"></i></a>
-        <a style="margin:5px" href="#" id="delete_user" data-id="'.$row['id'].'"><i class="bx bx-trash"></i></a>
-        
-        </td>
-        </tr>';
+    }
+   
+////////////////////////////////////////////////////////////////////////
+public function consultaProductos($buscar,$page,$resultadosPorPagina = 5)
+{
+    
+    if($buscar)
+    {
+        $query  = $this->MODEL->filtros($buscar,$page,$resultadosPorPagina);
+    }
+    else
+    {
+        $params = 'idProduct,codeProduct,nameProduct,descProduct,price,stock';
+        $table = 'productos';
+        $query  = $this->MODEL->index($page,$resultadosPorPagina,$params,$table);
     }
 
-    $obj = new Paginacion();
-    $paginacion = $obj->paginacion($page,$query['total_paginas'],$buscar);
 
+   
+  
+    if ($query['total_paginas'] > 0)
+    {
+        $tabla = '';
+        
+        
+
+        while($row = $query['query']->fetch())
+        {
+
+            $tabla .= '<tr>
+            <td>'.$row['codeProduct'].'</td>
+            <td>'.$row['nameProduct'].'</td>
+            <td>'.$row['descProduct'].'</td>
+        
+            <td>'.$row['stock'].'</td>
+           
+            <td>
+            
+            <a style="margin:5px" href="'.HTTP_.ROOT_PATH_CORE.'/showProduct/'.$row['idProduct'].'"><i class="bx bx-show"></i></a>
+            <a style="margin:5px" href="'.HTTP_.ROOT_PATH_CORE.'/editProduct/'.$row['idProduct'].'"><i class="bx bx-pencil"></i></a>
+            <a style="margin:5px" href="#" id="delete_product" data-id="'.$row['idProduct'].'"><i class="bx bx-trash"></i></a>
+
+            </td>
+            </tr>';
+        }
+        
+    }
+    else 
+    {
+    $tabla = '<tr>
+    
+        <td colspan=7>
+        No se encontraron coincidencias con sus criterios de búsqueda.
+        
+        
+        </td>
+    
+    
+    </tr>';
+    
+    }
+
+
+   
+
+    $obj2 = new Helpers();
+    
+    $paginacion = $obj2->paginacion($page, $query['total_paginas'], $buscar);
+
+    $dato = array();
+    $dato['tabla'][] = $tabla;
+    $dato['paginacion'][] = $paginacion; 
+   
+    return json_encode($dato);
 }
-else{
 
-    echo "No hay";
+    // public function json_tabla()
+    // {
 
+    //     $json_tabla = $this->MODEL->json_tabla(); 
+
+    //     return json_encode($json_tabla);
+    // }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   
+     public function insertProduct($codeProduct,$nameProduct,$descProduct,$price,$stock){
+        
+        $id=$this->MODEL->insert($codeProduct,$nameProduct,$descProduct,$price,$stock);
+        
+
+    // //  return header('Location: '.HTTP_.ROOT_PATH_CORE.'/usersView');
+     }
+
+
+     public function showProduct($idProduct){
+         return $this->MODEL->show($idProduct);
+
+    }
+
+  
+    public function updateProduct($idProduct,$codeProduct,$nameProduct,$descProduct,$price,$stock){
+
+      
+
+       $id=$this->MODEL->update($idProduct,$codeProduct,$nameProduct,$descProduct,$price,$stock);
+       
+       return header('Location: '.HTTP_.ROOT_PATH_CORE.'/productos/_');
+    }
+
+     public function destroyProduct($idProduct){
+         $this->MODEL->delete($idProduct);
+         return header('Location: '.HTTP_.ROOT_PATH_CORE.'/productos');
+     }
+
+
+
+
+    
 }
-
-$dato = array();
-$dato['tabla'][] = $tabla;
-$dato['paginacion'][]=$paginacion;
-
-return json_encode($dato);
-
-
-}
-
-}
-
 
 ?>

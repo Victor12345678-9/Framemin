@@ -1,269 +1,236 @@
-
-<?php 
+<?php
 
 $datos = datos();
 $vista = $datos[0];
 
-include_once ("./Resources/helpers/helpers.php");
+require_once "./App/controllers/usersController.php";
+require_once "./Config/constant/rutes.php";
+$obj = new UsersController();
 
+require_once "./App/controllers/productsController.php";
+$obj2 = new ProductsController();
 
-switch($vista)
-{
+require_once "./Resources/helpers/helpers.php";
+$obj3 = new Helpers();
+
+switch ($vista) {
 ///
-
-
-
 
     case "usersView":
-            $success = "";
-            if(!(isset($datos[1]) == NULL)){
-                if(is_numeric($datos[1]))
-                {
+        $success = "";
+        if (!(isset($datos[1]) == null)) {
+            if (is_numeric($datos[1])) {
                 $_GET['pagina'] = $datos[1];
-                }
-                elseif($datos[1] == "_")
-                {
-                    $success = "_";
-                }
-                else
-                {
-                    error_page();
-                }
+            } elseif ($datos[1] == "_") {
+                $success = "_";
+            } else {
+                error_page();
             }
-            include_once "./Config/constant/rutes.php";
-            
-            
-            require_once ("./App/controllers/usersController.php");
-            
-            $obj= new UsersController();
-            $depas = $obj->depas();
+        }
 
-////
-            $array = array();
-            $array[0] = '';
-            foreach($depas as $index => $value)
-            {
-                $array[] = $value[1]; 
-            }
-            
-        include ("./Public/views/usuarios/usersView.php");
-            
-    break;
-    
+        $depas = $obj->depas();
+        $array = array();
+        $array[0] = '';
+        foreach ($depas as $index => $value) {
+            $array[] = $value[1];
+        }
+
+        include "./Public/views/usuarios/usersView.php";
+
+        break;
+
 ///
     case "apiUsuarios":
-        require_once ("./App/controllers/usersController.php");
-            
-        $obj = new UsersController();        
 
-        $tabla_consulta = $obj->tabla_consulta_usuarios($_POST['usuarios'],$_POST['page']);
+        $tabla_consulta = $obj->consultaUsuarios($_POST['usuarios'], $_POST['page']);
 
         echo $tabla_consulta;
-    break;
-
+        break;
 
     case "apiProductos":
-        require_once ("./App/controllers/productsController.php");
-            
-        $obj = new ProductsController();        
 
-        $tabla_consulta = $obj->index($_POST['productos'],$_POST['page']);
+        $tabla_consulta = $obj2->consultaProductos($_POST['productos'], $_POST['page']);
 
+       
         echo $tabla_consulta;
-    break;
-
-
-
-
+        break;
 
     case "showUser":
-            if(!(isset($datos[1]) == NULL)){
-                if(is_numeric($datos[1]))
-                {
+        if (!(isset($datos[1]) == null)) {
+            if (is_numeric($datos[1])) {
                 $_GET['id'] = $datos[1];
-                }
-                else
-                {
-                    error_page();
-                }
+            } else {
+                error_page();
             }
+        }
+        
+    
 
-                include_once "./Config/constant/rutes.php";
-                require_once (CONTROLLERS_PATH."usersController.php");
-                require_once (CONTROLLERS_PATH."loginController.php");
-              
+        $departamentos = $obj->showDepartamentos();
+        $user = $obj->showUser($_GET['id']);
+        $depas = $obj->depas();
 
-                $obj= new UsersController();
+        ////
+        $array = array();
+        $array[0] = '';
+        foreach ($depas as $index => $value) {
+            $array[] = $value[1];
+        }
 
-                $departamentos=$obj->showDepartamentos();
-                $user=$obj-> showUser($_GET['id']);
-                $depas = $obj->depas();
-
-                ////
-                $array = array();
-                $array[0] = '';
-                foreach($depas as $index => $value)
-                {
-                    $array[] = $value[1]; 
-                }
-
-                $edad = calculaedad($user['fechaNacimiento']);
-
-                $obj2= new LoginController();
-             
-            include ("./Public/views/usuarios/showUser.php");
-    break;
+        $edad = $obj3->calculaedad($user['fechaNacimiento']);
+        
+        include "./Public/views/usuarios/showUser.php";
+        break;
 ///
 
-
-
-
 // //
-// case "json_tabla":
-//     require_once ("./App/controllers/usersController.php");
-        
-//     $obj = new UsersController();        
+    // case "json_tabla":
+    //     require_once ("./App/controllers/usersController.php");
+
+//     $obj = new UsersController();
 
 //     $json_tabla = $obj->json_tabla();
 
 //     echo $json_tabla;
-// break;
-// //
-
-
-
-
-
+    // break;
+    // //
 
     case "editUser":
-            if(!(isset($datos[1]) == NULL)){
-                if(is_numeric($datos[1]))
-                {
+        if (!(isset($datos[1]) == null)) {
+            if (is_numeric($datos[1])) {
                 $_GET['id'] = $datos[1];
-                }
-                else
-                {
-                    error_page();
-                }
-            }
-            include_once "./Config/constant/rutes.php";
-            require_once (CONTROLLERS_PATH."usersController.php");
-            $obj= new UsersController();
-            $usuarios=$obj->showUser($_GET['id']);
-            $departamentos=$obj->showDepartamentos();
-
-            $edad = calculaedad($usuarios['fechaNacimiento']);
-        
- 
-            include ("./Public/views/usuarios/editUser.php");
-    break;
-///
-
-
-    case "productos":
-        include_once "./Config/constant/rutes.php";
-        require_once ("./Public/views/productos/productsView.php");
-            
-        
-    break;
-
-
-
-
-
-
-
-
-    case "deleteUser":
-        if(!(isset($datos[1]) == NULL)){
-            if(is_numeric($datos[1]))
-            {
-            $_GET['id'] = $datos[1];
-            }
-            else
-            {
+            } else {
                 error_page();
             }
         }
-        include_once "./Config/constant/rutes.php";
-        require_once (CONTROLLERS_PATH."usersController.php");
-         $obj= new UsersController();
-         $obj-> destroyUser($_GET['id']);
 
-        
-        include ("./Public/views/usuarios/deleteUser.php");
+        $usuarios = $obj->showUser($_GET['id']);
+        $departamentos = $obj->showDepartamentos();
+        $edad = $obj3->calculaedad($usuarios['fechaNacimiento']);
 
-    break; 
+        include "./Public/views/usuarios/editUser.php";
+        break;
 ///
 
+    case "deleteUser":
+        if (!(isset($datos[1]) == null)) {
+            if (is_numeric($datos[1])) {
+                $_GET['id'] = $datos[1];
+            } else {
+                error_page();
+            }
+        }
 
+        $obj->destroyUser($_GET['id']);
 
+        include "./Public/views/usuarios/deleteUser.php";
 
-
-case "header":
-    include ("./Public/views/layout/header.php");
-break;
-
-
-
-
+        break;
+///
 
     case "updateUser":
-            include ("./Public/views/usuarios/updateUser.php");
-    break;
+        include "./Public/views/usuarios/updateUser.php";
+        break;
 
-    
-
-
+        case "updateProduct":
+            include "./Public/views/productos/updateProduct.php";
+            break;
 
 ///
     case "addUser":
-        include "./Config/constant/rutes.php";
-        require_once (CONTROLLERS_PATH."usersController.php");
 
-        $obj= new UsersController();
+        $departamentos = $obj->showDepartamentos();
 
-        $departamentos=$obj->showDepartamentos();
+        include "./Public/views/usuarios/addUser.php";
+        break;
+
+
         
+
+
+    case "addProduct":
+
+        include "./Public/views/productos/addProducts.php";
+        break;
+
+    case "productos":
+
+        include_once "./Public/views/productos/products.php";
+
+        break;
         
-            include ("./Public/views/usuarios/addUser.php");
-    break;
-
-
+        case "deleteProduct":
+            if (!(isset($datos[1]) == null)) {
+                if (is_numeric($datos[1])) {
+                    $_GET['idProduct'] = $datos[1];
+                } else {
+                    error_page();
+                }
+            }
+            
+            $obj2->destroyProduct($_GET['idProduct']);
     
+            include "./Public/views/usuarios/deleteProduct.php";
+    
+            break;
 
 
 
+            case "showProduct":
+                if (!(isset($datos[1]) == null)) {
+                    if (is_numeric($datos[1])) {
+                        $_GET['idProduct'] = $datos[1];
+                    } else {
+                        error_page();
+                    }
 
+                    $product = $obj2->showProduct($_GET['idProduct']);
+                    include_once "./Public/views/productos/showProduct.php";
+                }
+                break;
+                
+
+                case "editProduct":
+                    if (!(isset($datos[1]) == null)) {
+                        if (is_numeric($datos[1])) {
+                            $_GET['idProduct'] = $datos[1];
+                        } else {
+                            error_page();
+                        }
+    
+                        $product = $obj2->showProduct($_GET['idProduct']);
+                        include_once "./Public/views/productos/editProduct.php";
+                    }
+                    break;
+
+
+    case "dashboard":
+
+
+        include_once "./Public/dashboard.php";
+
+        break;
 
 ///
     case "insertUser":
-        include ("./Public/views/usuarios/insertUser.php");
-    break;
+        include "./Public/views/usuarios/insertUser.php";
+        break;
+
+        case "insertProduct":
+            include "./Public/views/productos/insertProduct.php";
+           
+            break;
 
     case "login":
-        include ("./Public/views/login/login.php");
-    break;
-
+        include "./Public/views/login/login.php";
+        break;
 
     case "salir":
-        include ("./Public/views/login/Salir.php");
-break;
-    
-    case "dashboard":
-         include ("./Public/dashboard.php");
+        include "./Public/views/login/Salir.php";
         break;
 
     case "dataLogin":
-        include ("./Public/views/login/dataLogin.php");
-    break;
-
-    // default:
-    // include ("./Public/dashboard.php");
-    // break;
-    
-
-  
+        include "./Public/views/login/dataLogin.php";
+        break;
 
 }
- ?>

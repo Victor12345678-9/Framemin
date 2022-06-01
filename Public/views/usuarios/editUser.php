@@ -20,7 +20,7 @@
                             <div class="card-header">
                                 <h4 class="card-title">Usuarios</h4>
 
-                                <p class="card-title-desc">Rellene Los campos para registrar un nuevo usuario.</p>
+                                <p class="card-title-desc">Rellene Los campos para modificar un usuario.</p>
                             </div><!-- end card header -->
 
                             <div class="card-body">
@@ -97,7 +97,15 @@
                                                             </div>
                                                         </div>
 
-                                                       
+                                                        <div class="col-md-2">
+                                                            <div class="mb-3 position-relative">
+                                                                <label class="form-label" for="edad">Edad</label>
+                                                                <input type="number" class="form-control" name="edad"
+                                                                    placeholder="Edad" id="edad" maxlength="2" min="18"
+                                                                    max="99" value="<?= $edad ?>" disabled>
+
+                                                            </div>
+                                                        </div>
 
 
                                                         <div class="col-md-3">
