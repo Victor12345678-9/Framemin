@@ -18,9 +18,11 @@ class UsersController{
    
    
 ////////////////////////////////////////////////////////////////////////
-public function consultaUsuarios($buscar,$page)
+public function consultaUsuarios($buscar,$page=1)
 {
     $resultadosPorPagina = 5;
+
+    
     if($buscar)
     {
         $query  = $this->MODEL->filtros($buscar,$page,$resultadosPorPagina);
@@ -72,7 +74,10 @@ public function consultaUsuarios($buscar,$page)
   ';
     }
     $obj2 = new Helpers();
-    $paginacion = $obj2->paginacion($page, $query['total_paginas'], $buscar);
+    
+    $total_pages = ceil($query['total_paginas']/$resultadosPorPagina);
+
+    $paginacion = $obj2->paginacion($page, $total_pages, $buscar);
     $dato = array();
     $dato['tabla'][] = $tabla;
     $dato['paginacion'][] = $paginacion; 

@@ -184,9 +184,10 @@ switch ($vista) {
                         error_page();
                     }
 
-                    $product = $obj2->showProduct($_GET['idProduct']);
-                    include_once "./Public/views/productos/showProduct.php";
+                    
                 }
+                $product = $obj2->showProduct($_GET['idProduct']);
+                    include_once "./Public/views/productos/showProduct.php";
                 break;
                 
 
@@ -232,5 +233,21 @@ switch ($vista) {
     case "dataLogin":
         include "./Public/views/login/dataLogin.php";
         break;
+
+        case "ejemplo":
+            require_once "./App/models/Models.php";
+            $obj5 = new Models();
+            $resultado = $obj5->ejemplo();
+
+            
+            include "./ejemplo.php";
+            break;
+
+            default:
+
+            include_once "./Public/dashboard.php";
+            break;
+
+
 
 }

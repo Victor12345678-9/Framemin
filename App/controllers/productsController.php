@@ -3,35 +3,40 @@
 require_once "./Config/constant/rutes.php";
 
 
-class ProductsController{
+class ProductsController
+{
     
     private $MODEL;
 
-    public function __construct(){
-
+    public function __construct()
+    {
         require_once (MODELS_PATH."productsModel.php");
         $this->MODEL = new ProductsModel();
-
+        
     }
    
-////////////////////////////////////////////////////////////////////////
-public function consultaProductos($buscar,$page,$resultadosPorPagina = 5)
+
+    public function consultaProductos($buscar,$page=1,$resultadosPorPagina = 5)
 {
-    
-    if($buscar)
+    $params = 'idProduct,codeProduct,nameProduct,descProduct,price,stock,status';
+    $table = 'productos';
+    $where= 'status=1';
+   
+
+    if(!$buscar)
     {
-        $query  = $this->MODEL->filtros($buscar,$page,$resultadosPorPagina);
+       
+        $query  = $this->MODEL->index($page,$params,$resultadosPorPagina,$table,$where);
+
+        
     }
     else
     {
-        $params = 'idProduct,codeProduct,nameProduct,descProduct,price,stock';
-        $table = 'productos';
-        $query  = $this->MODEL->index($page,$resultadosPorPagina,$params,$table);
+        
+        $query  = $this->MODEL->filtros($buscar,$page,$params,$resultadosPorPagina,$table,$where);
+        
     }
 
-
-   
-  
     if ($query['total_paginas'] > 0)
     {
         $tabla = '';
@@ -56,7 +61,10 @@ public function consultaProductos($buscar,$page,$resultadosPorPagina = 5)
 
             </td>
             </tr>';
+            
         }
+  
+        
         
     }
     else 
@@ -74,17 +82,15 @@ public function consultaProductos($buscar,$page,$resultadosPorPagina = 5)
     
     }
 
-
-   
-
+  
     $obj2 = new Helpers();
-    
     $paginacion = $obj2->paginacion($page, $query['total_paginas'], $buscar);
 
     $dato = array();
     $dato['tabla'][] = $tabla;
     $dato['paginacion'][] = $paginacion; 
-   
+    
+    
     return json_encode($dato);
 }
 
@@ -107,6 +113,7 @@ public function consultaProductos($buscar,$page,$resultadosPorPagina = 5)
 
 
      public function showProduct($idProduct){
+         
          return $this->MODEL->show($idProduct);
 
     }
