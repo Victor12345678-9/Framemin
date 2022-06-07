@@ -237,7 +237,12 @@ switch ($vista) {
         case "ejemplo":
             require_once "./App/models/Models.php";
             $obj5 = new Models();
-            $resultado = $obj5->ejemplo();
+            $resultadosPorPagina = 5;
+            $params = 'nomina,nombre,apellido,genero,departamento,puesto,status';
+            $tabla = 'usuarios';
+            $where = 'status=1';
+            $page = 1;
+            $resultado = $obj5->ejemplo($page,$params,$resultadosPorPagina,$tabla,$where);
 
             
             include "./ejemplo.php";

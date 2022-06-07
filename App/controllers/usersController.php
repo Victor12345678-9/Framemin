@@ -21,15 +21,22 @@ class UsersController{
 public function consultaUsuarios($buscar,$page=1)
 {
     $resultadosPorPagina = 5;
+    $params= 'id,nombre,nomina,apellido,genero,departamento,puesto';
+    $table = 'usuarios';
+    $where = 'status=1';
 
     
-    if($buscar)
+    if(!$buscar)
     {
-        $query  = $this->MODEL->filtros($buscar,$page,$resultadosPorPagina);
+       
+        $query  = $this->MODEL->index($page,$params,$resultadosPorPagina,$table,$where);
+        
     }
     else
     {
-        $query  = $this->MODEL->index($page,$resultadosPorPagina);
+        
+        $query  = $this->MODEL->filtros($buscar,$page,$params,$resultadosPorPagina,$table,$where);
+        
     }
 
     
@@ -45,7 +52,7 @@ public function consultaUsuarios($buscar,$page=1)
             <td>'.$row['nomina'].'</td>
             <td>'.$row['nombre'].' '.$row['apellido'].'</td>
             <td>'.$row['genero'].'</td>
-            <td>'.$query['depas'][$row['departamento']].'</td>
+            <td>'.$row['departamento'].'</td>
             <td>'.$row['puesto'].'</td>
             <td>Activo</td>	
             <td>

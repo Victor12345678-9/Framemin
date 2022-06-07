@@ -58,20 +58,40 @@ class ProductsModel
 
     public function show($idProduct)
     {
-        $where = 'idProduct = '.$idProduct;
-        $datos = 
-        array(
+        
+        $datos = [
             'idProduct',
             'codeProduct',
+            'nameProduct',
             'descProduct',
             'price',
             'stock'
-        );
+        ];
+
+        $condiciones = [
+            'WHERE' => 'idProduct = '.$idProduct,
+            'WHERE' => 'idProduct = '.$idProduct,
+        ];
+
+        $limit = [
+            'LIMIT' => ''
+        ];
+
+        $orderBy = [
+            'idProduct' => 'ASC'
+        ];
+       
+
         
-        $mostrar = $this->MODELS->showGeneric('productos', $datos, $where);
+
+        //showGeneric('productos', $datos, $condiciones);
+
+        // jsonReturn(); 
+        $mostrar = $this->MODELS->showGeneric('productos', $datos, $condiciones);
 
         return $mostrar->fetch();
     }
+
 
     
     public function update($idProduct,$codeProduct,$nameProduct,$descProduct,$price,$stock)
@@ -86,6 +106,7 @@ class ProductsModel
             'stock'               => $stock
         );
 
+        
         $this->MODELS->updateGeneric('productos', $datos, 'idProduct', $idProduct);
 
         return $idProduct; 

@@ -20,7 +20,7 @@ class ProductsController
 {
     $params = 'idProduct,codeProduct,nameProduct,descProduct,price,stock,status';
     $table = 'productos';
-    $where= 'status=1';
+    $where = 'status=1';
    
 
     if(!$buscar)

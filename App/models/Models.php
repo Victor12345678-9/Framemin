@@ -14,18 +14,13 @@ class Models
     }
 
 
-    public function indexGeneric($page,$resultadosPorPagina,$params,$tabla,$where)
+    public function indexGeneric($page,$resultadosPorPagina,$params,$table,$where)
     { 
         $offset = ($page - 1) * $resultadosPorPagina;
 
+        $sql = "SELECT $params FROM ".$table." WHERE $where LIMIT $offset,$resultadosPorPagina";
 
-
-   
-
-
-        $sql = "SELECT $params FROM ".$tabla." WHERE $where LIMIT $offset,$resultadosPorPagina";
-
-        $sql_count = "SELECT COUNT(status) AS conteo FROM ".$tabla." WHERE $where ";
+        $sql_count = "SELECT COUNT(status) AS conteo FROM ".$table." WHERE $where ";
     
         $sql_conteo=$this->PDO->query($sql_count);
         $conteo=$sql_conteo->fetch(PDO::FETCH_ASSOC);
@@ -120,6 +115,7 @@ class Models
             }
         
             $update_query   = substr_replace($update_query, '', -2) . '';
+
             $update_query_ = $update_query.' WHERE '.$id_columna.' = '.$id.';';
             $this->PDO->query($update_query_);
                             
@@ -128,26 +124,62 @@ class Models
     }
 
 
-    public function showGeneric($tabla, $datos, $where)
+    public function showGeneric($tabla, $datos, $condiciones)
     {
+        $parametros='*';
+
         if (is_array($datos))
         {
-            $query = '';
+            $parametros = '';
             if($datos[0] != "*")
             {
 
                 foreach ($datos as $columna)
                 {
-                    $query .= "`" . $columna . "`, ";
+                    $parametros .= "`" . $columna . "`, ";
                 }
 
-                $query  = substr($query, 0, (strlen($query)-2));
-            }else{
-                $query .= '*';
+                $parametros  = substr($parametros, 0, (strlen($parametros)-2));
             }
 
 
-            $mostrar = $this->PDO->prepare("SELECT ".$query." FROM ".$tabla." WHERE ".$where.";");
+
+            $where = '';
+            $orderby = '';
+            $orderbyValor = '';
+            $limit = '';
+            $limitValor = '';
+            foreach($condiciones as $index => $valor)
+            {
+                if(substr(strtolower($index),0, 5) == 'where'){
+                    
+                    $where .= $valor." ";
+                }
+            
+                if(strtolower($index) == 'orderby'){
+                    if($valor){
+                    $orderby = "ORDER BY ";
+                    $orderbyValor .= $valor." ";
+                    }
+                }
+            
+                if(strtolower($index) == 'limit'){
+                    if($valor){
+                    $limit = "LIMIT ";
+                    $limitValor .= $valor." ";
+                    }
+                }
+               
+            }
+      
+    
+             $orderby = $orderby.$orderbyValor;
+             $limit = $limit.$limitValor;
+            
+    
+            
+            $mostrar = $this->PDO->prepare("SELECT ".$parametros." FROM ".$tabla." WHERE ".$where.$orderby.$limit.";");
+               
             $mostrar->execute();
 
             return $mostrar;
@@ -156,91 +188,121 @@ class Models
 
 
     
-
  
     public function ejemplo(){
+       
+
+        $condiciones = array(
+            'orderby' => 'idProduct', 'desc',
+            'WHERE' => 'idProduct >10', 'price<1000',
+            'OR' => 'idProduct > 10', 
+       
+            'limit' => '0,10',
+        ); 
 
 
 
-        
+        echo '<h1>Resultado</h1>';
 
-      
-    //     $page=10;
-    //     $resultadosPorPagina=100;
-    //     $params = 'idProduct,codeProduct,nameProduct,descProduct,price,stock,status';
-    //     $table = 'productos';
-    //     $where= 'status=1';
-    //     $buscar='a';
-    //     $array_busqueda = 
-    //     array(
-    //         'codeProduct','nameProduct','descProduct'
-    //     );
-
-    //     $offset = ($page - 1) * $resultadosPorPagina;
-    //     $q = $buscar;
-
-    //    ///////////////
-    //     $sql = "SELECT $params FROM ".$table." WHERE (";
-    //     foreach ($array_busqueda as $columna)
-    //     {
-    //         $sql .= $columna." LIKE '%".$q."%'  OR ";
-    //     }
-    //     $sql  = substr($sql, 0, (strlen($sql)-5));
-    //     $sql .= ") AND $where LIMIT $offset,$resultadosPorPagina";
-
-    //    ///////////////
-    //     $sql_conteo = "SELECT $params FROM ".$table." WHERE (";
-    //     foreach ($array_busqueda as $columna)
-    //     {
-    //         $sql_conteo .= $columna." LIKE '%".$q."%'  OR ";
-    //     }
-    //     $sql_conteo  = substr($sql_conteo, 0, (strlen($sql_conteo)-4));
-    //     $sql_conteo .= ") AND $where;";
-    //    ///////////////
-
-    //     $conteo = $this->PDO->query($sql_conteo);
-    //     $conteo_end = $conteo->rowCount();
-    //     $total_pages = ceil($conteo_end/$resultadosPorPagina);
-
-    //     $query = array();
-    //     $query['query'] = $this->PDO->query($sql);
-    //     $query['total_paginas'] = $total_pages;
-
-      
-    //         print_r($sql);
-    //     }
+            /// 
+            $where_w = '';
+            $whereValor = '';
+            $or = '';
+            $orderby = '';
+            $orderValor = '';
+            $limit = '';
+            $limitValor = '';
+            $orden = '';
+            
 
 
 
-    $table= 'productos';
-    $params= '1';
+        if ($condiciones!=""){
 
-    $id=array(
+            foreach ($condiciones as $index => $value){
 
-      $where = '',
-      $where = '',
-      $or = '',
-      $or = '',
-      $where = '',
-      $orderBy =' ',
+                
+                $min= strtolower($index);
+                
+                if(strtolower($index) != 'or' && strtolower($index) != 'orderby' && strtolower($index) != 'limit' && strtolower($value) != 'asc' && strtolower($value) != 'desc'){
+                    $where_w = " WHERE ";
+                    $whereValor .= $value." AND ";
+                }
+                
+                if(strtolower($index) == 'or' && strtolower($index) != 'orderby'){
+                    if($index!='' ){
+                        $or .= ' OR '.$value.' ';
+                    }
+                }
+            
+            
+                if(strtolower($index) == 'orderby'){
+                    if($value){
+                    $orderby = " ORDER BY ";
+                    $orderValor .= $value." ";
+                    }
+                }
+            
+                if(strtolower($index) == 'limit'){
+                    if($value){
+                    $limit = "LIMIT ";
+                    $limitValor .= $value." ";
+                    }
+                }
+            
+                if(strtolower($value) == 'asc'){
+                    $orden = ' ASC ';
+                }elseif(strtolower($value) == 'desc'){
+                    $orden = ' DESC ';
+                }
+            }
+            
 
-    );
+            $where_ = substr($whereValor, 0, -4);
+            $where_end  = $where_w.$where_.$or;
+           
+            $orderby = $orderby.$orderValor.$orden;
+            $limit = $limit.$limitValor;
+            $table = 'productos';
 
 
-    //logica resultado de wheres
+            $datos = [
+                'idProduct',
+                'codeProduct',
+                'nameProduct',
+                'descProduct',
+                'price',
+                'stock'
+            ];
 
-    $wheres =  'idProduct=1 OR idProduct=10 AND status=1';
+            $parametros='*';
+
+            if (is_array($datos))
+            {
+                $parametros = '';
+                if($datos[0] != "*")
+                {
     
-    $sql = 'SELECT'.$params.'from'.$table.'where'.$wheres;
-     
+                    foreach ($datos as $columna)
+                    {
+                        $parametros .= "`" . $columna . "`, ";
+                    }
+    
+                    $parametros  = substr($parametros, 0, (strlen($parametros)-2));
+                }
 
-    //  print_r($condicion);
 
+
+                //$this->PDO->prepare
+            $mostrar = ("SELECT ".$parametros." FROM ".$table.$where_end.$orderby.$limit.";");
+
+            print_r($mostrar);
+
+        }       
+
+    
+    }
     }
 }
-   
-
-
-
 
 ?>

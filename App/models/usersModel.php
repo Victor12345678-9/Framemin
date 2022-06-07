@@ -16,9 +16,9 @@ class UsersModel
 
 
 
-    public function index($page,$resultadosPorPagina)
+    public function index($page,$params,$resultadosPorPagina,$table,$where)
     { 
-        $query = $this->MODELS->index_global($page,$resultadosPorPagina,'usuarios');
+        $query = $this->MODELS->indexGeneric($page,$params,$resultadosPorPagina,$table,$where);
         $query['depas'] = $this->array_depa();
 
         return $query;
@@ -30,7 +30,7 @@ class UsersModel
         $array_busqueda = array(
         'nomina','nombre','apellido','puesto'
         );
-        $query = $this->MODELS->filtros_global($buscar,$page,$resultadosPorPagina,'usuarios',$array_busqueda);
+        $query = $this->MODELS->filtrosGeneric($buscar,$page,$resultadosPorPagina,'usuarios',$array_busqueda);
         $query['depas'] = $this->array_depa();
 
         return $query;
@@ -66,7 +66,7 @@ class UsersModel
             'fechaContratacion'    => $fechaContratacion,
             'status'               => 1
         );
-        $insertar =  $this->MODELS->insert_global('usuarios', $datos);
+        $insertar =  $this->MODELS->insertGeneric('usuarios', $datos);
 
         return $insertar;
     }
