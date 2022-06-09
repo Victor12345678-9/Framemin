@@ -234,6 +234,11 @@ switch ($vista) {
         include "./Public/views/login/dataLogin.php";
         break;
 
+
+        case "condiciones":
+            include "./App/models/condiciones.php";
+            break;
+
         case "ejemplo":
             require_once "./App/models/Models.php";
             $obj5 = new Models();

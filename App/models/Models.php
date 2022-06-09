@@ -2,15 +2,21 @@
 
 require_once "./Config/constant/rutes.php"; 
 
+
 class Models
 {
     private $PDO;
+   
     
     public function __construct()
     {
         require_once (CONEXION_PATH."conexion.php");
         $con = new db();
         $this->PDO=$con->conexion();
+
+                
+     
+       
     }
 
 
@@ -126,183 +132,33 @@ class Models
 
     public function showGeneric($tabla, $datos, $condiciones)
     {
-        $parametros='*';
 
-        if (is_array($datos))
-        {
-            $parametros = '';
-            if($datos[0] != "*")
-            {
-
-                foreach ($datos as $columna)
-                {
-                    $parametros .= "`" . $columna . "`, ";
-                }
-
-                $parametros  = substr($parametros, 0, (strlen($parametros)-2));
-            }
-
-
-
-            $where = '';
-            $orderby = '';
-            $orderbyValor = '';
-            $limit = '';
-            $limitValor = '';
-            foreach($condiciones as $index => $valor)
-            {
-                if(substr(strtolower($index),0, 5) == 'where'){
-                    
-                    $where .= $valor." ";
-                }
             
-                if(strtolower($index) == 'orderby'){
-                    if($valor){
-                    $orderby = "ORDER BY ";
-                    $orderbyValor .= $valor." ";
-                    }
-                }
+        // $mostrar = $this->PDO->prepare("SELECT ".$parametros." FROM ".$tabla." WHERE ".$where.$orderby.$limit.";");
             
-                if(strtolower($index) == 'limit'){
-                    if($valor){
-                    $limit = "LIMIT ";
-                    $limitValor .= $valor." ";
-                    }
-                }
-               
-            }
-      
-    
-             $orderby = $orderby.$orderbyValor;
-             $limit = $limit.$limitValor;
-            
-    
-            
-            $mostrar = $this->PDO->prepare("SELECT ".$parametros." FROM ".$tabla." WHERE ".$where.$orderby.$limit.";");
-               
-            $mostrar->execute();
+        // $mostrar->execute();
 
-            return $mostrar;
+        // return $mostrar;
         }
-    }
-
-
+    
     
  
     public function ejemplo(){
+        // include_once "./App/models/condiciones.php"; 
+        // $condiciones = new Condicionales();
+   
+
+        // $condiciones->WHERE('idProduct>10');
+        // $condiciones->OR("hola");
+        // $condiciones->ORDERBY("hola");
+        // $condiciones->LIMIT("hola");
+        // $condiciones->BETWEEN("hola");
+        
        
-
-        $condiciones = array(
-            'orderby' => 'idProduct', 'desc',
-            'WHERE' => 'idProduct >10', 'price<1000',
-            'OR' => 'idProduct > 10', 
-       
-            'limit' => '0,10',
-        ); 
-
-
-
-        echo '<h1>Resultado</h1>';
-
-            /// 
-            $where_w = '';
-            $whereValor = '';
-            $or = '';
-            $orderby = '';
-            $orderValor = '';
-            $limit = '';
-            $limitValor = '';
-            $orden = '';
-            
-
-
-
-        if ($condiciones!=""){
-
-            foreach ($condiciones as $index => $value){
-
-                
-                $min= strtolower($index);
-                
-                if(strtolower($index) != 'or' && strtolower($index) != 'orderby' && strtolower($index) != 'limit' && strtolower($value) != 'asc' && strtolower($value) != 'desc'){
-                    $where_w = " WHERE ";
-                    $whereValor .= $value." AND ";
-                }
-                
-                if(strtolower($index) == 'or' && strtolower($index) != 'orderby'){
-                    if($index!='' ){
-                        $or .= ' OR '.$value.' ';
-                    }
-                }
-            
-            
-                if(strtolower($index) == 'orderby'){
-                    if($value){
-                    $orderby = " ORDER BY ";
-                    $orderValor .= $value." ";
-                    }
-                }
-            
-                if(strtolower($index) == 'limit'){
-                    if($value){
-                    $limit = "LIMIT ";
-                    $limitValor .= $value." ";
-                    }
-                }
-            
-                if(strtolower($value) == 'asc'){
-                    $orden = ' ASC ';
-                }elseif(strtolower($value) == 'desc'){
-                    $orden = ' DESC ';
-                }
-            }
-            
-
-            $where_ = substr($whereValor, 0, -4);
-            $where_end  = $where_w.$where_.$or;
-           
-            $orderby = $orderby.$orderValor.$orden;
-            $limit = $limit.$limitValor;
-            $table = 'productos';
-
-
-            $datos = [
-                'idProduct',
-                'codeProduct',
-                'nameProduct',
-                'descProduct',
-                'price',
-                'stock'
-            ];
-
-            $parametros='*';
-
-            if (is_array($datos))
-            {
-                $parametros = '';
-                if($datos[0] != "*")
-                {
-    
-                    foreach ($datos as $columna)
-                    {
-                        $parametros .= "`" . $columna . "`, ";
-                    }
-    
-                    $parametros  = substr($parametros, 0, (strlen($parametros)-2));
-                }
-
-
-
-                //$this->PDO->prepare
-            $mostrar = ("SELECT ".$parametros." FROM ".$table.$where_end.$orderby.$limit.";");
-
-            print_r($mostrar);
-
-        }       
 
     
     }
     }
-}
+
 
 ?>
