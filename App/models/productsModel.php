@@ -52,78 +52,7 @@ class ProductsModel
         $table='productos';
         $this->MODELS->insertGeneric($table, $datos);
     }
-
-
-
-
-    public function show($idProduct)
-    {
-        
-        $datos = [
-            'idProduct',
-            'codeProduct',
-            'nameProduct',
-            'descProduct',
-            'price',
-            'stock'
-        ];
-
-        $condiciones = [
-            'WHERE' => 'idProduct = '.$idProduct,
-            'WHERE' => 'idProduct = '.$idProduct,
-        ];
-
-        $limit = [
-            'LIMIT' => ''
-        ];
-
-        $orderBy = [
-            'idProduct' => 'ASC'
-        ];
-       
-
-        
-
-        //showGeneric('productos', $datos, $condiciones);
-
-        // jsonReturn(); 
-        $mostrar = $this->MODELS->showGeneric('productos', $datos, $condiciones);
-
-        return $mostrar->fetch();
-    }
-
-
     
-    public function update($idProduct,$codeProduct,$nameProduct,$descProduct,$price,$stock)
-    {    
-        $datos = 
-        array(
-            'idProduct'           => $idProduct,
-            'codeProduct'         => $codeProduct,
-            'nameProduct'         => $nameProduct,
-            'descProduct'         => $descProduct,
-            'price'               => $price,
-            'stock'               => $stock
-        );
-
-        
-        $this->MODELS->updateGeneric('productos', $datos, 'idProduct', $idProduct);
-
-        return $idProduct; 
-    }
-
-
-    public function delete($idProduct)
-    {
-        $datos = 
-        array(
-            'status'    => 0
-        );
-        
-        $this->MODELS->updateGeneric('productos', $datos,'idProduct', $idProduct);
-
-        return true;
-    }
 
            
                

@@ -234,6 +234,11 @@ switch ($vista) {
         include "./Public/views/login/dataLogin.php";
         break;
 
+        case "productos_":
+            include "./Public/views/productos/products.php";
+            
+            break;
+
 
         case "condiciones":
             include "./App/models/condiciones.php";
@@ -241,13 +246,7 @@ switch ($vista) {
 
         case "ejemplo":
             require_once "./App/models/Models.php";
-            $obj5 = new Models();
-            $resultadosPorPagina = 5;
-            $params = 'nomina,nombre,apellido,genero,departamento,puesto,status';
-            $tabla = 'usuarios';
-            $where = 'status=1';
-            $page = 1;
-            $resultado = $obj5->ejemplo($page,$params,$resultadosPorPagina,$tabla,$where);
+     
 
             
             include "./ejemplo.php";

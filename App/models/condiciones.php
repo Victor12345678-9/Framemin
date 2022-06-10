@@ -16,13 +16,13 @@ class Condicionales {
     private $update;
     private $table;
     private $delete;
-          
-
+    private $xd;
     
     public function __construct(){
                     
-    
-
+  
+        require_once (MODELS_PATH."Models.php");
+        $this->MODELS = new Models();
 
     }
 
@@ -50,6 +50,7 @@ class Condicionales {
         function where($where=[]){
            
             $whereValor='';
+            
             foreach($where as $value){
                 
                 $where_w = " WHERE ";
@@ -189,7 +190,6 @@ class Condicionales {
             return $this;
 
 
-
         }
 
 
@@ -197,11 +197,17 @@ class Condicionales {
         public function run (){
 
 
+            require_once (MODELS_PATH."Models.php");
+            $this->MODELS = new Models();
+
             switch ($this->indentific){
 
 
                 case 1:
-                         echo $this->select.$this->where.$this->count.$this->orWhere.$this->orderBy.$this->limit;
+                         $sql_end= $this->select.$this->where.$this->count.$this->orWhere.$this->orderBy.$this->limit;
+                        $resultado= $this->MODELS->execute($sql_end);
+
+                         return $resultado;
                     break;
 
                 case 2:
@@ -214,14 +220,17 @@ class Condicionales {
 
                 case 3:
 
-                        echo $this->update.$this->where.$this->limit;
+                        $sql_end = $this->update.$this->where.$this->limit;
+                        print($sql_end);
+                        $this->MODELS->execute($sql_end);
 
-                    break;
+                       
+                break;
 
                 case 4:
-
-                    echo $this->delete.$this->where;
-                        break;
+                    $sql_end=  $this->delete.$this->where;
+                    
+                break;
 
 
             }
@@ -232,27 +241,30 @@ class Condicionales {
 
 
 }
+        //     $condicionales = new Condicionales();
+    
+        
+        //            $idProduct=2;
 
-        $condicionales = new Condicionales();   
-
-        //------------SEELECT------------
-        //  $condicionales->select(['idProduct'],'productos');
-        //  $condicionales->where(['idProduct>10','stock>10','price=100'],'usuarios');
-        //  $condicionales->orWhere(['nameProduct=cocaCola']);
-     
-        //  $condicionales->run();
+        //   $codeProduct='1';
+        //   $nameProduct='1';
+        //   $descProduct='1';
+        //   $price='1';
+        //   $stock='1';
+        //        $condicionales->select(['nameProduct,descProduct,price,stock'],'productos');
+          
+        //          $condicionales->where(['idProduct='.$idProduct]);
+        //          $condicionales-> run();
   
-        //  $condicionales->update(['idProduct' => '01'],'productos',);
-        //  $condicionales->where(['idProduct=1']);
-        //  $condicionales->limit(['1']);
-        //  $condicionales->run();
+  
+         
 
         //------------DELETE------------
-
-        // $condicionales->delete(['idProduct'],'productos')->where(['idProduct=1']);
-        // $condicionales->run();
+       /* $condicionales = new Condicionales();
+          $condicionales->delete(['idProduct'],'productos')->where(['idProduct=1']);
+          $condicionales->run();
       
-      
+      */
     
        
 

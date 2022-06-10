@@ -77,83 +77,68 @@ class Models
 
 
 
-    public function insertGeneric($table, $datos)
-    {
-        if (is_array($datos))
-        {
+    // public function insertGeneric($table, $datos)
+    // {
+    //     if (is_array($datos))
+    //     {
     
-            $insert_query   = 'INSERT INTO `'.$table.'` SET ';
+    //         $insert_query   = 'INSERT INTO `'.$table.'` SET ';
             
-            foreach ($datos as $columna => $value)
-            {
-                if($value != "")
-                {
-                    $insert_query .= "`" . $columna . "` = '" . $value . "', ";
-                }
-            }
+    //         foreach ($datos as $columna => $value)
+    //         {
+    //             if($value != "")
+    //             {
+    //                 $insert_query .= "`" . $columna . "` = '" . $value . "', ";
+    //             }
+    //         }
 
         
-            $insert_query   = substr_replace($insert_query, '', -2) . ';';
+    //         $insert_query   = substr_replace($insert_query, '', -2) . ';';
             
-            $this->PDO->query($insert_query);
+    //         $this->PDO->query($insert_query);
             
-            // last_id
-            $last_id  = $this->PDO->lastInsertId();
+    //         // last_id
+    //         $last_id  = $this->PDO->lastInsertId();
             
-            return $last_id;
-        }
-    }
+    //         return $last_id;
+    //     }
+    // }
 
 
-    public function updateGeneric($tabla, $datos, $id_columna, $id)
-    {
-        if (is_array($datos))
-        {
+    // public function updateGeneric($tabla, $datos, $id_columna, $id)
+    // {
+    //     if (is_array($datos))
+    //     {
     
-            $update_query   = 'UPDATE `'.$tabla.'` SET ';
+    //         $update_query   = 'UPDATE `'.$tabla.'` SET ';
             
-            foreach ($datos as $columna => $value)
-            {
-                if($value != "")
-                {
-                    $update_query .= "`" . $columna . "` = '" . $value . "', ";
-                }
-            }
+    //         foreach ($datos as $columna => $value)
+    //         {
+    //             if($value != "")
+    //             {
+    //                 $update_query .= "`" . $columna . "` = '" . $value . "', ";
+    //             }
+    //         }
         
-            $update_query   = substr_replace($update_query, '', -2) . '';
+    //         $update_query   = substr_replace($update_query, '', -2) . '';
 
-            $update_query_ = $update_query.' WHERE '.$id_columna.' = '.$id.';';
-            $this->PDO->query($update_query_);
+    //         $update_query_ = $update_query.' WHERE '.$id_columna.' = '.$id.';';
+    //         $this->PDO->query($update_query_);
                             
-            return true;
-        }
-    }
+    //         return true;
+    //     }
+    // }
 
 
-    public function showGeneric($tabla, $datos, $condiciones)
-    {
-
-            
-        // $mostrar = $this->PDO->prepare("SELECT ".$parametros." FROM ".$tabla." WHERE ".$where.$orderby.$limit.";");
-            
-        // $mostrar->execute();
-
-        // return $mostrar;
-        }
-    
+   
     
  
-    public function ejemplo(){
-        // include_once "./App/models/condiciones.php"; 
-        // $condiciones = new Condicionales();
-   
+    public function execute($sql_end){
 
-        // $condiciones->WHERE('idProduct>10');
-        // $condiciones->OR("hola");
-        // $condiciones->ORDERBY("hola");
-        // $condiciones->LIMIT("hola");
-        // $condiciones->BETWEEN("hola");
-        
+        $query = $this->PDO->prepare("$sql_end;");
+        $query->execute();
+
+        return $query->fetch();
        
 
     

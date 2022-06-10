@@ -8,11 +8,16 @@ class ProductsController
     
     private $MODEL;
 
+
     public function __construct()
     {
         require_once (MODELS_PATH."productsModel.php");
         $this->MODEL = new ProductsModel();
-        
+
+        require_once (MODELS_PATH."condiciones.php");
+        $this->CLAUSULAS = new Condicionales();
+
+    
     }
    
 
@@ -103,33 +108,47 @@ class ProductsController
     // }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    
-     public function insertProduct($codeProduct,$nameProduct,$descProduct,$price,$stock){
+    //  public function insertProduct($codeProduct,$nameProduct,$descProduct,$price,$stock){
         
-        $id=$this->MODEL->insert($codeProduct,$nameProduct,$descProduct,$price,$stock);
+    //     $id=$this->MODEL->insert($codeProduct,$nameProduct,$descProduct,$price,$stock);
         
 
-    // //  return header('Location: '.HTTP_.ROOT_PATH_CORE.'/usersView');
-     }
+    // // //  return header('Location: '.HTTP_.ROOT_PATH_CORE.'/usersView');
+    //  }
 
 
-     public function showProduct($idProduct){
+      public function showProduct($idProduct){
          
-         return $this->MODEL->show($idProduct);
+        $condicionales=$this->CLAUSULAS;
+        $condicionales->select(['idProduct,nameProduct,codeProduct,descProduct,price,stock'],'productos');
+        $condicionales->where(['idProduct='.$idProduct]);
+        $resultado =  $condicionales-> run();
 
-    }
+
+        return $resultado;
+
+     }
 
   
     public function updateProduct($idProduct,$codeProduct,$nameProduct,$descProduct,$price,$stock){
 
       
+        $condicionales=$this->CLAUSULAS;
 
-       $id=$this->MODEL->update($idProduct,$codeProduct,$nameProduct,$descProduct,$price,$stock);
+        $condicionales->update(['nameProduct' => $nameProduct,'codeProduct' => $codeProduct,'descProduct' => $descProduct,'price' => $price,'stock' => $stock],'productos');
+        $condicionales->where(['idProduct='.$idProduct]);
+        $condicionales->run();
        
-       return header('Location: '.HTTP_.ROOT_PATH_CORE.'/productos/_');
+       return header('Location: '.HTTP_.ROOT_PATH_CORE.'/productos_');
     }
 
      public function destroyProduct($idProduct){
-         $this->MODEL->delete($idProduct);
+
+
+        $condicionales=$this->CLAUSULAS;
+        $this->CLAUSULAS->update(['status'=> '0'],'productos')->where(['idProduct='.$idProduct]);
+        $condicionales->run();
+
          return header('Location: '.HTTP_.ROOT_PATH_CORE.'/productos');
      }
 
