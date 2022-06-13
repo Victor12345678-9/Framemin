@@ -246,6 +246,12 @@ switch ($vista) {
 
         case "ejemplo":
             require_once "./App/models/Models.php";
+
+
+        case "pruebas":
+                include "./Public/views/admin.php";
+                break;
+    
      
 
             

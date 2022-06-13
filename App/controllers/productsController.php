@@ -14,15 +14,23 @@ class ProductsController
         require_once (MODELS_PATH."productsModel.php");
         $this->MODEL = new ProductsModel();
 
-        require_once (MODELS_PATH."condiciones.php");
-        $this->CLAUSULAS = new Condicionales();
+        //  require_once (MODELS_PATH."condiciones.php");
+        //  $this->CLAUSULAS = new Condicionales();
 
     
     }
    
 
+
+
+    /*   $condicionales=$this->CLAUSULAS;
+        $condicionales->select(['idProduct,nameProduct,codeProduct,descProduct,price,stock'],'productos');
+        $condicionales->where(['idProduct='.$idProduct]);
+        $resultado =  $condicionales-> run();
+        */
     public function consultaProductos($buscar,$page=1,$resultadosPorPagina = 5)
-{
+{   
+    
     $params = 'idProduct,codeProduct,nameProduct,descProduct,price,stock,status';
     $table = 'productos';
     $where = 'status=1';
@@ -124,7 +132,7 @@ class ProductsController
         $condicionales->where(['idProduct='.$idProduct]);
         $resultado =  $condicionales-> run();
 
-
+            
         return $resultado;
 
      }
@@ -134,7 +142,6 @@ class ProductsController
 
       
         $condicionales=$this->CLAUSULAS;
-
         $condicionales->update(['nameProduct' => $nameProduct,'codeProduct' => $codeProduct,'descProduct' => $descProduct,'price' => $price,'stock' => $stock],'productos');
         $condicionales->where(['idProduct='.$idProduct]);
         $condicionales->run();

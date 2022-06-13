@@ -18,8 +18,6 @@ class Models
      
        
     }
-
-
     public function indexGeneric($page,$resultadosPorPagina,$params,$table,$where)
     { 
         $offset = ($page - 1) * $resultadosPorPagina;
@@ -77,73 +75,16 @@ class Models
 
 
 
-    // public function insertGeneric($table, $datos)
-    // {
-    //     if (is_array($datos))
-    //     {
-    
-    //         $insert_query   = 'INSERT INTO `'.$table.'` SET ';
-            
-    //         foreach ($datos as $columna => $value)
-    //         {
-    //             if($value != "")
-    //             {
-    //                 $insert_query .= "`" . $columna . "` = '" . $value . "', ";
-    //             }
-    //         }
 
+    public function execute($sql_end){  
         
-    //         $insert_query   = substr_replace($insert_query, '', -2) . ';';
-            
-    //         $this->PDO->query($insert_query);
-            
-    //         // last_id
-    //         $last_id  = $this->PDO->lastInsertId();
-            
-    //         return $last_id;
-    //     }
-    // }
-
-
-    // public function updateGeneric($tabla, $datos, $id_columna, $id)
-    // {
-    //     if (is_array($datos))
-    //     {
-    
-    //         $update_query   = 'UPDATE `'.$tabla.'` SET ';
-            
-    //         foreach ($datos as $columna => $value)
-    //         {
-    //             if($value != "")
-    //             {
-    //                 $update_query .= "`" . $columna . "` = '" . $value . "', ";
-    //             }
-    //         }
-        
-    //         $update_query   = substr_replace($update_query, '', -2) . '';
-
-    //         $update_query_ = $update_query.' WHERE '.$id_columna.' = '.$id.';';
-    //         $this->PDO->query($update_query_);
-                            
-    //         return true;
-    //     }
-    // }
-
-
-   
-    
- 
-    public function execute($sql_end){
-
         $query = $this->PDO->prepare("$sql_end;");
         $query->execute();
-
+       
         return $query->fetch();
        
-
-    
     }
-    }
+}
 
 
 ?>
