@@ -1,90 +1,24 @@
 <?php
 
-require_once "./Config/constant/rutes.php"; 
-
+require_once "./Config/routes/rutes.php";
 
 class Models
 {
     private $PDO;
-   
     
     public function __construct()
     {
         require_once (CONEXION_PATH."conexion.php");
         $con = new db();
         $this->PDO=$con->conexion();
-
-                
-     
-       
-    }
-    public function indexGeneric($page,$resultadosPorPagina,$params,$table,$where)
-    { 
-        $offset = ($page - 1) * $resultadosPorPagina;
-
-        $sql = "SELECT $params FROM ".$table." WHERE $where LIMIT $offset,$resultadosPorPagina";
-
-        $sql_count = "SELECT COUNT(status) AS conteo FROM ".$table." WHERE $where ";
-    
-        $sql_conteo=$this->PDO->query($sql_count);
-        $conteo=$sql_conteo->fetch(PDO::FETCH_ASSOC);
-        $conteo_end=$conteo['conteo'];
-
-        $query = array();
-        $query['query'] = $this->PDO->query($sql);
-        $query['total_paginas'] = $conteo_end;
-    
-            
-        return $query;
     }
 
-    public function filtrosGeneric($buscar,$page,$params,$resultadosPorPagina,$table,$array_busqueda,$where)
-    {
-        $offset = ($page - 1) * $resultadosPorPagina;
-        $q = $buscar;
-
-        /////////////////
-        $sql = "SELECT $params FROM ".$table." WHERE (";
-        foreach ($array_busqueda as $columna)
-        {
-            $sql .= $columna." LIKE '%".$q."%'  OR ";
-        }
-        $sql  = substr($sql, 0, (strlen($sql)-4));
-        $sql .= ") AND $where LIMIT $offset,$resultadosPorPagina";
-
-        /////////////////
-        $sql_conteo = "SELECT $params FROM ".$table." WHERE (";
-        foreach ($array_busqueda as $columna)
-        {
-            $sql_conteo .= $columna." LIKE '%".$q."%'  OR ";
-        }
-        $sql_conteo  = substr($sql_conteo, 0, (strlen($sql_conteo)-4));
-        $sql_conteo .= ") AND $where;";
-        /////////////////
-
-        $conteo = $this->PDO->query($sql_conteo);
-        $conteo_end = $conteo->rowCount();
-        $total_pages = ceil($conteo_end/$resultadosPorPagina);
-
-        $query = array();
-        $query['query'] = $this->PDO->query($sql);
-        $query['total_paginas'] = $total_pages;
-
-        return $query;
-    }
-
-
-
-
-    public function execute($sql_end){  
-        
-        $query = $this->PDO->prepare("$sql_end;");
+    public function execute($sql_end)
+    {  
+        $query = $this->PDO->prepare($sql_end.";");
         $query->execute();
-       
-        return $query->fetch();
-       
+
+        return $query;
     }
+   
 }
-
-
-?>

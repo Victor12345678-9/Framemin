@@ -1,6 +1,6 @@
 <?php
 
-require_once "./Config/constant/rutes.php";
+require_once "./Config/routes/rutes.php";
 
 
 class UsersController{
@@ -18,33 +18,24 @@ class UsersController{
    
    
 ////////////////////////////////////////////////////////////////////////
-public function consultaUsuarios($buscar,$page=1)
-{
-    $resultadosPorPagina = 5;
-    $params= 'id,nombre,nomina,apellido,genero,departamento,puesto';
-    $table = 'usuarios';
-    $where = 'status=1';
+    public function consultaUsuarios($buscar,$page = 1,$resultadosPorPagina = 5)
+    {
 
     
     if(!$buscar)
     {
-       
-        $query  = $this->MODEL->index($page,$params,$resultadosPorPagina,$table,$where);
-        
+        $query  = $this->MODEL->index($page,$resultadosPorPagina);
     }
     else
     {
-        
-        $query  = $this->MODEL->filtros($buscar,$page,$params,$resultadosPorPagina,$table,$where);
-        
+        $query  = $this->MODEL->filtros($buscar,$page,$resultadosPorPagina);
     }
 
     
     if ($query['total_paginas'] > 0)
     {
         $tabla = '';
-        $tabla .= '';
-
+  
         while($row = $query['query']->fetch())
         {
 
@@ -52,7 +43,7 @@ public function consultaUsuarios($buscar,$page=1)
             <td>'.$row['nomina'].'</td>
             <td>'.$row['nombre'].' '.$row['apellido'].'</td>
             <td>'.$row['genero'].'</td>
-            <td>'.$row['departamento'].'</td>
+            <td>'.$query['depas'][$row['departamento']].'</td>
             <td>'.$row['puesto'].'</td>
             <td>Activo</td>	
             <td>
@@ -70,16 +61,19 @@ public function consultaUsuarios($buscar,$page=1)
     }
     else 
     {
-    $tabla ='<tr>
-    <td colspan=7>
+        $tabla = '<tr>
     
-    No se encontraron coincidencias con sus criterios de búsqueda.
-    </td>
+        <td colspan=7>
+        No se encontraron coincidencias con sus criterios de búsqueda.
+        
+        
+        </td>
     
     
-    </tr>
-  ';
+    </tr>';
+    
     }
+
     $obj2 = new Helpers();
     
     $total_pages = ceil($query['total_paginas']/$resultadosPorPagina);

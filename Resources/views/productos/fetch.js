@@ -31,7 +31,6 @@ formulario.addEventListener("submit", function(e) {
 
             } else {
                 setTimeout(function() {
-
                     mensajes.innerHTML =
                         '<div class="alert alert-success alert-dismissible fade show" role="alert"> Datos Guardados! <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
                     $("mensajes");

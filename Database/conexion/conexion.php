@@ -1,7 +1,7 @@
 <?php
   
-  require_once "./Config/constant/rutes.php";
-  require_once (CONFIG_PATH."config/config.php");
+  require_once "./Config/routes/rutes.php";
+  require_once (CONFIG_PATH."bd/bd.php");
 
     class db{
 

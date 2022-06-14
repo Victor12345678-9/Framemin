@@ -16,7 +16,6 @@ if (w == "_") {
         showConfirmButton: false,
         timer: 1500
     })
-
 }
 $(document).on('click', '#delete_product', function(e) {
     var ProductId = $(this).data('id');

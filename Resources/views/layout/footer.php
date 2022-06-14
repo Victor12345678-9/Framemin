@@ -158,30 +158,30 @@
         <div class="rightbar-overlay"></div>
 
         <!-- JAVASCRIPT -->
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/jquery/jquery.min.js"></script>
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/metismenu/metisMenu.min.js"></script>
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/simplebar/simplebar.min.js"></script>
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/node-waves/waves.min.js"></script>
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/feather-icons/feather.min.js"></script>
+        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/vendor/jquery/jquery.min.js"></script>
+        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/vendor/metismenu/metisMenu.min.js"></script>
+        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/vendor/simplebar/simplebar.min.js"></script>
+        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/vendor/node-waves/waves.min.js"></script>
+        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/vendor/feather-icons/feather.min.js"></script>
         <!-- pace js -->
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/pace-js/pace.min.js"></script>
+        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/vendor/pace-js/pace.min.js"></script>
 
         <!-- apexcharts -->
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/apexcharts/apexcharts.min.js"></script>
+        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/vendor/apexcharts/apexcharts.min.js"></script>
 
         <!-- Plugins js-->
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/sweetalert2/sweetalert2.min.js"></script>
+        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/vendor/sweetalert2/sweetalert2.min.js"></script>
 
         <!-- Sweet alert init js-->
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/js/pages/sweetalert.init.js"></script>
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/vendor/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
+        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/assets/js/pages/sweetalert.init.js"></script>
+        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/vendor/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
      
         <!-- dashboard init -->
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/js/pages/dashboard.init.js"></script>
+        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/assets/js/pages/dashboard.init.js"></script>
 
-        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/js/app.js"></script>
+        <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/assets/js/app.js"></script>
    
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script> 

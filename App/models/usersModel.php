@@ -1,7 +1,6 @@
 <?php
-require_once "./Config/constant/rutes.php";    
+require_once "./Config/routes/rutes.php"; 
 require_once (CONEXION_PATH."conexion.php");
-require_once (MODELS_PATH."Models.php");
 
 class UsersModel
 {
@@ -11,26 +10,66 @@ class UsersModel
     {
         $con = new db();
         $this->PDO=$con->conexion(); 
+
+        require_once (MODELS_PATH."Models.php");
         $this->MODELS = new Models();
+
+        require_once (MODELS_PATH."condiciones.php");
+        $this->CONDICIONALES = new Condicionales();
     }
 
 
 
-    public function index($page,$params,$resultadosPorPagina,$table,$where)
+    public function index($page,$resultadosPorPagina)
     { 
-        $query = $this->MODELS->indexGeneric($page,$params,$resultadosPorPagina,$table,$where);
-        $query['depas'] = $this->array_depa();
+        $offset = ($page - 1) * $resultadosPorPagina;
+  
+        $condicionales = new Condicionales();
+        $condicionales->select(['id','nomina','nombre','apellido','genero','departamento','puesto'],'usuarios');
+        $condicionales->where(['status=1']);
+        $condicionales->limit([$offset.','.$resultadosPorPagina]);
+        $sql = $condicionales->run();
 
+        $condicionales_2 = new Condicionales();
+        $condicionales_2->select_count(['status'],'usuarios');
+        $condicionales_2->where(['status=1']);
+        $sql_count = $condicionales_2->run();
+
+        $sql_conteo = $sql_count;
+        $conteo = $sql_conteo->fetch(PDO::FETCH_ASSOC);
+        $conteo_end = $conteo['conteo'];
+
+        $query = array();
+        $query['query'] = $sql;
+        $query['total_paginas'] = $conteo_end;
+
+        
+        $query['depas'] = $this->array_depa();
         return $query;
     }
 
 
     public function filtros($buscar,$page,$resultadosPorPagina)
     {
-        $array_busqueda = array(
-        'nomina','nombre','apellido','puesto'
-        );
-        $query = $this->MODELS->filtrosGeneric($buscar,$page,$resultadosPorPagina,'usuarios',$array_busqueda);
+        $offset = ($page - 1) * $resultadosPorPagina;
+
+        $condicionales = new Condicionales();
+        $condicionales->like(['id','nomina','nombre','apellido','genero','departamento','puesto'],['nomina','nombre','apellido','puesto'],$buscar,'status=1','usuarios');
+        $condicionales->limit([$offset.','.$resultadosPorPagina]);
+        $sql = $condicionales->run();
+
+        $condicionales_2 = new Condicionales();
+        $condicionales_2->like_conteo(['status'],['nomina','nombre','apellido','puesto'],$buscar,'status=1','usuarios');
+        $sql_count = $condicionales_2->run();
+
+        $sql_conteo = $sql_count;
+        $conteo = $sql_conteo->fetch(PDO::FETCH_ASSOC);
+        $conteo_end = $conteo['conteo'];
+
+        $query = array();
+        $query['query'] = $sql;
+        $query['total_paginas'] = $conteo_end;
+
         $query['depas'] = $this->array_depa();
 
         return $query;
@@ -41,8 +80,9 @@ class UsersModel
 
     public function insert($nombre,$apellido,$fechaNacimiento,$lugarNacimiento,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nss,$nomina,$departamento,$puesto,$fechaContratacion)
     {
-        $datos = 
-        array(
+        $condicionales = new Condicionales();
+        $condicionales->insert(
+        [
             'nombre'               => $nombre,
             'apellido'             => $apellido,
             'fechaNacimiento'      => $fechaNacimiento,
@@ -65,17 +105,16 @@ class UsersModel
             'puesto'               => $puesto,
             'fechaContratacion'    => $fechaContratacion,
             'status'               => 1
-        );
-        $insertar =  $this->MODELS->insertGeneric('usuarios', $datos);
-
-        return $insertar;
+        ],'usuarios');
+        $mostrar = $condicionales->run();
     }
 
     
     public function update($id,$nombre,$apellido,$fechaNacimiento,$lugarNacimiento,$genero,$nacionalidad,$estadoCivil,$rfc,$curp,$numeroCartilla,$numeroTelefonico,$correo,$direccion,$municipio,$codigoPostal,$empresa,$nss,$nomina,$departamento,$puesto,$fechaContratacion)
     {
-        $datos = 
-        array(
+        $condicionales = new Condicionales();
+        $condicionales->update(
+        [
             'nombre'                => $nombre,
             'apellido'              => $apellido,
             'fechaNacimiento'       => $fechaNacimiento,
@@ -97,33 +136,30 @@ class UsersModel
             'departamento'          => $departamento,
             'puesto'                => $puesto,
             'fechaContratacion'     => $fechaContratacion
-        );
-        $this->MODELS->update_global('usuarios', $datos, 'id', $id);
+        ],'usuarios');
+
+        $condicionales->where(['id='.$id]);
+        $condicionales->run();
 
         return $id; 
     }
 
 
-
-
     public function delete($id)
     {
-        $datos = 
-        array(
-            'status'    => 0
-        );
-        $this->MODELS->update_global('usuarios', $datos,'id', $id);
-
-        return true;
+        $condicionales = new Condicionales();
+        $condicionales->update(['status' => '0'],'usuarios');
+        $condicionales->where(['id='.$id]);
+        $condicionales->run();
     }
 
 
     public function show($id)
     {
 
-        $where = 'id = '.$id;
-        $datos = 
-        array(
+        $condicionales = new Condicionales();
+        $condicionales->select(
+        [
             'id',
             'nombre',
             'fechaNacimiento',
@@ -145,9 +181,9 @@ class UsersModel
             'nss',
             'nomina',
             'fechaContratacion'
-            //'*'
-        );
-        $mostrar = $this->MODELS->select_('usuarios', $datos, $where);
+        ],'usuarios');
+        $condicionales->where(['id='.$id]);
+        $mostrar = $condicionales->run();
 
         return $mostrar->fetch();
     }
@@ -156,8 +192,36 @@ class UsersModel
 
     
 
-    
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function array_depa()
     {
         $depa_sql = "SELECT idDepartamento,nombreDepartamento FROM departamentos;";
@@ -183,44 +247,6 @@ class UsersModel
 
         return $innner->fetchAll();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // public function json_tabla()
