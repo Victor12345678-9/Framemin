@@ -1,6 +1,6 @@
 <?php
 
-include_once("./App/models/Models.php");
+include_once("../../App/models/Models.php");
 
 class Condicionales 
 {

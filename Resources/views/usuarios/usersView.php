@@ -9,9 +9,9 @@ require_once(LAYOUT_PATH."header.php");
 <body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/views/usuarios/peticion.js"></script>
+    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/views/usuarios/peticion.js"></script>
  
-    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/css/estilos.css"></script>
+    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/       /css/estilos.css"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 

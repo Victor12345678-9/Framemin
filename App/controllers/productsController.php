@@ -1,8 +1,5 @@
 <?php
 
-require_once "./Config/routes/rutes.php";
-
-
 class ProductsController
 {
     

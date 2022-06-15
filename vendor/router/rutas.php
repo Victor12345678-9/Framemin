@@ -3,14 +3,14 @@
 $datos = datos();
 $vista = $datos[0];
 
-require_once "./App/controllers/usersController.php";
-require_once "./Config/routes/rutes.php";
+require_once "./../../App/controllers/usersController.php";
+require_once "./../../Config/routes/rutes.php";
 $obj = new UsersController();
 
-require_once "./App/controllers/productsController.php";
+require_once "./../../App/controllers/productsController.php";
 $obj2 = new ProductsController();
 
-require_once "./vendor/helpers/helpers.php";
+require_once "./../../vendor/helpers/helpers.php";
 $obj3 = new Helpers();
 
 switch ($vista) {
@@ -35,7 +35,7 @@ switch ($vista) {
             $array[] = $value[1];
         }
 
-        include "./Public/views/usuarios/usersView.php";
+        include "../../Resources/views/usuarios/usersView.php";
 
         break;
 
@@ -79,7 +79,7 @@ switch ($vista) {
 
         $edad = $obj3->calculaedad($user['fechaNacimiento']);
         
-        include "./Public/views/usuarios/showUser.php";
+        include "../../Resources/views/usuarios/showUser.php";
         break;
 ///
 
@@ -108,7 +108,7 @@ switch ($vista) {
         $departamentos = $obj->showDepartamentos();
         $edad = $obj3->calculaedad($usuarios['fechaNacimiento']);
 
-        include "./Public/views/usuarios/editUser.php";
+        include "../../Resources/views/usuarios/editUser.php";
         break;
 ///
 
@@ -123,17 +123,17 @@ switch ($vista) {
 
         $obj->destroyUser($_GET['id']);
 
-        include "./Public/views/usuarios/deleteUser.php";
+        include "../../Resources/views/usuarios/deleteUser.php";
 
         break;
 ///
 
     case "updateUser":
-        include "./Public/views/usuarios/updateUser.php";
+        include "../../Resources/views/usuarios/updateUser.php";
         break;
 
         case "updateProduct":
-            include "./Resources/views/productos/updateProduct.php";
+            include "../../Resources/views/productos/updateProduct.php";
             break;
 
 ///
@@ -141,7 +141,7 @@ switch ($vista) {
 
         $departamentos = $obj->showDepartamentos();
 
-        include "./Public/views/usuarios/addUser.php";
+        include "../../Resources/views/usuarios/addUser.php";
         break;
 
 
@@ -150,12 +150,12 @@ switch ($vista) {
 
     case "addProduct":
 
-        include "./Resources/views/productos/addProducts.php";
+        include "../../Resources/views/productos/addProducts.php";
         break;
 
     case "productos":
 
-        include_once "./Resources/views/productos/products.php";
+        include_once "../../Resources/views/productos/products.php";
 
         break;
         
@@ -170,7 +170,7 @@ switch ($vista) {
             
             $obj2->destroyProduct($_GET['idProduct']);
     
-            include "./Resources/views/productos/deleteProduct.php";
+            include "../../Resources/views/productos/deleteProduct.php";
     
             break;
 
@@ -187,7 +187,7 @@ switch ($vista) {
                     
                 }
                 $product = $obj2->showProduct($_GET['idProduct']);
-                    include_once "./Resources/views/productos/showProduct.php";
+                    include_once "../../Resources/views/productos/showProduct.php";
                 break;
                 
 
@@ -200,7 +200,7 @@ switch ($vista) {
                         }
     
                         $product = $obj2->showProduct($_GET['idProduct']);
-                        include_once "./Resources/views/productos/editProduct.php";
+                        include_once "../../Resources/views/productos/editProduct.php";
                     }
                     break;
 
@@ -238,7 +238,7 @@ switch ($vista) {
 
             default:
 
-            include_once "./Public/dashboard.php";
+            include_once "../../Public/dashboard.php";
             break;
 
 

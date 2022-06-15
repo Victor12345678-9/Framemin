@@ -1,6 +1,6 @@
 <?php
 
-require_once "./Config/routes/rutes.php";
+require_once "../../Config/routes/rutes.php";
 
 class Models
 {
