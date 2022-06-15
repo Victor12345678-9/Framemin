@@ -1,6 +1,6 @@
 <?php
 
-include_once("../../App/models/Models.php");
+include_once("../../Config/routes/rutes.php");
 
 class Condicionales 
 {
@@ -18,8 +18,11 @@ class Condicionales
     
     public function __construct()
     {
-        require_once (MODELS_PATH."Models.php");
+        require_once ("../../vendor/orm/Models.php");
         $this->MODELS = new Models();
+
+        require_once (CONEXION_PATH."conexion.php");
+        $this->PDO = new db();
     }
 
     function select ($parametros=[],$tabla)
@@ -35,7 +38,7 @@ class Condicionales
             }else{
                 foreach($parametros as $columna)
                 {
-                    $params .= "`" . $columna . "`, ";
+                    $params .= "" . $columna . ", ";
                 }
             
                 $params  = substr($params, 0, (strlen($params)-2));
@@ -93,12 +96,12 @@ class Condicionales
     function select_count($condiciones=[], $tabla)
     {
         $indentific = 2;
-//////////////////////
+
         $countValor = "SELECT COUNT(".$condiciones[0].") AS conteo FROM ".$tabla." ";
 
         $this->indentific = $indentific;
         $this->select_count = $countValor;
-//////////////////////
+
         return $this;
     }
 
@@ -125,17 +128,15 @@ class Condicionales
         return $this;
     }
 
-    function limit($condiciones=[])
+    function limit($condiciones)
     {
         $limitValor ='';
 
-        foreach ($condiciones as $value){
-            if($value)
-            {
+       
                 $limit_l = "LIMIT ";
-                $limitValor .= $value." ";
-            }
-        }
+                $limitValor = $condiciones." ";
+            
+        
         $limit_ = $limit_l.$limitValor;
         $this->limit = $limit_;
 
@@ -269,9 +270,7 @@ class Condicionales
 
     public function run()
     {
-        require_once (MODELS_PATH."Models.php");
-        $this->MODELS = new Models();
-
+     
         switch ($this->indentific)
         {
             case 1:
@@ -296,7 +295,7 @@ class Condicionales
             break;
 
             case 4:
-                // $this->delete.$this->where;
+                $this->delete.$this->where;
             break;
 
             case 5:
@@ -315,10 +314,10 @@ class Condicionales
 
             case 7:
                 $sql_end = $this->insert;
-                $this->MODELS->execute($sql_end);
-                $last_id  = $this->MODELS->lastInsertId();
-
-                return $last_id;
+                $mostrar = $this->MODELS->execute($sql_end);
+                
+           
+                 return $mostrar;
             break;
         }
     }

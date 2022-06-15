@@ -11,11 +11,12 @@ class UsersModel
         $con = new db();
         $this->PDO=$con->conexion(); 
 
-        require_once (MODELS_PATH."Models.php");
+        require_once ("../../vendor/orm/Models.php");
         $this->MODELS = new Models();
 
-        require_once (MODELS_PATH."condiciones.php");
+        require_once ("../../vendor/orm/condiciones.php");
         $this->CONDICIONALES = new Condicionales();
+        
     }
 
 

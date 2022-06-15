@@ -3,8 +3,9 @@
 $datos = datos();
 $vista = $datos[0];
 
-require_once "./../../App/controllers/usersController.php";
 require_once "./../../Config/routes/rutes.php";
+require_once "./../../App/controllers/usersController.php";
+
 $obj = new UsersController();
 
 require_once "./../../App/controllers/productsController.php";
@@ -208,37 +209,28 @@ switch ($vista) {
     case "dashboard":
 
 
-        include_once "./Public/dashboard.php";
+        include_once "../../Public/index.php";
 
         break;
 
 ///
     case "insertUser":
-        include "./Public/views/usuarios/insertUser.php";
+        include "./../Resources/views/usuarios/insertUser.php";
         break;
 
         case "insertProduct":
-            include "./Public/views/productos/insertProduct.php";
+            include "../../Resources/views/productos/insertProduct.php";
            
             break;
 
-    case "login":
-        include "./Public/views/login/login.php";
-        break;
-
-    case "salir":
-        include "./Public/views/login/Salir.php";
-        break;
-
-    case "dataLogin":
-        include "./Public/views/login/dataLogin.php";
-        break;
-
-       
+   
+        case "pruebas":
+            include "../../Resources/views/admin.php";
+            break;
 
             default:
 
-            include_once "../../Public/dashboard.php";
+            include_once "../../Public/index.php";
             break;
 
 

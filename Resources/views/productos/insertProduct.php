@@ -2,7 +2,6 @@
 
 
 
-require_once("./App/controllers/productsController.php");
 $obj= new ProductsController();
  	
 
@@ -11,7 +10,6 @@ $obj= new ProductsController();
    $descProduct = $_POST['descProduct'];
    $price = $_POST['price'];
    $stock = $_POST['stock'];
-
 
    if( $codeProduct=== '' || $nameProduct=== '' || $descProduct=== '' || $price=== '' || $stock=== ''){
 

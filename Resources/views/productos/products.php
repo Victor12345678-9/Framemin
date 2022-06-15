@@ -9,13 +9,13 @@ require_once(LAYOUT_PATH."header.php");
 <body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/views/productos/peticion.js"></script>
-    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Public/css/estilos.css"></script>
+    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/App/js/products/peticion.js"></script>
+    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/assets/css/estilos.css"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <div class="main-content">
-
+    
         <div class="page-content">
             <div class="container-fluid">
 
@@ -111,7 +111,7 @@ require_once(LAYOUT_PATH."header.php");
 
     <?php   include_once (LAYOUT_PATH."footer.php")  ?>
 
-    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/helpers/alertProduct.js"></script>
+    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/vendor/helpers/alertProduct.js"></script>
 
 </body>
 

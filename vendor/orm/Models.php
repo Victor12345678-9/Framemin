@@ -2,6 +2,7 @@
 
 require_once "../../Config/routes/rutes.php";
 
+
 class Models
 {
     private $PDO;
@@ -17,8 +18,11 @@ class Models
     {  
         $query = $this->PDO->prepare($sql_end.";");
         $query->execute();
-
-        return $query;
+      
+      
+        
+          return $query;
+        
     }
    
 }

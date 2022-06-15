@@ -8,10 +8,10 @@ class ProductsModel
 
     public function __construct()
     {
-        require_once (MODELS_PATH."Models.php");
+        require_once ("../../vendor/orm/Models.php");
         $this->MODELS = new Models();
 
-        require_once (MODELS_PATH."condiciones.php");
+        require_once ("../../vendor/orm/condiciones.php");
         $this->CONDICIONALES = new Condicionales();
     }
 
@@ -23,7 +23,7 @@ class ProductsModel
         $condicionales = new Condicionales();
         $condicionales->select(['idProduct','codeProduct','nameProduct','descProduct','price','stock','status'],'productos');
         $condicionales->where(['status=1']);
-        $condicionales->limit([$offset.','.$resultadosPorPagina]);
+        $condicionales->limit($offset.','.$resultadosPorPagina);
         $sql = $condicionales->run();
 
         $condicionales_2 = new Condicionales();
@@ -49,7 +49,7 @@ class ProductsModel
 
         $condicionales = new Condicionales();
         $condicionales->like(['idProduct','codeProduct','nameProduct','descProduct','price','stock','status'],['codeProduct','nameProduct','descProduct'],$buscar,'status=1','productos');
-        $condicionales->limit([$offset.','.$resultadosPorPagina]);
+        $condicionales->limit($offset.','.$resultadosPorPagina);
         $sql = $condicionales->run();
 
         $condicionales_2 = new Condicionales();
