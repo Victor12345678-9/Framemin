@@ -15,6 +15,10 @@ class Condicionales
     private $update;
     private $table;
     private $delete;     
+    private $innerJoin;
+    private $rightJoin;
+    private $leftJoin;
+    private $between;
     
     public function __construct()
     {
@@ -26,32 +30,36 @@ class Condicionales
     }
 
     function select ($parametros=[],$tabla)
+
+
     {
-        $indentific=1;
-        if(!empty($parametros))
-        {
-/////////////////
-            $params = '';
-            if($parametros[0] == "*" or $parametros[0] == "")
-            {
-                $params .= '*';
-            }else{
-                foreach($parametros as $columna)
-                {
-                    $params .= "" . $columna . ", ";
-                }
+
+         $indentific=1;
+         if(!empty($parametros))
+         {
+ 
+             $params = '';
+             if($parametros[0] == "*" or $parametros[0] == "")
+             {
+                 $params .= '*';
+             }else{
+                 foreach($parametros as $columna)
+                 {
+                     $params .= "" . $columna . ", ";
+                 }
             
-                $params  = substr($params, 0, (strlen($params)-2));
-            }
-/////////////////
-        }
+                 $params  = substr($params, 0, (strlen($params)-2));
+             }
+ 
+         }
 
 
-        $this->parameter=$params;
-        $this->indentific=$indentific;
-        $select = "SELECT $this->parameter FROM $tabla";
-        $this->select=$select;
-        $this->table=$tabla;
+    
+         $this->parameter=$params;
+         $this->indentific=$indentific;
+         $select = "SELECT $this->parameter FROM $tabla";
+         $this->select=$select;
+         $this->table=$tabla;
 
         return $this;
             
@@ -93,15 +101,16 @@ class Condicionales
 
     
     
-    function select_count($condiciones=[], $tabla)
-    {
-        $indentific = 2;
+    function count(){
 
-        $countValor = "SELECT COUNT(".$condiciones[0].") AS conteo FROM ".$tabla." ";
-
-        $this->indentific = $indentific;
-        $this->select_count = $countValor;
-
+        $indentific=2;
+        
+        $explode= (explode(",",$this->parameter));
+        
+        $countValor='';
+        $countValor .= 'COUNT('.$explode[0].')';
+        $this->indentific=$indentific;
+        $this->count= $countValor;
         return $this;
     }
 
@@ -124,7 +133,6 @@ class Condicionales
 
         $orderby_ = $orderby_o.$orderbyValor;
         $this->orderBy= $orderby_;
-
         return $this;
     }
 
@@ -139,9 +147,54 @@ class Condicionales
         
         $limit_ = $limit_l.$limitValor;
         $this->limit = $limit_;
-
         return $this;
     }
+
+
+
+    function innerJoin($tabla)
+    {
+        
+        
+            $explode = (explode(",",$this->parameter));
+
+            $innerJoin= " INNER JOIN ".$tabla." ON ".$explode[1]. " = ".$explode[0];
+            $this->innerJoin = $innerJoin;
+        
+        return $this;
+        
+    }
+
+    function leftJoin($tabla)
+    {
+        
+        
+            
+            $explode = (explode(",",$this->parameter));
+            print_r($explode);
+            $leftJoin= " LEFT JOIN ".$tabla." ON ".$explode[1]. " = ".$explode[0];
+            $this->leftJoin = $leftJoin;
+           
+        
+       
+        return $this;
+        
+    }
+
+    function rightJoin($tabla)
+    {
+        
+       
+        $explode = (explode(",",$this->parameter));
+
+        $rightJoin= " RIGHT JOIN ".$tabla." ON ".$explode[1]. " = ".$explode[0];
+        $this->rightJoin = $rightJoin;
+
+        return $this;
+        
+    }
+
+
 
     public function update($params=[],$tabla)
     {
@@ -268,24 +321,62 @@ class Condicionales
     }  
 
 
+    public function between($columna, $rango)
+    {
+
+        if(!empty($this->select)){
+            $between =  " WHERE ".$columna." BETWEEN ".$rango[0]." AND ".$rango[1]." ";
+
+        $this->between = $between;
+
+        }else{
+            
+        echo "No Se Puede Utilizar Beetween sin select";
+
+        }
+        
+        
+        return $this;
+        
+    }   
+
+
+
     public function run()
     {
      
         switch ($this->indentific)
         {
             case 1:
-                $sql_end = $this->select.$this->where.$this->count.$this->orWhere.$this->orderBy.$this->limit;
-                $mostrar = $this->MODELS->execute($sql_end);
-
-                return $mostrar;
+                 $sql_end = $this->select.$this->innerJoin.$this->leftJoin.$this->rightJoin.$this->between.$this->where.$this->count.$this->orWhere.$this->orderBy.$this->limit;
+                 
+                 $mostrar = $this->MODELS->execute($sql_end);
+                 
+                 return $mostrar;
             break;
 
             case 2:
-                $sql_end = $this->select_count.$this->where;
-                $conteo = $this->MODELS->execute($sql_end);
 
-                return $conteo;
-            break;
+
+                if (!empty($this->select)){
+
+                   
+                    $count=substr(($this->select.$this->where.$this->count),0,7);
+                   
+                    $count_end="$count $this->count FROM $this->table $this->where ";
+                    // print_r($count_end);
+                    $resultado  = $this->MODELS->execute($count_end);
+
+                    
+                  
+                }else{
+                    echo "No se puede utilizar count sin Select";
+                }
+
+                return $resultado;
+
+                break;
+
 
             case 3:
 

@@ -16,12 +16,18 @@ class Models
 
     public function execute($sql_end)
     {  
-        $query = $this->PDO->prepare($sql_end.";");
+
+        try{
+
+        
+        $query = $this->PDO->prepare($sql_end);
         $query->execute();
-      
-      
         
           return $query;
+        }catch(Exception $ex){
+            echo "Error al Realizar La consulta Con Los Parametros Establecidos";
+
+        }
         
     }
    

@@ -98,10 +98,19 @@ class ProductsController
    
      public function insertProduct($codeProduct,$nameProduct,$descProduct,$price,$stock){
         
-        $id=$this->MODEL->insert($codeProduct,$nameProduct,$descProduct,$price,$stock);
-        
 
-    // //  return header('Location: '.HTTP_.ROOT_PATH_CORE.'/usersView');
+
+        // $arrayDatos = [
+
+        //     "codeProduct" => $array=['>10'],
+        //     "nameProduct" => $array=['>10','exist'],
+
+        // ];
+
+        // validacion($arrayDatos);
+
+
+        $id=$this->MODEL->insert($codeProduct,$nameProduct,$descProduct,$price,$stock);
      }
 
 

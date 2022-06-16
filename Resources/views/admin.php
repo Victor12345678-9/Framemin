@@ -128,9 +128,13 @@ require_once ("../../vendor/orm/condiciones.php");
         public function index(){
 
                 $sql = new Condicionales();
-                $sql->select(['idProduct,codeProduct,nameProduct,price,status'],'productos')->where(['price<1000'])->limit('0,10');
+                
+               //between
+                // $sql->select(['price'],'productos')->between('price',['15','50']);
+             
+                $sql->select(['usuarios.departamento,departamentos.idDepartamento'],'departamentos')->rightJoin("usuarios");
                 $resultado = $sql->run(); 
-
+                
                 return $resultado;
         }
 
@@ -154,15 +158,15 @@ require_once ("../../vendor/orm/condiciones.php");
       }
 
 
-        public function show(){
+      //   public function show(){
 
-         $sql = new Condicionales();
-         $codeProduct=23459871;
+      //    $sql = new Condicionales();
+      //    $codeProduct=23459871;
          
-         $sql->select(['idProduct,codeProduct,nameProduct,price,status'],'productos')->where(['codeProduct='.$codeProduct])->limit('1,10');
-         $resultado = $sql->run(); 
-         return $resultado;
-      }
+      //    $sql->select(['idProduct,codeProduct,nameProduct,price,status'],'productos')->where(['codeProduct='.$codeProduct])->limit('1,10');
+      //    $resultado = $sql->run(); 
+      //    return $resultado;
+      // }
 
       
       public function destroy(){
@@ -206,8 +210,10 @@ require_once ("../../vendor/orm/condiciones.php");
          <?php
 
          $obj= new Productos();
-         $resultado = $obj->create();
-         $resultado = $obj->show();
+         $resultado = $obj->index();
+
+         print_r($resultado);
+       
          
          
 
@@ -233,7 +239,7 @@ require_once ("../../vendor/orm/condiciones.php");
 
 </head>
 
-<body>
+<!-- <body>
     <br><br>
     <br><br>
     <br><br>
@@ -242,11 +248,9 @@ require_once ("../../vendor/orm/condiciones.php");
     <center>
         <table border="1">
             <tr>
-                <th>ID</th>
-                <th>Codigo</th>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>status</th>
+                <th>Departamento</th>
+                <th>ID Departamento</th>
+               
                 
                 
             </tr>
@@ -254,11 +258,9 @@ require_once ("../../vendor/orm/condiciones.php");
             <?php foreach($resultado  as $valor){ ?>
               
             <tr>
-                <td><?php echo $valor['idProduct'] ?></td>
-                <td><?php echo $valor['codeProduct'] ?></td>
-                <td><?php echo $valor['nameProduct'] ?></td>
-                <td><?php echo $valor['price'] ?></td>
-                <td><?php echo $valor['status'] ?></td>
+                <td><?php echo $valor['departamento'] ?></td>
+                <td><?php echo $valor['idDepartamento'] ?></td>
+              
                
                
                
@@ -270,8 +272,8 @@ require_once ("../../vendor/orm/condiciones.php");
 
 
         </table>
-    </center>
+    </center> 
 
-</body>
+</body> -->
 
 </html>
