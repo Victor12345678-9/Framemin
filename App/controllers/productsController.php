@@ -16,10 +16,9 @@ class ProductsController
     public function consultaProductos($buscar,$page = 1,$resultadosPorPagina = 5)
     {
    
-
     if(!$buscar)
     {
-        $query  = $this->MODEL->index($page,$resultadosPorPagina);
+        $query  = $this->MODEL->index($page,$resultadosPorPagina);  
     }
     else
     {
@@ -72,13 +71,12 @@ class ProductsController
     }
 
   
-    $obj2 = new Helpers();
-
-
+    
+    $obj2 = new Paginacion();
+    
     $total_pages = ceil($query['total_paginas']/$resultadosPorPagina);
 
     $paginacion = $obj2->paginacion($page, $total_pages, $buscar);
-
     $dato = array();
     $dato['tabla'][] = $tabla;
     $dato['paginacion'][] = $paginacion; 
@@ -100,14 +98,6 @@ class ProductsController
         
 
 
-        // $arrayDatos = [
-
-        //     "codeProduct" => $array=['>10'],
-        //     "nameProduct" => $array=['>10','exist'],
-
-        // ];
-
-        // validacion($arrayDatos);
 
 
         $id=$this->MODEL->insert($codeProduct,$nameProduct,$descProduct,$price,$stock);

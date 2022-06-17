@@ -14,10 +14,7 @@ class UsersController{
         $this->MODEL = new UsersModel();
 
     }
-
-   
-   
-////////////////////////////////////////////////////////////////////////
+                    //index
     public function consultaUsuarios($buscar,$page = 1,$resultadosPorPagina = 5)
     {
 
@@ -73,16 +70,18 @@ class UsersController{
     </tr>';
     
     }
-
-    $obj2 = new Helpers();
+    $obj2 = new Paginacion();
     
     $total_pages = ceil($query['total_paginas']/$resultadosPorPagina);
 
     $paginacion = $obj2->paginacion($page, $total_pages, $buscar);
     $dato = array();
-    $dato['tabla'][] = $tabla;
+ 
     $dato['paginacion'][] = $paginacion; 
 
+   
+   
+    $dato['tabla'][] = $tabla;
     return json_encode($dato);
 }
 

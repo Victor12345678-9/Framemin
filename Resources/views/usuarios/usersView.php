@@ -9,9 +9,8 @@ require_once(LAYOUT_PATH."header.php");
 <body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/views/usuarios/peticion.js"></script>
- 
-    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>//css/estilos.css"></script>
+    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/App/js/users/peticion.js"></script>
+   
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -113,7 +112,7 @@ require_once(LAYOUT_PATH."header.php");
 
     <?php   include_once (LAYOUT_PATH."footer.php")  ?>
 
-    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/Resources/helpers/alertUser.js"></script>
+    <script src="<?php echo HTTP_.ROOT_PATH_CORE; ?>/vendor/helpers/alertUser.js"></script>
 
 </body>
 

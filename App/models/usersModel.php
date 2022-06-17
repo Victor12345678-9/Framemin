@@ -28,7 +28,7 @@ class UsersModel
         $condicionales = new Condicionales();
         $condicionales->select(['id','nomina','nombre','apellido','genero','departamento','puesto'],'usuarios');
         $condicionales->where(['status=1']);
-        $condicionales->limit([$offset.','.$resultadosPorPagina]);
+        $condicionales->limit($offset.','.$resultadosPorPagina);
         $sql = $condicionales->run();
 
         $condicionales_2 = new Condicionales();
@@ -56,7 +56,7 @@ class UsersModel
 
         $condicionales = new Condicionales();
         $condicionales->like(['id','nomina','nombre','apellido','genero','departamento','puesto'],['nomina','nombre','apellido','puesto'],$buscar,'status=1','usuarios');
-        $condicionales->limit([$offset.','.$resultadosPorPagina]);
+        $condicionales->limit($offset.','.$resultadosPorPagina);
         $sql = $condicionales->run();
 
         $condicionales_2 = new Condicionales();

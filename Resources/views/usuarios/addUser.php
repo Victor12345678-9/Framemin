@@ -377,7 +377,7 @@ require_once LAYOUT_PATH . "header.php";
 
 </body>
 
-<script src="<?php echo HTTP_ . ROOT_PATH_CORE; ?>/Public/views/usuarios/fetch.js"></script>
+<script src="<?php echo HTTP_ . ROOT_PATH_CORE; ?>/App/js/users/fetch.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 

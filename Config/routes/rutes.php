@@ -16,7 +16,7 @@ define('RUTES_PATH', './Config/constant/rutes.php');
 define('CONFIG_PATH', './Config/');
 define('APP_PATH', './App/');
 define('CONEXION_PATH', '../../Database/conexion/');
-define('CONTROLLERS_PATH', './App/controllers/');
+define('CONTROLLERS_PATH', '../../App/controllers/');
 define('MODELS_PATH', '../../App/models/');
 define('CONSTANT_PATH', './Config/constant/');
 

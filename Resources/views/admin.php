@@ -130,9 +130,13 @@ require_once ("../../vendor/orm/condiciones.php");
                 $sql = new Condicionales();
                 
                //between
-                // $sql->select(['price'],'productos')->between('price',['15','50']);
+      
+               // $condicionales = new Condicionales();
+               // $condicionales->select(['id','nomina','nombre','apellido','genero','departamento','puesto'],'usuarios');
+               // $condicionales->where(['status=1']);
              
-                $sql->select(['usuarios.departamento,departamentos.idDepartamento'],'departamentos')->rightJoin("usuarios");
+             
+                $sql->select(['usuarios.departamento,departamentos.idDepartamento'],'departamentos')->innerJoin("usuarios");
                 $resultado = $sql->run(); 
                 
                 return $resultado;

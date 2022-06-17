@@ -5,6 +5,7 @@ $vista = $datos[0];
 
 require_once "./../../Config/routes/rutes.php";
 require_once "./../../App/controllers/usersController.php";
+require_once "./../../vendor/paginacion/Paginacion.php";
 
 $obj = new UsersController();
 
@@ -183,9 +184,7 @@ switch ($vista) {
                         $_GET['idProduct'] = $datos[1];
                     } else {
                         error_page();
-                    }
-
-                    
+                    }                    
                 }
                 $product = $obj2->showProduct($_GET['idProduct']);
                     include_once "../../Resources/views/productos/showProduct.php";
@@ -229,7 +228,7 @@ switch ($vista) {
             break;
 
             default:
-
+            
             include_once "../../Public/index.php";
             break;
 

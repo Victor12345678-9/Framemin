@@ -20,7 +20,7 @@ class Condicionales
     private $leftJoin;
     private $between;
     
-    public function __construct()
+    function __construct()
     {
         require_once ("../../vendor/orm/Models.php");
         $this->MODELS = new Models();
@@ -30,8 +30,6 @@ class Condicionales
     }
 
     function select ($parametros=[],$tabla)
-
-
     {
 
          $indentific=1;
@@ -52,14 +50,11 @@ class Condicionales
              }
  
          }
-
-
-    
-         $this->parameter=$params;
-         $this->indentific=$indentific;
-         $select = "SELECT $this->parameter FROM $tabla";
-         $this->select=$select;
-         $this->table=$tabla;
+                $this->parameter=$params;
+                $this->indentific=$indentific;
+                $select = "SELECT $this->parameter FROM $tabla";
+                $this->select=$select;
+                $this->table=$tabla;
 
         return $this;
             
@@ -77,7 +72,6 @@ class Condicionales
     
         $where_ = substr($whereValor, 0, -4);
         $where_end  = $where_w.$where_;
-        
         $this->where=$where_end;
 
         return $this;
@@ -96,57 +90,56 @@ class Condicionales
         
         $this->orWhere=$or_o;
 
-        return $this;
+    return $this;
     }
 
     
-    
-    function count(){
+   
+    function select_count($condiciones=[], $tabla)
+    {
+        $indentific = 2;
 
-        $indentific=2;
-        
-        $explode= (explode(",",$this->parameter));
-        
-        $countValor='';
-        $countValor .= 'COUNT('.$explode[0].')';
-        $this->indentific=$indentific;
-        $this->count= $countValor;
-        return $this;
+        $countValor = "SELECT COUNT(".$condiciones[0].") AS conteo FROM ".$tabla." ";
+
+        $this->indentific = $indentific;
+        $this->select_count = $countValor;
+
+    return $this;
     }
-
     
 
     function orderBy($orderby=[])
     {
-        $orderbyValor = '';
+            $orderbyValor = '';
 
-        foreach($orderby as $value)
-        {
-        if($value){
+            foreach($orderby as $value)
+            {
+            if($value){
 
-            $orderby_o = " ORDER BY ";
-            $orderbyValor .= $value." ";
+                $orderby_o = " ORDER BY ";
+                $orderbyValor .= $value." ";
+                }
+                echo '<br>';
+                
             }
-            echo '<br>';
-            
-        }
 
-        $orderby_ = $orderby_o.$orderbyValor;
-        $this->orderBy= $orderby_;
+            $orderby_ = $orderby_o.$orderbyValor;
+            $this->orderBy= $orderby_;
         return $this;
     }
 
     function limit($condiciones)
     {
-        $limitValor ='';
+            $limitValor ='';
 
        
-                $limit_l = "LIMIT ";
-                $limitValor = $condiciones." ";
+            $limit_l = "LIMIT ";
+            $limitValor = $condiciones." ";
             
         
-        $limit_ = $limit_l.$limitValor;
-        $this->limit = $limit_;
+            $limit_ = $limit_l.$limitValor;
+            $this->limit = $limit_;
+
         return $this;
     }
 
@@ -154,12 +147,15 @@ class Condicionales
 
     function innerJoin($tabla)
     {
-        
-        
-            $explode = (explode(",",$this->parameter));
 
+        if (!empty($this->select)){
+            $explode = (explode(",",$this->parameter));
             $innerJoin= " INNER JOIN ".$tabla." ON ".$explode[1]. " = ".$explode[0];
             $this->innerJoin = $innerJoin;
+            
+        }else{
+            echo "No se puede utilizar Join Sin Select";
+        }
         
         return $this;
         
@@ -167,32 +163,44 @@ class Condicionales
 
     function leftJoin($tabla)
     {
-        
-        
-            
             $explode = (explode(",",$this->parameter));
-            print_r($explode);
             $leftJoin= " LEFT JOIN ".$tabla." ON ".$explode[1]. " = ".$explode[0];
             $this->leftJoin = $leftJoin;
-           
-        
-       
+            
         return $this;
         
     }
 
     function rightJoin($tabla)
     {
-        
-       
-        $explode = (explode(",",$this->parameter));
-
-        $rightJoin= " RIGHT JOIN ".$tabla." ON ".$explode[1]. " = ".$explode[0];
-        $this->rightJoin = $rightJoin;
+            if(!empty($this->select)){
+                $explode = (explode(",",$this->parameter));
+                $rightJoin= " RIGHT JOIN ".$tabla." ON ".$explode[1]. " = ".$explode[0];
+                $this->rightJoin = $rightJoin;
+                
+            }else{
+                echo "No se puede utilizar Join sin Select";
+                
+            }
 
         return $this;
-        
     }
+
+    // function fullJoin($tabla)
+    // {
+    //         if(!empty($this->select)){
+    //             $explode = (explode(",",$this->parameter));
+    //             $fullJoin= " FULL JOIN ".$tabla." ON ".$explode[1]. " = ".$explode[0];
+    //             $this->fullJoin = $fullJoin;
+               
+    //         }else{
+    //             echo "No se puede utilizar Join sin Select";
+                
+    //         }
+
+    //     return $this;
+    // }
+
 
 
 
@@ -335,7 +343,6 @@ class Condicionales
 
         }
         
-        
         return $this;
         
     }   
@@ -356,26 +363,11 @@ class Condicionales
             break;
 
             case 2:
+                $sql_end = $this->select_count.$this->where;
+                $conteo = $this->MODELS->execute($sql_end);
 
-
-                if (!empty($this->select)){
-
-                   
-                    $count=substr(($this->select.$this->where.$this->count),0,7);
-                   
-                    $count_end="$count $this->count FROM $this->table $this->where ";
-                    // print_r($count_end);
-                    $resultado  = $this->MODELS->execute($count_end);
-
-                    
-                  
-                }else{
-                    echo "No se puede utilizar count sin Select";
-                }
-
-                return $resultado;
-
-                break;
+                return $conteo;
+            break;
 
 
             case 3:
