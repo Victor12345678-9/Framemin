@@ -4,6 +4,9 @@
 
 $obj= new UsersController();
  	
+    $requeridos = ['nombre' => 'required'];
+    //arreglo establecemos los campos requeridos
+    //dinamico 
 
 
    $nombre = $_POST['nombre'];
@@ -28,7 +31,7 @@ $obj= new UsersController();
    $puesto = $_POST['puesto'];
    $fechaContratacion = $_POST['fechaContratacion'];
 
-
+    //Metodo validate() //Recoje el arreglo y retornar un true o false
    if( $nombre=== '' || $apellido=== '' || $genero=== '' || $rfc=== '' || $nomina=== '' || $departamento=== ''  || $puesto=== ''){
 
        echo json_encode('error');

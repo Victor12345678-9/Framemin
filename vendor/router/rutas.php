@@ -5,7 +5,6 @@ $vista = $datos[0];
 
 require_once "./../../Config/routes/rutes.php";
 require_once "./../../App/controllers/usersController.php";
-require_once "./../../vendor/paginacion/Paginacion.php";
 
 $obj = new UsersController();
 
@@ -30,6 +29,13 @@ switch ($vista) {
             }
         }
 
+        $buscado = '';
+        if (!(isset($datos[2]) == null)){
+            if(($datos[2]) != "_"){
+                $buscado = $datos[2];
+            }
+        }
+
         $depas = $obj->depas();
         $array = array();
         $array[0] = '';
@@ -39,20 +45,62 @@ switch ($vista) {
 
         include "../../Resources/views/usuarios/usersView.php";
 
-        break;
+    break;
 
 ///
+    case "productos":
+
+        $buscado = '';
+        if (!(isset($datos[2]) == null)){
+            if(($datos[2]) != "_"){
+            $buscado = $datos[2];
+            }
+        }
+        include_once "../../Resources/views/productos/products.php";
+
+    break;
+
     case "apiUsuarios":
 
-        $tabla_consulta = $obj->consultaUsuarios($_POST['usuarios'], $_POST['page']);
+    if(!isset($_POST['usuarios'])){
+        $busqueda = $datos[1];
+    }else{
+        $busqueda = $_POST['usuarios'];
+    }
+    if(!isset($_POST['page'])){
+        $page = $datos[2];
+    }else{
+        $page = $_POST['page'];
+    }
+    
+        
+
+        
+         $tabla_consulta = $obj->consultaUsuarios($busqueda, $page);
+         //$tabla_consulta = $obj->consultaUsuarios($_POST['usuarios'], $_POST['page']);
+
 
         echo $tabla_consulta;
         break;
 
     case "apiProductos":
 
-        $tabla_consulta = $obj2->consultaProductos($_POST['productos'], $_POST['page']);
+        if(!isset($_POST['productos'])){
+            $busqueda = $datos[1];
+        }else{
+            $busqueda = $_POST['productos'];
+        }
+        if(!isset($_POST['page'])){
+            $page = $datos[2];
+        }else{
+            $page = $_POST['page'];
+        }
 
+         
+        
+       
+        $tabla_consulta = $obj2->consultaProductos($busqueda, $page);
+        //$tabla_consulta = $obj2->consultaProductos($_POST['productos'], $_POST['page']);
        
         echo $tabla_consulta;
         break;
@@ -155,11 +203,6 @@ switch ($vista) {
         include "../../Resources/views/productos/addProducts.php";
         break;
 
-    case "productos":
-
-        include_once "../../Resources/views/productos/products.php";
-
-        break;
         
         case "deleteProduct":
             if (!(isset($datos[1]) == null)) {
@@ -184,7 +227,9 @@ switch ($vista) {
                         $_GET['idProduct'] = $datos[1];
                     } else {
                         error_page();
-                    }                    
+                    }
+
+                    
                 }
                 $product = $obj2->showProduct($_GET['idProduct']);
                     include_once "../../Resources/views/productos/showProduct.php";
@@ -224,11 +269,13 @@ switch ($vista) {
 
    
         case "pruebas":
+            $valor = ($_POST['page']);
+          
             include "../../Resources/views/admin.php";
             break;
 
             default:
-            
+
             include_once "../../Public/index.php";
             break;
 

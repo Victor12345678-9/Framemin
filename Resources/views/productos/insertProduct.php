@@ -15,7 +15,8 @@ $obj= new ProductsController();
 
        echo json_encode('error');
    }else{
-    $obj->insertProduct($_POST['codeProduct'],$_POST['nameProduct'],$_POST['descProduct'],$_POST['price'],$_POST['stock']);
+   
+     $obj->insertProduct($_POST['codeProduct'],$_POST['nameProduct'],$_POST['descProduct'],$_POST['price'],$_POST['stock']);
 
  	echo json_encode('Correcto:');
 

@@ -174,6 +174,7 @@ class UsersModel
             'estadoCivil',
             'rfc',
             'curp',
+            'numeroCartilla',
             'numeroTelefonico',
             'direccion',
             'municipio',

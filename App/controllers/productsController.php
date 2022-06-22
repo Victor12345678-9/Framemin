@@ -13,12 +13,13 @@ class ProductsController
     }
    
 
-    public function consultaProductos($buscar,$page = 1,$resultadosPorPagina = 5)
+    public function consultaProductos($buscar,$page = 1, $resultadosPorPagina = 5)
     {
    
+
     if(!$buscar)
     {
-        $query  = $this->MODEL->index($page,$resultadosPorPagina);  
+        $query  = $this->MODEL->index($page,$resultadosPorPagina);
     }
     else
     {
@@ -44,7 +45,7 @@ class ProductsController
             <td>
             
             <a style="margin:5px" href="'.HTTP_.ROOT_PATH_CORE.'/showProduct/'.$row['idProduct'].'"><i class="bx bx-show"></i></a>
-            <a style="margin:5px" href="'.HTTP_.ROOT_PATH_CORE.'/editProduct/'.$row['idProduct'].'"><i class="bx bx-pencil"></i></a>
+            <a style="margin:5px" href="'.HTTP_.ROOT_PATH_CORE.'/editProduct/'.$row['idProduct'].'/'.$page.'/'.$buscar.'"><i class="bx bx-pencil"></i></a>
             <a style="margin:5px" href="#" id="delete_product" data-id="'.$row['idProduct'].'"><i class="bx bx-trash"></i></a>
 
             </td>
@@ -71,12 +72,13 @@ class ProductsController
     }
 
   
-    
-    $obj2 = new Paginacion();
-    
+    $obj2 = new Helpers();
+
+
     $total_pages = ceil($query['total_paginas']/$resultadosPorPagina);
 
     $paginacion = $obj2->paginacion($page, $total_pages, $buscar);
+
     $dato = array();
     $dato['tabla'][] = $tabla;
     $dato['paginacion'][] = $paginacion; 
@@ -98,8 +100,6 @@ class ProductsController
         
 
 
-
-
         $id=$this->MODEL->insert($codeProduct,$nameProduct,$descProduct,$price,$stock);
      }
 
@@ -111,13 +111,12 @@ class ProductsController
     }
 
   
-    public function updateProduct($idProduct,$codeProduct,$nameProduct,$descProduct,$price,$stock){
+    public function updateProduct($idProduct,$codeProduct,$nameProduct,$descProduct,$price,$stock,$page_buscar){
 
       
-
        $id=$this->MODEL->update($idProduct,$codeProduct,$nameProduct,$descProduct,$price,$stock);
        
-       return header('Location: '.HTTP_.ROOT_PATH_CORE.'/productos/_');
+       return header('Location: '.HTTP_.ROOT_PATH_CORE.'/productos'.'/'.$page_buscar);
     }
 
      public function destroyProduct($idProduct){

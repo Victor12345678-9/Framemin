@@ -49,21 +49,42 @@ require_once(LAYOUT_PATH."header.php");
 
                         </div><!-- end card-body -->
                     </div><!-- end card -->
+                    
                 </div><!-- end col -->
                 <!-- <div class="card-body"> -->
+              
                 <div class="d-flex flex-row-reverse">
                     <!-- <div class="d-flex"> -->
                     <form class="app-search d-none d-lg-block">
+                        
                         <div class="position-relative ">
+                            
                             <input type="text" class="form-control" name="busqueda"
                                 onKeyPress="if(event.keyCode == 13) event.returnValue = false;" id="busqueda"
-                                placeholder="Buscar..." size="32">
+                                placeholder="Buscar..." size="32" value="<?php echo $buscado;?>">
+                                
                             <button class="btn btn-primary" type="button"><i
                                     class="bx bx-search-alt align-middle"></i></button>
                         </div>
+                        
                     </form>
-
+                    
                 </div>
+                
+         <form method='POST' id='filtersPages'>
+       
+         <label>Mostrar</label>
+            <select name='selectedPages'  id='selectedPages'>
+                <option value='5'>5</option>
+                <option value='10'>10</option>
+                <option value='15'>15</option>
+                <option value='50'>50</option>
+            </select>
+           
+          
+          <label> Registros</label>
+      </form>
+                
                 <br>
 
                 <!-- Table -->
@@ -87,10 +108,6 @@ require_once(LAYOUT_PATH."header.php");
             <div id="paginacion" class="pagination"></div>
             </ul>
                        
-                        
-                    
-
-
 
                     <!-- Table -->
 

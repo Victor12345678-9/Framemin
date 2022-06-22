@@ -18,7 +18,7 @@
                     <div class="col-xl-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Usuarios</h4>
+                                <h4 class="card-title">Usuarios</h4> 
 
                                 <p class="card-title-desc">Rellene Los campos para modificar un usuario.</p>
                             </div><!-- end card header -->
@@ -48,11 +48,15 @@
                                                 aria-labelledby="v-pills-home-tab">
 
                                                 <form class="needs-validation" autocomplete="off" id="nuevo"
-                                                    method="POST" action="../updateUser">
+                                                    method="POST" action="<?php echo HTTP_.ROOT_PATH_CORE; ?>/updateUser">
 
 
                                                     <input type="hidden" id="id" name="id"
                                                         value="<?= $usuarios['id']; ?>" />
+
+
+                                                    <input type="hidden" id="page" name="page" value="<?= (isset($datos[2]))? $datos[2]: ''; ?>" />
+                                                    <input type="hidden" id="buscar" name="buscar" value="<?= (isset($datos[3]))? $datos[3]: ''; ?>" />
 
                                                     <div class="row">
                                                         <div class="col-md-3">
@@ -398,7 +402,8 @@
                             </div><!-- end card-body -->
 
                         </div><!-- end card -->
-                        <a type="button" class="btn btn-danger waves-effect" href="../usersView">Regresar</a>
+                        <a type="button" class="btn btn-danger waves-effect" href="<?php echo HTTP_.ROOT_PATH_CORE.'/usersView'.'/'.((isset($datos[2]))? $datos[2]: '').((isset($datos[3]))? '/'.$datos[3]: ''); ?>">Regresar</a>
+
                         <button class="btn btn-primary" type="submit">Guardar</button>
                     </div><!-- end col -->
 

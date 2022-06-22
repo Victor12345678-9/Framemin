@@ -56,7 +56,7 @@ require_once(LAYOUT_PATH."header.php");
                     <!-- <div class="d-flex"> -->
                     <div class="app-search d-none d-lg-block"  >
                         <div class="position-relative ">
-						<input type="text"  class="form-control" name="busqueda" id="busqueda" placeholder="Buscar..." size="32">
+						<input type="text"  class="form-control" name="busqueda" id="busqueda" placeholder="Buscar..." size="32" value="<?php echo $buscado;?>">
                             <button class="btn btn-primary" type="button"><i class="bx bx-search-alt align-middle"></i></button>
                         </div>
                     </div>

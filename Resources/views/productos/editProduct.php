@@ -40,11 +40,14 @@
                                                 aria-labelledby="v-pills-home-tab">
 
                                                 <form class="needs-validation" autocomplete="off" id="nuevo"
-                                                    method="POST" action="../updateProduct">
+                                                    method="POST" action="<?php echo HTTP_.ROOT_PATH_CORE; ?>/updateProduct">
 
 
                                                     <input type="hidden" id="idProduct" name="idProduct"
                                                         value="<?= $product['idProduct']; ?>" />
+
+                                                        <input  id="pageActual" name="pageActual" value="<?= (isset($datos[2]))? $datos[2]: ''; ?>" />
+                                                    <input type="hidden" id="buscar" name="buscar" value="<?= (isset($datos[3]))? $datos[3]: ''; ?>" />
 
                                                     <div class="row">
                                                         <div class="col-md-3">
@@ -122,7 +125,7 @@
                             </div><!-- end card-body -->
 
                         </div><!-- end card -->
-                        <a type="button" class="btn btn-danger waves-effect" href="../productos">Regresar</a>
+                        <a type="button" class="btn btn-danger waves-effect" href="<?php echo HTTP_.ROOT_PATH_CORE.'/productos'.'/'.((isset($datos[2]))? $datos[2]: '').((isset($datos[3]))? '/'.$datos[3]: ''); ?>">Regresar</a>
                         <button class="btn btn-primary" type="submit">Guardar</button>
                     </div><!-- end col -->
 

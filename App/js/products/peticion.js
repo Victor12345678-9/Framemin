@@ -12,10 +12,25 @@ function trim(s, c) {
     ), "");
 }
 
-$(obtener_registros(1, ''));
+let pageDefault = 1;
+let pageActual = '';
 
-function obtener_registros(page, productos = '') {
-    var datos = { "page": page, productos: productos };
+if (typeof d[2] === 'undefined') {
+    pageDefault = 1;
+} else {
+    pageDefault = d[2];
+}
+
+if (typeof d[3] === 'undefined') {
+    pageActual = '';
+} else {
+    pageActual = d[3];
+}
+
+$(obtener_registros(pageDefault, pageActual));
+
+function obtener_registros(pageDefault, productos = '') {
+    var datos = { "page": pageDefault, productos: productos };
     $.ajax({
             url: ROOT_PATH_CORE + '/apiProductos',
             type: 'POST',
