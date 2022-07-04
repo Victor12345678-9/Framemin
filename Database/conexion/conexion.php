@@ -1,31 +1,22 @@
 <?php
-  
-  require_once "../../Config/routes/rutes.php";
-  require_once ("../../".CONFIG_PATH."bd/bd.php");
 
-    class db{
+require_once ($_SERVER['DOCUMENT_ROOT']."/lindesk/config/bd.php");
 
-        private $host = HOST;
-        private $database = DATABASE;
-        private $user = USER;
-        private $password = PASSWORD;
-            
-            public function conexion(){  
-                // print_r ($this->user);
-            try {
-               
-                $con=new PDO('mysql:host='.$this->host.';dbname='.$this->database, $this->user, $this->password);     
-                return $con;
-            }
-            catch(PDOException $e) {
+class db{
 
-               echo ("No Fue Posible Conectar A La Base De Datos");
-                
-            }
-            
+    private $host = HOST;
+    private $database = DATABASE;
+    private $user = USER;
+    private $password = PASSWORD;
+
+    public function conexion(){  
+        try {
+            $con = new PDO('mysql:host='.$this->host.';dbname='.$this->database, $this->user, $this->password);  
+            return $con;
         }
-
+        catch(PDOException $e) {
+            echo ("No Fue Posible Conectar A La Base De Datos");
+        }
     }
-    
-
+}
 ?>

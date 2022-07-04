@@ -1,13 +1,4 @@
 RewriteEngine On
-RewriteRule ^/.*$ ./vendor/router/index.php
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ ./vendor/router/index.php [QSA,L]
-
-# si existe un directorio o un archivo, utilícelo directamente
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-l
-RewriteCond %{REQUEST_URI} !-l
-RewriteCond %{REQUEST_FILENAME} !\.(ico|css|png|jpg|gif|js)$ [NC]
-# de lo contrario reedirigir a index
-RewriteRule . ./vendor/router/index.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [NC,L,QSA]

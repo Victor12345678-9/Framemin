@@ -1,144 +1,70 @@
 <?php
+include_once($_SERVER['DOCUMENT_ROOT'] .'/lindesk/vendor/orm/Orm.php');
+include_once($_SERVER['DOCUMENT_ROOT'] .'/lindesk/app/middlewares/Val.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/lindesk/vendor/orm/Bd.php');
+/*fills = id,code_dto, name_dto, status_dto, numemple_dto, create_tsmp, update_tsmp	
+* Table = departaments
+*/
 
 class ProductsController
 {
-    
-    private $MODEL;
+    private $orm;
 
-    public function __construct()
-    {
-        require_once (MODELS_PATH."productsModel.php");
-        $this->MODEL = new ProductsModel();
-        
-    }
-   
 
-    public function consultaProductos($buscar,$page = 1,$resultadosPorPagina = 5)
-    {
-   
+    public function __construct(){
+        $this->orm = new Orm();
+        $con = new db();
+        $this->bd = $con->conexion();
+    }   
 
-    if(!$buscar)
-    {
-        $query  = $this->MODEL->index($page,$resultadosPorPagina);
-    }
-    else
-    {
-        $query  = $this->MODEL->filtros($buscar,$page,$resultadosPorPagina);
+    public function index($params=[]){
+        $this->orm->select(['code_dto','name_dto'],'departaments');
+        $result = $this->orm->run();
+        $result =$result->fetchAll();
+        return $result;
     }
 
-    if ($query['total_paginas'] > 0)
-    {
-        $tabla = '';
-        
-        
+    public function show($params=[]){
+        $code_dto=$params['id'];
 
-        while($row = $query['query']->fetch())
-        {
+        $this->orm->select(['code_dto','name_dto'],'departaments');
+        $this->orm->where(['code_dto' , '=' , $code_dto]);
+        $result = $this->orm->run();
+        $result =$result->fetchAll();
 
-            $tabla .= '<tr>
-            <td>'.$row['codeProduct'].'</td>
-            <td>'.$row['nameProduct'].'</td>
-            <td>'.$row['descProduct'].'</td>
-        
-            <td>'.$row['stock'].'</td>
-           
-            <td>
-            
-            <a style="margin:5px" href="'.HTTP_.ROOT_PATH_CORE.'/showProduct/'.$row['idProduct'].'"><i class="bx bx-show"></i></a>
-            <a style="margin:5px" href="'.HTTP_.ROOT_PATH_CORE.'/editProduct/'.$row['idProduct'].'"><i class="bx bx-pencil"></i></a>
-            <a style="margin:5px" href="#" id="delete_product" data-id="'.$row['idProduct'].'"><i class="bx bx-trash"></i></a>
-
-            </td>
-            </tr>';
-            
-        }
-  
-        
-        
+        return $result;
     }
-    else 
-    {
-    $tabla = '<tr>
-    
-        <td colspan=7>
-        No se encontraron coincidencias con sus criterios de búsqueda.
+    public function delete($params=[]){
+        $code_dto=$params['id'];
         
-        
-        </td>
-    
-    
-    </tr>';
-    
+        $this->orm->delete(['code_dto','name_dto'],'departaments');
+        $this->orm->where(['code_dto' , '=' , $code_dto]);
+        $result = $this->orm->run();
+        $result =$result->fetchAll();
+        return $result;
     }
 
-  
-    $obj2 = new Helpers();
-
-
-    $total_pages = ceil($query['total_paginas']/$resultadosPorPagina);
-
-    $paginacion = $obj2->paginacion($page, $total_pages, $buscar);
-
-    $dato = array();
-    $dato['tabla'][] = $tabla;
-    $dato['paginacion'][] = $paginacion; 
-    
-    
-    return json_encode($dato);
-}
-
-    // public function json_tabla()
-    // {
-
-    //     $json_tabla = $this->MODEL->json_tabla(); 
-
-    //     return json_encode($json_tabla);
-    // }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
-     public function insertProduct($codeProduct,$nameProduct,$descProduct,$price,$stock){
-        
-
-
-        // $arrayDatos = [
-
-        //     "codeProduct" => $array=['>10'],
-        //     "nameProduct" => $array=['>10','exist'],
-
-        // ];
-
-        // validacion($arrayDatos);
-
-
-        $id=$this->MODEL->insert($codeProduct,$nameProduct,$descProduct,$price,$stock);
-     }
-
-
-     public function showProduct($idProduct){
-         
-         return $this->MODEL->show($idProduct);
-
+    public function create($params=[]){
+       /*$required=["codigoDepartamento"];
+        Val::required($required, $params);*/
+        $this->orm->insert( $params['post'] ,'departaments');
+        $result = $this->orm->run();
+        return $result;
     }
 
-  
-    public function updateProduct($idProduct,$codeProduct,$nameProduct,$descProduct,$price,$stock){
+    public function update($params=[]){ 
+        $code_dto = $params['idDepartamento'];
+         $this->orm->update($params['post'],'departamentos');
+         $this->orm->where(['idDepartamento' , '=' , $code_dto]);
+         $result = $this->orm->run();
+        return "soy el update";
 
-      
-
-       $id=$this->MODEL->update($idProduct,$codeProduct,$nameProduct,$descProduct,$price,$stock);
-       
-       return header('Location: '.HTTP_.ROOT_PATH_CORE.'/productos/_');
     }
+    public function put($params=[]){ 
 
-     public function destroyProduct($idProduct){
-         $this->MODEL->delete($idProduct);
-         return header('Location: '.HTTP_.ROOT_PATH_CORE.'/productos');
-     }
+        return "soy el put";
 
-
-
-
-    
+    }
 }
 
 ?>
