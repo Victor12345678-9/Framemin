@@ -13,9 +13,16 @@ $router = new Router;
 
 
 /*start modules products */ 
-$router->put('/products', function(){$this->controllerAdd('ProductsController', 'index', 201);});
+  $router->get('/products', function(){$this->controllerAdd('ProductsController', 'index', 201);});
 /*end modules categories*/
 
+  $router->get('/products/{aa}', function($aa){
+     $this->controllerAdd('ProductsController', 'show', 201,['aa' => $aa]);
+  });
+
+  //$router->post('/products', function(){$this->controllerAdd('ProductsController', 'create', 201);});
+  $router->put('/products', function(){$this->controllerAdd('ProductsController', 'update', 201);});
+  $router->delete('/products', function(){$this->controllerAdd('ProductsController', 'delete', 201);});
 
 
 

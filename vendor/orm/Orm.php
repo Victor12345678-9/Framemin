@@ -179,7 +179,7 @@ class Orm
     }
 
     public function update($params=[],$tabla){
-        
+          
         $indentific=2;
         if (!empty($params))
         {
@@ -195,12 +195,13 @@ class Orm
            
             $this->indentific=$indentific;
             $this->update=$update;
+
         }
         return $this; 
     }  
 
     public function delete($params=[],$tabla){
-        $indentific = 4;
+        $indentific = 3;
         $parametros='';
 
         foreach($params as $value){
@@ -215,23 +216,26 @@ class Orm
     }
 
     public function insert($params=[],$tabla){
-         $indentific = 4;
-         if(!empty($params))
-         {
-             $insert_query   = 'INSERT INTO `'.$tabla.'` SET ';
+        
+         
+          $indentific = 4;
+          if(!empty($params))
+          {
+              $insert_query   = 'INSERT INTO `'.$tabla.'` SET ';
 
-             foreach ($params as $columna => $value)
-             {
-                 if($value != "")
-                 {
-                     $insert_query .= "`" . $columna . "` = '" . $value . "', ";
-                 }
-             }
-             $insert_query   = substr_replace($insert_query, '', -2) . ';';
-             $this->indentific = $indentific;
-             $this->insert = $insert_query;
-         }
-        return $this;
+              foreach ($params as $columna => $value)
+              {
+                  if($value != "")
+                  {
+                      $insert_query .= "`" . $columna . "` = '" . $value . "', ";
+                  }
+              }
+              $insert_query   = substr_replace($insert_query, '', -2) . ';';
+              $this->indentific = $indentific;
+              $this->insert = $insert_query;
+          }
+          
+         return $this;
     }  
 
     public function run(){
@@ -249,7 +253,9 @@ class Orm
                 break;
 
             case 3://delete
-                $this->delete.$this->where;
+                $sql_end= $this->delete.$this->where;
+                $mostrar = $this->PDO->execute($sql_end,$last = 1);
+                return $mostrar;
                 break;
 
             case 4://insert

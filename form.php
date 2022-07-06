@@ -9,7 +9,77 @@
 </head>
 <body>
     <!--mostrar todos los usuarios-->
+<section id="forms">
     <div class="card">
+        <h1 style="text-align: center;">Index</h1>
+        <div class="card-body">
+            <form class="form-inline needs-validation" autocomplete="off" id="index" >
+                 <input type= "text" value="GET" name="_method">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>    
+        </div>
+    </div> 
+
+    <div class="card">
+        <h1 style="text-align: center;">Show</h1>
+        <div class="card-body">
+            <form class="form-inline needs-validation" autocomplete="off" id="show">
+            <input type= "text" value="GET" name="_method">
+                <input type= "text" placeholder="codigoDepartamento" name="codigoDepartamento">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>    
+        </div>
+    </div> 
+
+      <div class="card">
+        <h1 style="text-align: center;">Update</h1>
+        <div class="card-body">
+            
+            <form class="form-inline needs-validation" autocomplete="off" id="update">
+            <input type= "text" value="PUT" name="_method">
+                <input type= "text" placeholder="nombreDepartamento" name="nombreDepartamento">
+                <br>
+                <input type= "text" placeholder="idDepartamento" name="idDepartamento">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>    
+        </div>
+    </div>   
+
+    <div class="card">
+        <h1 style="text-align: center;">insert</h1>
+        <div class="card-body">
+            
+            <form class="form-inline needs-validation" autocomplete="off" id="insert" name="POST">
+                <input type= "text" placeholder="Nombre Departamento" name="nombreDepartamento">
+                <br>
+                <input type= "text" placeholder="Codigo Departamento" name="codigoDepartamento">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>    
+        </div>
+    </div> 
+
+    <div class="card">
+        <h1 style="text-align: center;">Delete</h1>
+        <div class="card-body">
+            
+            <form class="form-inline needs-validation" autocomplete="off" id="update" name="DELETE">
+               
+         
+                <input type= "text" placeholder="idDepartamento" name="idDepartamento">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>    
+        </div>
+    </div>  
+
+
+</section>
+
+    <!-- <div class="card">
         <h1 style="text-align: center;">mostrar</h1>
         <div class="card-body">
             <form class="form-inline needs-validation" autocomplete="off" id="index">
@@ -19,6 +89,18 @@
             </form>    
         </div>
     </div> 
+
+    <div class="card">
+        <h1 style="text-align: center;">mostrar</h1>
+        <div class="card-body">
+            <form class="form-inline needs-validation" autocomplete="off" id="index">
+                <input type="hidden" name="_method" value="PUT">    
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>    
+        </div>
+    </div>   -->
+
 
     <!--crear nuevo usuario
     <div class="card">
