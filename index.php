@@ -2,29 +2,31 @@
 <?php
 
 include_once('Router.php');
-
 $router = new Router;
 /*start before rutes*/
 //$router->before(function(){}); 
 /* end before rutes*/
 
 
-
-
-
-/*start modules products */ 
-  $router->get('/products', function(){$this->controllerAdd('ProductsController', 'index', 201);});
-/*end modules categories*/
-
-  $router->get('/products/{aa}', function($aa){
-     $this->controllerAdd('ProductsController', 'show', 201,['aa' => $aa]);
+  /*start modules products */ 
+  $router->get('/products', function(){
+    $this->controllerAdd('ProductsController', 'index', 200);
   });
 
-  //$router->post('/products', function(){$this->controllerAdd('ProductsController', 'create', 201);});
-  $router->put('/products', function(){$this->controllerAdd('ProductsController', 'update', 201);});
-  $router->delete('/products', function(){$this->controllerAdd('ProductsController', 'delete', 201);});
+  $router->get('/products/{codigoDepartamento}', function($codigoDepartamento){
+     $this->controllerAdd('ProductsController', 'show', 200,['codigoDepartamento' => $codigoDepartamento]);
+  });
 
+  /*end modules products*/
+  $router->post('/products', function(){
+   
+    $this->controllerAdd('ProductsController', 'create', 201,['post' => $_POST]);
+  });
 
+  $router->put('/products/{idDepartamento}', function($idDepartamento){$this->controllerAdd('ProductsController', 'update', 201,['idDepartamento' => $idDepartamento]);});
+
+  $router->delete('/products/{idDepartamento}', function($idDepartamento){$this->controllerAdd('ProductsController', 'delete', 201,['idDepartamento'=>$idDepartamento]);
+  });
 
 /*    start en de rutas */
 //$router->after(function(){echo"<br>despues de la ruta";});

@@ -1,48 +1,115 @@
-//get
+// var formularios = document.getElementById("forms");
 
-var formularios = document.getElementById("forms");
-formularios.addEventListener("submit", function(e) {
-    var form = e.target;
+function deleteDepartamento(idDepartamento) {
 
-    var campos = form.querySelectorAll('.texto');
+    console.log("http:localhost/lindesk/products/" + idDepartamento);
 
-    for (var i = 0; i < campos.length; i++) {
-        if (campos[i].value === "") {
+    // const data = new FormData(form);
+    fetch("products/" + idDepartamento, {
+        method: "DELETE"
 
-            campos[i].focus();
-            return e.preventDefault();
-        }
+    })
 
-    }
-
-
-
-    let data = new FormData(document.getElementById(form.id));
-
-    var metodo = document.getElementsByTagName("_method").value;
-
-    console.log(metodo);
-
-    if (form.id === 'index') {
-        data = null;
-
-    }
-
-
-    // esta línea no es necesaria pero el resultado desaparecería si se envía el form aquí
-    e.preventDefault();
-
-    let id = data.get('codigoDepartamento');
-
-    let url = 'http://localhost/lindesk/products/' + id;
-
-    let _method = form.name //detectar metodo
-
-    fetch(url, {
-            method: _method,
-
-        })
-        .then(response => response.json())
+    .then(response => response.json())
         .then(data => { console.log(data) })
         .catch(error => console.log(error))
-});
+    location.reload();
+}
+
+function crearDepartamento() {
+
+    alert("crear");
+    var form = document.getElementById("nuevoDepartamento");
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        console.log("me diste un click");
+        const data = new FormData(form);
+
+        fetch("lindesk/products", {
+                method: "POST",
+                body: data
+            })
+            .then(response => response.json())
+            .then(data => { console.log(data) })
+            .catch(error => console.log(error))
+    })
+}
+
+
+
+
+//     let form = e.target;
+//     let _method = form.querySelector("._method").value;
+//     let _url = form.action;
+
+
+
+
+//     if (form.id == "show") {
+//         let data = new FormData(document.getElementById(form.id));
+//         let id = (data.get('codigoDepartamento'));
+//         _url = _url + '/' + id;
+
+//     }
+
+
+
+//     if (_method == 'GET') {
+//         fetch(_url, {
+//                 method: _method,
+
+//             })
+//             .then(response => response.json())
+//             .then(data => { console.log(data) })
+//             .catch(error => console.log(error))
+
+//     } else if (_method == 'POST') {
+//         const data = new FormData(form)
+
+//         fetch(_url, {
+//                 method: _method,
+//                 body: data
+//             })
+//             .then(response => response.json())
+//             .then(data => { console.log(data) })
+//             .catch(error => console.log(error))
+
+//     } else if (_method == 'PUT') {
+//         console.log(_url);
+//         const data = new FormData(form);
+//         alert(data.get('idDepartamento'));
+//         fetch(_url, {
+//                 method: _method,
+
+
+//             })
+//             .then(response => response.json())
+//             .then(data => { console.log(data) })
+//             .catch(error => console.log(error))
+
+
+
+
+//     } else if (_method == 'DELETE') {
+//         alert("delete");
+//         console.log(_url);
+//         const data = new FormData(form);
+//         fetch(_url, {
+//                 method: _method,
+//                 body: data,
+//             })
+//             .then(response => response.json())
+//             .then(data => { console.log(data) })
+//             .catch(error => console.log(error))
+
+
+//     } else if (_method == 'PATCH') {
+//         const data = new FormData(form);
+//         fetch(_url, {
+//                 method: _method,
+//                 body: data
+//             })
+//             .then(response => response.json())
+//             .then(data => { console.log(data) })
+//             .catch(error => console.log(error))
+//

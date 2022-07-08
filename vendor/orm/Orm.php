@@ -254,6 +254,7 @@ class Orm
 
             case 3://delete
                 $sql_end= $this->delete.$this->where;
+                
                 $mostrar = $this->PDO->execute($sql_end,$last = 1);
                 return $mostrar;
                 break;
