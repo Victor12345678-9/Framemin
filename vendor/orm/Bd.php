@@ -12,7 +12,7 @@ class Bd
 
     public function execute($sql , $last)
     {  
-        // try{
+         try{
             if($last== 0){
                 $query = $this->PDO->prepare($sql);
                 $query->execute();
@@ -23,9 +23,9 @@ class Bd
                 $query = $this->PDO->lastInsertId();
                 return $query; 
             }
-        //  }catch(Exception $ex){
-        //      echo "Hubo un error al realizar la consulta <br>";
-        // }
+          }catch(Exception $ex){
+              echo "Hubo un error al realizar la consulta <br>";
+         }
     }
 
   

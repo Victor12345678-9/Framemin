@@ -18,6 +18,7 @@ class ProductsController
     }   
 
     public function index($params=[]){
+       
         try{
             $this->orm->select(['idDepartamento','codigoDepartamento','nombreDepartamento','description_dp'],'departamentos');
             $result = $this->orm->run();
@@ -26,13 +27,15 @@ class ProductsController
             $result=json_encode(['msgBackend'=>"no se ha podido realizar tu consulta con exito",$e]);
         }
         return $result;
+        
     }
 
     public function show($params=[]){
+        
         try{
-            $codigoDepartamento=($params['codigoDepartamento']);
+            $idDepartamento=($params['idDepartamento']);
             $this->orm->select(['codigoDepartamento','nombreDepartamento'],'departamentos');
-            $this->orm->where(['codigoDepartamento' , '=' , $codigoDepartamento]);
+            $this->orm->where(['idDepartamento' , '=' , $idDepartamento]);
             $result = $this->orm->run();
             $result =$result->fetchAll();
         }catch (Exception $e){
@@ -43,7 +46,7 @@ class ProductsController
 
 
     public function create($params=[]){
-       
+
             $name_dto = $_POST['nombreDepartamento'];
             $code_dto = $_POST['codigoDepartamento'];
             $desc_dto = $_POST['description_dp'];
@@ -62,7 +65,7 @@ class ProductsController
 
     public function update($params=[]){
     
-
+ 
         parse_str(file_get_contents("php://input"),$parameter);
         $idDepartamento=$params['idDepartamento'];
         $nombreDepartamento=$parameter['nombreDepartamento'];

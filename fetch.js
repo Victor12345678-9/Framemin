@@ -1,11 +1,12 @@
 // var formularios = document.getElementById("forms");
 
+
 function deleteDepartamento(idDepartamento) {
 
-    console.log("http:localhost/lindesk/products/" + idDepartamento);
+    console.log(idDepartamento);
 
-    // const data = new FormData(form);
-    fetch("products/" + idDepartamento, {
+    // // const data = new FormData(form);
+    fetch("html/products/" + idDepartamento, {
         method: "DELETE"
 
     })
@@ -13,7 +14,7 @@ function deleteDepartamento(idDepartamento) {
     .then(response => response.json())
         .then(data => { console.log(data) })
         .catch(error => console.log(error))
-    location.reload();
+
 }
 
 function crearDepartamento() {
@@ -25,15 +26,35 @@ function crearDepartamento() {
         console.log("me diste un click");
         const data = new FormData(form);
 
-        fetch("lindesk/products", {
+        fetch("/lindesk/products", {
                 method: "POST",
                 body: data
             })
             .then(response => response.json())
             .then(data => { console.log(data) })
             .catch(error => console.log(error))
-    })
+
+    });
 }
+
+
+function showDepartamento(idDepartamento) {
+
+
+    var resultado = document.getElementById("resultado");
+    alert(idDepartamento);
+
+    fetch("/lindesk/products/" + idDepartamento, {
+            method: "GET"
+
+        })
+        .then(response => response.json())
+        .then(data => document.write(JSON.stringify((data))))
+
+    .catch(error => console.log(error))
+
+}
+
 
 
 
@@ -111,5 +132,4 @@ function crearDepartamento() {
 //             })
 //             .then(response => response.json())
 //             .then(data => { console.log(data) })
-//             .catch(error => console.log(error))
-//
+//             .catch(error => console.log(error

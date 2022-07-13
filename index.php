@@ -13,19 +13,19 @@ $router = new Router;
     $this->controllerAdd('ProductsController', 'index', 200);
   });
 
-  $router->get('/products/{codigoDepartamento}', function($codigoDepartamento){
-     $this->controllerAdd('ProductsController', 'show', 200,['codigoDepartamento' => $codigoDepartamento]);
+  $router->get('/products/{idDepartamento}', function($idDepartamento){
+     $this->controllerAdd('ProductsController', 'show', 200,['idDepartamento' => $idDepartamento]);
   });
 
   /*end modules products*/
   $router->post('/products', function(){
-   
+  
     $this->controllerAdd('ProductsController', 'create', 201,['post' => $_POST]);
   });
 
   $router->put('/products/{idDepartamento}', function($idDepartamento){$this->controllerAdd('ProductsController', 'update', 201,['idDepartamento' => $idDepartamento]);});
 
-  $router->delete('/products/{idDepartamento}', function($idDepartamento){$this->controllerAdd('ProductsController', 'delete', 201,['idDepartamento'=>$idDepartamento]);
+  $router->delete('html/products/{idDepartamento}', function($idDepartamento){$this->controllerAdd('ProductsController', 'delete', 201,['idDepartamento'=>$idDepartamento]);
   });
 
 /*    start en de rutas */
